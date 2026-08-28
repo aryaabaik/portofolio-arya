@@ -1,5 +1,6 @@
 package com.portofolio.portofolio_arya.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,8 @@ public class Profile {
     private String pendidikan;
     private String lokasi;
     private String foto;
+    @Column(columnDefinition = "TEXT")
+    private String tentang;
 
     public Profile() {
     }
@@ -82,6 +85,15 @@ public class Profile {
     public void setFoto(String foto) {
         this.foto = foto;
     }
+
+    public String getTentang() {
+        return tentang;
+    }
+
+    public void setTentang(String tentang) {
+        this.tentang = tentang;
+    }
+
 
     
 }

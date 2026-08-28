@@ -1,6 +1,5 @@
 package com.portofolio.portofolio_arya.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,20 +7,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.portofolio.portofolio_arya.Model.Profile;
 import com.portofolio.portofolio_arya.Service.ProfileService;
+import com.portofolio.portofolio_arya.Model.Keahlian;
+import com.portofolio.portofolio_arya.Repository.KeahlianRepository;
+import com.portofolio.portofolio_arya.Model.Project;
+import com.portofolio.portofolio_arya.Repository.ProjectRepository;
+import com.portofolio.portofolio_arya.Model.Kontak;
+import com.portofolio.portofolio_arya.Repository.KontakRepository;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class ProfileController {
 
-    @Autowired
-    private ProfileService profileService;
+    private final ProfileService profileService;
+    private final KeahlianRepository keahlianRepository;
+    private final ProjectRepository projectRepository;
+    private final KontakRepository kontakRepository;
+
+    public ProfileController(
+            ProfileService profileService,
+            KeahlianRepository keahlianRepository,
+            ProjectRepository projectRepository,
+            KontakRepository kontakRepository) {
+
+        this.profileService = profileService;
+        this.keahlianRepository = keahlianRepository;
+        this.projectRepository = projectRepository;
+        this.kontakRepository = kontakRepository;
+    }
+
+    @GetMapping({"/", "/home"})
+    public String home(Model model) {
+        Profile profile = profileService.getProfile();
+        model.addAttribute("profile", profile);
+        return "home";
+    }
 
     @GetMapping("/profile")
     public String profile(Model model) {
-
         Profile profile = profileService.getProfile();
+        List<Keahlian> keahlian = keahlianRepository.findAll();
+        List<Project> projects = projectRepository.findAll();
+        List<Kontak> kontaks = kontakRepository.findAll();
+        
 
         model.addAttribute("profile", profile);
+        model.addAttribute("keahlian", keahlian);
+        model.addAttribute("projects", projects);
+        model.addAttribute("kontaks", kontaks);
+        model.addAttribute("kontakList", kontaks);
 
         return "profile";
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
+    <title th:text="'Edit Profile - ' + ${profile != null && profile.nama != null ? profile.nama : 'Dashboard'}">Edit Profile</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #fafafa;
             color: #1a1a1a;
             min-height: 100vh;
@@ -36,6 +36,9 @@
             padding: 20px 48px;
             background-color: #fff;
             border-bottom: 1px solid #eaeaea;
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         .navbar-brand {
@@ -73,11 +76,12 @@
 
         .form-container {
             width: 100%;
-            max-width: 560px;
+            max-width: 580px;
             background-color: #fff;
             border: 1px solid #e8e8e8;
             border-radius: 20px;
             padding: 48px 40px;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
             animation: fadeInUp 0.5s ease forwards;
         }
 
@@ -93,7 +97,7 @@
         }
 
         .form-header {
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             padding-bottom: 24px;
             border-bottom: 1px solid #f0f0f0;
         }
@@ -125,11 +129,7 @@
 
         /* --- Form Fields --- */
         .form-group {
-            margin-bottom: 24px;
-        }
-
-        .form-group:last-of-type {
-            margin-bottom: 32px;
+            margin-bottom: 22px;
         }
 
         .form-label {
@@ -141,7 +141,8 @@
             letter-spacing: 0.3px;
         }
 
-        .form-input {
+        .form-input,
+        .form-textarea {
             width: 100%;
             padding: 12px 16px;
             font-family: 'Inter', sans-serif;
@@ -154,23 +155,45 @@
             transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .form-input:hover {
+        .form-textarea {
+            min-height: 90px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .form-input:hover,
+        .form-textarea:hover {
             border-color: #c0c0c0;
         }
 
-        .form-input:focus {
+        .form-input:focus,
+        .form-textarea:focus {
             border-color: #1a1a1a;
             background-color: #fff;
             box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.06);
         }
 
-        .form-input::placeholder {
+        .form-input::placeholder,
+        .form-textarea::placeholder {
             color: #bbb;
         }
 
-        /* --- Submit Button --- */
+        .form-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 6px;
+        }
+
+        /* --- Action Buttons --- */
+        .form-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
         .btn-submit {
-            width: 100%;
+            flex: 1;
             padding: 14px 24px;
             font-family: 'Inter', sans-serif;
             font-size: 14px;
@@ -180,6 +203,10 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
         }
 
@@ -191,6 +218,24 @@
 
         .btn-submit:active {
             transform: translateY(0);
+        }
+
+        .btn-cancel {
+            padding: 14px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-cancel:hover {
+            background-color: #eaeaea;
+            color: #1a1a1a;
         }
 
         /* --- Footer --- */
@@ -224,6 +269,18 @@
             .form-title {
                 font-size: 20px;
             }
+
+            .form-actions {
+                flex-direction: column-reverse;
+                gap: 10px;
+            }
+
+            .btn-submit,
+            .btn-cancel {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -231,13 +288,13 @@
 
     <!-- Navbar -->
     <nav class="navbar">
-        <a href="/" class="navbar-brand" th:text="${profile.nama}">PORTFOLIO</a>
-        <a href="/profile" class="navbar-back">
+        <a href="/" class="navbar-brand" th:text="${profile != null ? profile.nama : 'PORTFOLIO'}">PORTFOLIO</a>
+        <a th:href="@{/template3}" class="navbar-back">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            Kembali ke Profile
+            Kembali ke Daftar Profil
         </a>
     </nav>
 
@@ -252,23 +309,23 @@
 
             <p th:if="${message}" th:text="${message}" class="alert"></p>
 
-            <form method="POST" th:object="${profile}">
+            <form th:action="@{/template3/edit}" method="POST" th:object="${profile}">
 
                 <input type="hidden" th:field="*{id}">
 
                 <div class="form-group">
-                    <label class="form-label" for="nama">Nama</label>
-                    <input type="text" th:field="*{nama}" id="nama" class="form-input" placeholder="Masukkan nama">
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="deskripsi">Deskripsi</label>
-                    <input type="text" th:field="*{deskripsi}" id="deskripsi" class="form-input" placeholder="Deskripsi singkat tentang Anda">
+                    <label class="form-label" for="nama">Nama Lengkap</label>
+                    <input type="text" th:field="*{nama}" id="nama" class="form-input" placeholder="Masukkan nama lengkap" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="profesi">Profesi</label>
-                    <input type="text" th:field="*{profesi}" id="profesi" class="form-input" placeholder="Profesi Anda">
+                    <input type="text" th:field="*{profesi}" id="profesi" class="form-input" placeholder="Contoh: Programmer, Web Developer" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="deskripsi">Deskripsi</label>
+                    <textarea th:field="*{deskripsi}" id="deskripsi" class="form-textarea" placeholder="Deskripsi singkat tentang Anda"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -283,10 +340,26 @@
 
                 <div class="form-group">
                     <label class="form-label" for="foto">Foto</label>
-                    <input type="text" th:field="*{foto}" id="foto" class="form-input" placeholder="Nama file foto (contoh: foto.jpg)">
+                    <input type="text" th:field="*{foto}" id="foto" class="form-input" placeholder="Nama file foto (contoh: arya.png, profile.jpg)">
+                    <p class="form-hint">Letakkan file gambar di folder <code>src/main/resources/static/images/</code>.</p>
                 </div>
 
-                <button type="submit" class="btn-submit">Simpan Perubahan</button>
+                <div class="form-group">
+                    <label class="form-label" for="tentang">About</label>
+                    <input type="text" th:field="*{tentang}" id="tentang" class="form-input" placeholder="tentang Anda">
+                </div>
+
+                <div class="form-actions">
+                    <a th:href="@{/template3}" class="btn-cancel">Batal</a>
+                    <button type="submit" class="btn-submit">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Simpan Perubahan
+                    </button>
+                </div>
 
             </form>
 
@@ -295,7 +368,7 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <p>Edit Profile</p>
+        <p>Dashboard Profil Portfolio</p>
     </footer>
 
 </body>
