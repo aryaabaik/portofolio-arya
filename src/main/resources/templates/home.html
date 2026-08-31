@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio - Arya Adhitya">
+    <meta name="description" content="Portfolio - Arya Adhitya | Creative Web Developer">
     <title>Portfolio - Arya Adhitya</title>
 
     <!-- Google Fonts: Editorial Serif + Clean Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
@@ -18,11 +18,13 @@
 
 <body class="home-body">
 
-    <!-- Ambient Watercolor Glow Orbs -->
+    <!-- Ambient Watercolor Glow Orbs (Light & Minimalist) -->
     <div class="ambient-glow ambient-glow-top"></div>
     <div class="ambient-glow ambient-glow-bottom"></div>
 
-    <!-- Header Navigation -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         MINIMALIST GLASS NAVBAR (Consistent with Profile)
+         ═══════════════════════════════════════════════════════════════ -->
     <header class="navbar-header">
         <nav class="home-navbar">
             <a href="/" class="home-brand">
@@ -40,33 +42,44 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         MAIN HERO SECTION (Light Editorial Ocean Theme)
+         ═══════════════════════════════════════════════════════════════ -->
     <main class="home-main">
 
-        <!-- Two-Column Editorial Hero Section -->
         <section class="split-hero-container">
 
-            <!-- Background Flowing Wave Shape -->
+            <!-- Flowing Ambient Wave Contour Lines -->
             <div class="hero-wave-bg">
                 <svg class="wave-svg" viewBox="0 0 1200 320" preserveAspectRatio="none" fill="none">
-                    <path d="M0,180 C240,100 480,260 720,180 C960,100 1100,220 1200,160 L1200,320 L0,320 Z" fill="rgba(234, 244, 248, 0.6)"/>
+                    <path d="M0,180 C240,110 480,250 720,180 C960,110 1100,210 1200,160 L1200,320 L0,320 Z" fill="rgba(234, 244, 248, 0.6)"/>
                     <path d="M0,220 C280,160 520,290 800,210 C1000,140 1120,250 1200,200 L1200,320 L0,320 Z" fill="rgba(47, 111, 163, 0.035)"/>
-                    <path d="M0,140 C220,220 460,80 700,160 C920,230 1080,100 1200,140" stroke="rgba(47, 111, 163, 0.15)" stroke-width="1.2" stroke-dasharray="6 6"/>
+                    <path d="M0,140 C220,220 460,80 700,160 C920,230 1080,100 1200,140" stroke="rgba(47, 111, 163, 0.16)" stroke-width="1.2" stroke-dasharray="6 6"/>
                 </svg>
             </div>
 
             <!-- Left Side: Identity, Typography, Description & Actions -->
             <div class="hero-left-col animate-fade-in">
+
+                <!-- Eyebrow Tag -->
+                <div class="hero-eyebrow-line animate-fade-in">
+                    <span class="eyebrow-dash">—</span>
+                    <span class="eyebrow-text">SISWA XII RPL 3 · BANDUNG, JAWA BARAT · OPEN TO WORK</span>
+                </div>
+
+                <!-- Hero Title -->
                 <h1 class="hero-title animate-fade-in delay-1">
                     Arya <span class="highlight">Adhitya</span>
                 </h1>
 
+                <!-- Hero Description -->
                 <p class="hero-description animate-fade-in delay-2">
                     Siswa XII RPL 3 yang sedang menjalani PKL dan terus mengembangkan kemampuan
                     di dunia programming. Saat ini banyak belajar membangun aplikasi menggunakan
                     Java, Spring Boot, database, dan teknologi web modern.
                 </p>
 
+                <!-- Actions Row -->
                 <div class="actions-row animate-fade-in delay-3">
                     <a href="/profile" class="btn-primary-action">
                         <span>Masuk ke Profile</span>
@@ -80,21 +93,21 @@
                     </a>
                 </div>
 
-                <!-- Clean 3-Column Information Row -->
+                <!-- Clean School & Education Information Strip -->
                 <div class="info-strip animate-fade-in delay-4">
                     <div class="info-block">
                         <span class="info-title">SMK ASSALAAM BANDUNG</span>
-                        <span class="info-subtitle">XII RPL 3 · Jurusan RPL</span>
+                        <span class="info-subtitle">XII RPL 3 · Jurusan Rekayasa Perangkat Lunak</span>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Right Side: Balanced Profile Photo Card + Marine Elements -->
+            <!-- Right Side: Balanced Photo Card + Artistic Marine Elements -->
             <div class="hero-right-col animate-fade-in delay-2">
                 <div class="photo-card-wrapper">
 
-                    <!-- Decorative Ocean Element 1: Swimming Blue Fish (Top Left) -->
+                    <!-- Decorative Ocean Element 1: Swimming Fish (Top Left) -->
                     <div class="ocean-art art-fish">
                         <img th:src="@{/images/elements/w2e1.png}"
                              alt="Swimming Fish"
@@ -112,29 +125,31 @@
 
                     <!-- Decorative Ocean Element 3: Hand-drawn Sea Turtle (Bottom Left) -->
                     <div class="ocean-art art-turtle">
-                        <svg viewBox="0 0 90 90" fill="none" stroke="#2F6FA3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-                            <ellipse cx="45" cy="45" rx="22" ry="18"/>
-                            <path d="M45 27 C48 22, 52 18, 55 20 C58 22, 56 28, 52 30"/>
-                            <path d="M67 40 C72 38, 78 40, 76 45 C74 50, 68 48, 67 45"/>
-                            <path d="M23 40 C18 38, 12 40, 14 45 C16 50, 22 48, 23 45"/>
-                            <path d="M60 58 C64 62, 66 68, 62 70 C58 72, 56 66, 58 62"/>
-                            <path d="M30 58 C26 62, 24 68, 28 70 C32 72, 34 66, 32 62"/>
-                            <path d="M38 63 C40 70, 45 75, 50 70 C52 68, 50 63, 48 63"/>
-                            <path d="M35 38 L42 45 L50 38 L55 45 L48 52 L40 52 L35 45 Z" stroke-width="0.8" opacity="0.6"/>
+                        <svg viewBox="0 0 90 90" fill="none" stroke="#2F6FA3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <ellipse cx="45" cy="45" rx="22" ry="18" fill="rgba(47, 111, 163, 0.12)" stroke="#2F6FA3" stroke-width="1.8"/>
+                            <path d="M45 27 C48 22, 52 18, 55 20 C58 22, 56 28, 52 30" fill="rgba(47, 111, 163, 0.18)"/>
+                            <path d="M67 40 C72 38, 78 40, 76 45 C74 50, 68 48, 67 45" fill="rgba(47, 111, 163, 0.15)"/>
+                            <path d="M23 40 C18 38, 12 40, 14 45 C16 50, 22 48, 23 45" fill="rgba(47, 111, 163, 0.15)"/>
+                            <path d="M60 58 C64 62, 66 68, 62 70 C58 72, 56 66, 58 62" fill="rgba(47, 111, 163, 0.12)"/>
+                            <path d="M30 58 C26 62, 24 68, 28 70 C32 72, 34 66, 32 62" fill="rgba(47, 111, 163, 0.12)"/>
+                            <path d="M38 63 C40 70, 45 75, 50 70 C52 68, 50 63, 48 63" fill="rgba(47, 111, 163, 0.15)"/>
+                            <path d="M35 38 L42 45 L50 38 L55 45 L48 52 L40 52 L35 45 Z" stroke="#2F6FA3" stroke-width="1.2" opacity="0.75" fill="rgba(47, 111, 163, 0.08)"/>
                         </svg>
                     </div>
 
-                    <!-- Decorative Ocean Element 4: Tiny Bubbles (Far Left) -->
+                    <!-- Decorative Ocean Element 4: Delicate Water Bubbles (Left Side) -->
                     <div class="ocean-art art-bubbles">
-                        <svg viewBox="0 0 36 60" fill="none" stroke="#2F6FA3" stroke-width="1.2">
-                            <circle cx="18" cy="46" r="6" opacity="0.4"/>
-                            <circle cx="10" cy="30" r="4" opacity="0.35"/>
-                            <circle cx="24" cy="18" r="4.5" opacity="0.5"/>
-                            <circle cx="14" cy="7" r="2.5" opacity="0.4"/>
+                        <svg viewBox="0 0 46 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="23" cy="64" r="8" fill="rgba(47, 111, 163, 0.22)" stroke="rgba(47, 111, 163, 0.65)" stroke-width="1.4"/>
+                            <circle cx="20" cy="61" r="1.8" fill="rgba(255, 255, 255, 0.8)"/>
+                            <circle cx="10" cy="46" r="5.5" fill="rgba(47, 111, 163, 0.18)" stroke="rgba(47, 111, 163, 0.6)" stroke-width="1.3"/>
+                            <circle cx="8.5" cy="43.5" r="1.2" fill="rgba(255, 255, 255, 0.75)"/>
+                            <circle cx="32" cy="30" r="6.5" fill="rgba(47, 111, 163, 0.22)" stroke="rgba(47, 111, 163, 0.65)" stroke-width="1.3"/>
+                            <circle cx="16" cy="14" r="4" fill="rgba(47, 111, 163, 0.2)" stroke="rgba(47, 111, 163, 0.55)" stroke-width="1.2"/>
                         </svg>
                     </div>
 
-                    <!-- Main Rectangular Photo Card -->
+                    <!-- Main Clean White Photo Card (Editorial Style) -->
                     <div class="photo-main-card">
                         <div class="photo-inner-container">
                             <img th:src="${profile != null and profile.foto != null ? '/images/' + profile.foto : '/images/tampan.png'}" 
@@ -159,7 +174,9 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         CLEAN MINIMALIST FOOTER
+         ═══════════════════════════════════════════════════════════════ -->
     <footer class="home-footer">
         <p class="footer-copyright">Copyright &copy; 2026 Arya. All rights reserved.</p>
         <p class="footer-tech">Built with Spring Boot &amp; Thymeleaf</p>

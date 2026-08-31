@@ -1,15 +1,15 @@
 /* ==========================================================================
    HOME PAGE STYLESHEET (home.css)
-   Theme: Editorial Ocean Portfolio (Minimalist, Calm & Sophisticated)
+   Theme: Light & Minimalist Editorial Ocean Portfolio (Consistent with Profile)
    Palette:
-     --bg:       #FAF9F6 (Warm off-white / ivory)
-     --navy:     #163B63 (Deep navy)
-     --ocean:    #2F6FA3 (Ocean blue accent)
-     --pale-blue:#EAF4F8 (Subtle pale blue)
-     --text:     #47617C (Dark slate/navy body text)
-     --muted:    #7188A0 (Muted supporting text)
-     --border:   #E1EAF0 (Light border)
-     --card:     #FFFFFF (White card background)
+     --bg:         #FAF9F6 (Warm off-white / ivory canvas)
+     --navy-deep:  #163B63 (Deep navy heading & accents)
+     --ocean-blue: #2F6FA3 (Editorial ocean blue highlight)
+     --pale-blue:  #EAF4F8 (Subtle pale blue)
+     --text-body:  #47617C (Dark slate navy body text)
+     --text-muted: #7188A0 (Muted supporting text)
+     --border:     #E1EAF0 (Clean light border)
+     --card:       #FFFFFF (Pure white card background)
    ========================================================================== */
 
 /* --- Reset & Base --- */
@@ -29,7 +29,7 @@ body.home-body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #FAF9F6;
     color: #47617C;
-    line-height: 1.6;
+    line-height: 1.65;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -40,7 +40,9 @@ body.home-body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Ambient Watercolor Glow Orbs (Very Soft & Subtle) --- */
+/* ==========================================================================
+   AMBIENT WATERCOLOR OCEAN GLOWS (Soft & Minimalist)
+   ========================================================================== */
 .ambient-glow {
     position: fixed;
     border-radius: 50%;
@@ -50,22 +52,24 @@ body.home-body {
 }
 
 .ambient-glow-top {
-    width: 500px;
-    height: 500px;
-    top: -120px;
-    right: -80px;
-    background: radial-gradient(circle, rgba(47, 111, 163, 0.12) 0%, rgba(47, 111, 163, 0) 70%);
+    width: 580px;
+    height: 580px;
+    top: -140px;
+    right: -90px;
+    background: radial-gradient(circle, rgba(47, 111, 163, 0.12) 0%, rgba(47, 111, 163, 0.04) 50%, transparent 70%);
 }
 
 .ambient-glow-bottom {
-    width: 460px;
-    height: 460px;
+    width: 500px;
+    height: 500px;
     bottom: -80px;
     left: -100px;
-    background: radial-gradient(circle, rgba(22, 59, 99, 0.08) 0%, rgba(22, 59, 99, 0) 70%);
+    background: radial-gradient(circle, rgba(22, 59, 99, 0.08) 0%, rgba(22, 59, 99, 0.02) 50%, transparent 70%);
 }
 
-/* --- Floating Glass Navbar --- */
+/* ==========================================================================
+   MINIMALIST GLASS NAVBAR (Consistent with Profile Page)
+   ========================================================================== */
 .navbar-header {
     position: sticky;
     top: 0;
@@ -77,9 +81,9 @@ body.home-body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1240px;
+    max-width: 1220px;
     margin: 0 auto;
-    padding: 16px 40px;
+    padding: 18px 40px;
     background: rgba(250, 249, 246, 0.94);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -96,6 +100,7 @@ body.home-body {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .brand-dot {
@@ -152,7 +157,7 @@ body.home-body {
 .home-nav-btn {
     font-size: 12.5px;
     font-weight: 600;
-    color: #ffffff;
+    color: #FFFFFF;
     background-color: #163B63;
     padding: 8px 20px;
     border-radius: 50px;
@@ -168,7 +173,9 @@ body.home-body {
     box-shadow: 0 6px 18px rgba(47, 111, 163, 0.25);
 }
 
-/* --- Main Layout Wrapper --- */
+/* ==========================================================================
+   MAIN HERO SECTION (Light Editorial Split Layout)
+   ========================================================================== */
 .home-main {
     flex: 1;
     position: relative;
@@ -179,9 +186,6 @@ body.home-body {
     width: 100%;
 }
 
-/* ==========================================================================
-   TWO-COLUMN HERO SECTION (Balanced & Compact)
-   ========================================================================== */
 .split-hero-container {
     position: relative;
     display: grid;
@@ -219,35 +223,33 @@ body.home-body {
     z-index: 2;
 }
 
-/* Eyebrow Label */
-.eyebrow-badge {
+/* Eyebrow Line (Matching Profile Style) */
+.hero-eyebrow-line {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    padding: 4px 12px;
-    background-color: #EAF4F8;
-    border: 1px solid rgba(47, 111, 163, 0.25);
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.4px;
-    color: #2F6FA3;
-    text-transform: uppercase;
+    gap: 8px;
     margin-bottom: 16px;
 }
 
-.eyebrow-dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: #2F6FA3;
+.eyebrow-dash {
+    color: #2F6FA3;
+    font-weight: 600;
+    font-size: 13px;
 }
 
-/* Large Main Heading */
+.eyebrow-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    color: #7188A0;
+    text-transform: uppercase;
+}
+
+/* Large Main Heading (Editorial Serif) */
 .hero-title {
     font-family: 'DM Serif Display', 'Playfair Display', serif;
-    font-size: 54px;
-    font-weight: 700;
+    font-size: 56px;
+    font-weight: 400;
     color: #163B63;
     line-height: 1.12;
     letter-spacing: -1.2px;
@@ -255,51 +257,10 @@ body.home-body {
 }
 
 .hero-title .highlight {
-    color: #2F6FA3;
+    color: #163B63;
+    font-style: italic;
     position: relative;
     display: inline-block;
-}
-
-.hero-title .highlight::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 4px;
-    width: 100%;
-    height: 6px;
-    background-color: rgba(47, 111, 163, 0.18);
-    z-index: -1;
-    border-radius: 3px;
-}
-
-/* 3 Skill Badges Row */
-.badges-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 18px;
-}
-
-.skill-pill {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 14px;
-    background-color: rgba(255, 255, 255, 0.95);
-    border: 1px solid #D5E3EC;
-    border-radius: 50px;
-    font-size: 12px;
-    font-weight: 500;
-    color: #2F6FA3;
-    letter-spacing: 0.2px;
-    transition: all 0.2s ease;
-    box-shadow: 0 1px 3px rgba(22, 59, 99, 0.02);
-}
-
-.skill-pill:hover {
-    background-color: #EAF4F8;
-    border-color: #2F6FA3;
-    color: #163B63;
-    transform: translateY(-1px);
 }
 
 /* Description Text */
@@ -327,7 +288,7 @@ body.home-body {
     align-items: center;
     gap: 8px;
     background: #163B63;
-    color: #ffffff;
+    color: #FFFFFF;
     font-size: 13.5px;
     font-weight: 600;
     padding: 12px 28px;
@@ -375,7 +336,7 @@ body.home-body {
     transform: translateY(-2px);
 }
 
-/* Clean 3-Column Information Row */
+/* Clean School & Education Information Strip */
 .info-strip {
     display: flex;
     align-items: center;
@@ -405,13 +366,9 @@ body.home-body {
     margin-top: 2px;
 }
 
-.info-divider {
-    width: 1px;
-    height: 26px;
-    background-color: #E1EAF0;
-}
-
-/* --- Right Column: Balanced Photo Card --- */
+/* ==========================================================================
+   RIGHT COLUMN: BALANCED PHOTO CARD + ARTISTIC MARINE ELEMENTS
+   ========================================================================== */
 .hero-right-col {
     position: relative;
     display: flex;
@@ -427,20 +384,21 @@ body.home-body {
 }
 
 @keyframes floatGentle {
-    0% { transform: translateY(0px); }
+    0%   { transform: translateY(0px); }
     100% { transform: translateY(-6px); }
 }
 
 /* Main Rectangular White Photo Card */
 .photo-main-card {
     position: relative;
-    background: #ffffff;
+    background: #FFFFFF;
     padding: 12px 12px 14px;
     border-radius: 22px;
     border: 1px solid #E1EAF0;
     box-shadow: 0 16px 40px rgba(22, 59, 99, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
     overflow: hidden;
     transition: transform 0.35s ease, box-shadow 0.35s ease;
+    z-index: 2;
 }
 
 .photo-main-card:hover {
@@ -474,7 +432,7 @@ body.home-body {
 }
 
 /* ==========================================================================
-   Artistic Hand-Drawn Ocean Illustrations (Low-opacity & Never covering text)
+   ARTISTIC OCEAN ILLUSTRATIONS (Vivid, Delicate & Never Covering Face)
    ========================================================================== */
 .ocean-art {
     position: absolute;
@@ -493,65 +451,67 @@ body.home-body {
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 6px 14px rgba(47, 111, 163, 0.18));
+    filter: drop-shadow(0 6px 14px rgba(47, 111, 163, 0.22));
     animation: fishSwim 6.5s ease-in-out infinite alternate;
 }
 
 @keyframes fishSwim {
-    0% { transform: translate(0px, 0px) rotate(0deg); }
-    50% { transform: translate(-6px, -8px) rotate(-2deg); }
+    0%   { transform: translate(0px, 0px) rotate(0deg); }
+    50%  { transform: translate(-6px, -8px) rotate(-2deg); }
     100% { transform: translate(4px, -3px) rotate(2deg); }
 }
 
 /* 2. Watercolor Jellyfish (Top Right of Card) */
 .art-jellyfish {
-    top: -38px;
+    top: -40px;
     right: -32px;
-    width: 100px;
+    width: 104px;
+    transform: rotate(12deg);
 }
 
 .img-jellyfish {
     width: 100%;
     height: auto;
     display: block;
-    filter: drop-shadow(0 10px 20px rgba(22, 59, 99, 0.16));
+    filter: drop-shadow(0 10px 22px rgba(22, 59, 99, 0.2));
     animation: jellyDrift 5s ease-in-out infinite alternate;
 }
 
 @keyframes jellyDrift {
-    0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-    100% { transform: translateY(-3px) rotate(-2deg); }
+    0%   { transform: rotate(12deg) translateY(0px); }
+    50%  { transform: rotate(15deg) translateY(-10px); }
+    100% { transform: rotate(10deg) translateY(-3px); }
 }
 
 /* 3. Hand-drawn Sea Turtle (Bottom Left of Card) */
 .art-turtle {
     bottom: -18px;
     left: -38px;
-    width: 78px;
-    height: 78px;
+    width: 80px;
+    height: 80px;
     animation: turtleDrift 7.5s ease-in-out infinite alternate;
-    opacity: 0.7;
+    opacity: 0.85;
+    filter: drop-shadow(0 3px 8px rgba(47, 111, 163, 0.2));
 }
 
 @keyframes turtleDrift {
-    0% { transform: translate(0, 0) rotate(-3deg); }
-    50% { transform: translate(4px, -6px) rotate(2deg); }
+    0%   { transform: translate(0, 0) rotate(-3deg); }
+    50%  { transform: translate(4px, -6px) rotate(2deg); }
     100% { transform: translate(-3px, -2px) rotate(-2deg); }
 }
 
-/* 4. Tiny Bubbles */
+/* 4. Delicate Bubbles (Left Side) */
 .art-bubbles {
     top: 25%;
-    left: -22px;
-    width: 36px;
-    height: 60px;
+    left: -26px;
+    width: 40px;
+    height: 70px;
     animation: bubbleRise 6s ease-in-out infinite alternate;
 }
 
 @keyframes bubbleRise {
-    0% { transform: translateY(0); opacity: 0.4; }
-    100% { transform: translateY(-10px); opacity: 0.8; }
+    0%   { transform: translateY(0);     opacity: 0.55; }
+    100% { transform: translateY(-10px); opacity: 0.9; }
 }
 
 /* 5. Celestial Stamp (Bottom Right of Card) */
@@ -570,11 +530,13 @@ body.home-body {
 }
 
 @keyframes stampSway {
-    0% { transform: rotate(-2deg) translateY(0); }
+    0%   { transform: rotate(-2deg) translateY(0); }
     100% { transform: rotate(1deg) translateY(-3px); }
 }
 
-/* --- Footer --- */
+/* ==========================================================================
+   MINIMALIST FOOTER (Matching Profile)
+   ========================================================================== */
 .home-footer {
     text-align: center;
     padding: 16px 40px;
@@ -597,7 +559,9 @@ body.home-body {
     letter-spacing: 0.3px;
 }
 
-/* --- Subtle Fade-In Animations --- */
+/* ==========================================================================
+   SUBTLE FADE-IN ANIMATIONS
+   ========================================================================== */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -672,10 +636,6 @@ body.home-body {
         font-size: 38px;
     }
 
-    .badges-row {
-        justify-content: center;
-    }
-
     .actions-row {
         justify-content: center;
     }
@@ -707,16 +667,6 @@ body.home-body {
     .btn-outline-action {
         width: 100%;
         justify-content: center;
-    }
-
-    .info-strip {
-        flex-direction: column;
-        gap: 8px;
-        align-items: center;
-    }
-
-    .info-divider {
-        display: none;
     }
 
     .art-fish {

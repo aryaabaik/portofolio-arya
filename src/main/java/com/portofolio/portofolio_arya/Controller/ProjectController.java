@@ -20,29 +20,21 @@ public class ProjectController {
     public ProjectController(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
-
-    // 1. Tampilkan daftar project
     @GetMapping
     public String project(Model model) {
         model.addAttribute("projectList", projectRepository.findAll());
         return "dashboard/project/index";
     }
-
-    // 2. Tampilkan form tambah project
     @GetMapping("/create")
     public String createProject(Model model) {
         model.addAttribute("project", new Project());
         return "dashboard/project/create";
     }
-
-    // 3. Simpan data project baru
     @PostMapping("/create")
     public String simpanProject(@ModelAttribute("project") Project project) {
         projectRepository.save(project);
         return "redirect:/project";
     }
-
-    // 4. Tampilkan form edit project
     @GetMapping("/edit/{id}")
     public String editproject(@PathVariable("id") Long id, Model model) {
         Project project = projectRepository.findById(id)
@@ -51,15 +43,11 @@ public class ProjectController {
         model.addAttribute("project", project);
         return "dashboard/project/edit";
     }
-
-    // 5. Simpan perubahan edit project
     @PostMapping("/edit")
     public String updateproject(@ModelAttribute("project") Project project) {
         projectRepository.save(project);
         return "redirect:/project";
     }
-
-    // 6. Hapus data project
     @GetMapping("/delete/{id}")
     public String deleteProject(@PathVariable("id") Long id) {
         projectRepository.deleteById(id);

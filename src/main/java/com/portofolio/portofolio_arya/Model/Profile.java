@@ -21,6 +21,7 @@ public class Profile {
     private String foto;
     @Column(columnDefinition = "TEXT")
     private String tentang;
+    private String cv;
 
     public Profile() {
     }
@@ -92,6 +93,14 @@ public class Profile {
 
     public void setTentang(String tentang) {
         this.tentang = tentang;
+    }
+
+    public String getCv() {
+        return cv;
+    }
+
+    public void setCv(String cv) {
+        this.cv = cv;
     }
 
 

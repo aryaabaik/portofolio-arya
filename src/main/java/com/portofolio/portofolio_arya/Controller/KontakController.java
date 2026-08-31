@@ -25,9 +25,9 @@ import com.portofolio.portofolio_arya.Model.Kontak;
         }
 
         @PostMapping
-        @ResponseBody
-        public Kontak tambahKontak(@RequestBody Kontak kontak) {
-            return kontakRepository.save(kontak);
+        public String tambahKontak(@ModelAttribute Kontak kontak) {
+            kontakRepository.save(kontak);
+            return "redirect:/kontak";
         }
 
         @GetMapping("/edit/{id}")

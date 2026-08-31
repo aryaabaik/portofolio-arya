@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelola Profil - Dashboard</title>
+    <title>Kelola kontak - Dashboard</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,15 +35,15 @@
                 </a>
             </li>
             <li>
-                <a href="/template3" class="sidebar-link active">
+                <a href="/template3" class="sidebar-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     <span>Profile</span>
                 </a>
             </li>
             <li>
-                <a href="/keahlian" class="sidebar-link">
+                <a href="/kontak" class="sidebar-link active">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                    <span>Keahlian</span>
+                    <span>kontak</span>
                 </a>
             </li>
             <li>
@@ -66,8 +66,8 @@
     <main class="main-wrapper">
         
         <div class="page-header">
-            <h1 class="page-title">Kelola Data Profil</h1>
-            <p class="page-description">Informasi identitas, profesi, dan deskripsi utama profil portofolio Anda.</p>
+            <h1 class="page-title">Kelola Data kontak</h1>
+            <p class="page-description">Daftar kemampuan teknis dan status pembelajaran yang ditampilkan di portofolio.</p>
         </div>
 
         <div class="table-card">
@@ -76,46 +76,25 @@
                     <thead>
                         <tr>
                             <th class="th-num">No</th>
-                            <th>Profil</th>
-                            <th>Profesi</th>
-                            <th>Pendidikan</th>
-                            <th>Lokasi</th>
+                            <th>Email</th>
+                            <th>Whatsapp</th>
+                            <th>Github</th>
+                            <th>Instagram</th>
                             <th class="th-action">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="item, stat : ${profileList}">
+                        <tr th:each="kontak, stat : ${kontakList}">
                             <td class="td-num" th:text="${stat.count}">1</td>
-                            <td>
-                                <div class="profile-cell">
-                                    <img 
-                                        th:src="${item.foto != null && !item.foto.isEmpty() ? '/images/' + item.foto : '/images/arya.png'}" 
-                                        th:alt="${item.nama}" 
-                                        class="profile-avatar"
-                                        onerror="this.src='/images/arya.png'"
-                                    >
-                                    <div>
-                                        <p class="profile-name-text" th:text="${item.nama}">Arya Adhitya</p>
-                                        <p class="profile-sub-text" th:text="${item.foto != null ? item.foto : 'default.png'}">foto.png</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="td-badge" th:text="${item.profesi != null && !item.profesi.isEmpty() ? item.profesi : '-'}">Programmer</span>
-                            </td>
-                            <td th:text="${item.pendidikan != null && !item.pendidikan.isEmpty() ? item.pendidikan : '-'}">SMK ASSALAAM BANDUNG</td>
-                            <td th:text="${item.lokasi != null && !item.lokasi.isEmpty() ? item.lokasi : '-'}">Indonesia</td>
+                            <td class="td-name" th:text="${kontak.email}"></td>
+                            <td class="td-name" th:text="${kontak.whatsapp}"></td>
+                            <td class="td-name" th:text="${kontak.github}"></td>
+                            <td class="td-name" th:text="${kontak.instagram}"></td>
                             <td class="td-action">
-                                <a th:href="@{/template3/edit/{id}(id=${item.id})}" class="btn-edit">
+                                <a th:href="@{/kontak/edit/{id}(id=${kontak.id})}" class="btn-edit">
                                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                                     Edit
                                 </a>
-                            </td>
-                        </tr>
-
-                        <tr th:if="${profileList == null || #lists.isEmpty(profileList)}">
-                            <td colspan="6" class="empty-state">
-                                <p>Belum ada data profil yang tersedia.</p>
                             </td>
                         </tr>
                     </tbody>

@@ -1,0 +1,495 @@
+/* ==========================================================================
+   DASHBOARD FORM PAGE STYLES (dashboard-form.css)
+   Theme: Minimalist & Clean Editorial Ocean (100% Consistent with Portfolio)
+   Palette:
+     --bg-canvas:   #FAF9F6
+     --navy:        #163B63
+     --ocean:       #2F6FA3
+     --pale-blue:   #EAF4F8
+     --text-body:   #47617C
+     --text-muted:  #7188A0
+     --border:      #E1EAF0
+     --card:        #FFFFFF
+   ========================================================================== */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #FAF9F6;
+    color: #47617C;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   TOP NAVBAR — Clean & Minimalist Glass
+   ========================================================================== */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    background: rgba(250, 249, 246, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid #E1EAF0;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.navbar-brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #163B63;
+    text-decoration: none;
+}
+
+.navbar-divider {
+    color: #E1EAF0;
+    font-size: 14px;
+}
+
+.navbar-tag {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #7188A0;
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.navbar-back {
+    font-size: 13px;
+    font-weight: 600;
+    color: #163B63;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    border: 1px solid #E1EAF0;
+    transition: all 0.2s ease;
+}
+
+.navbar-back:hover {
+    color: #2F6FA3;
+    border-color: #2F6FA3;
+    background-color: #EAF4F8;
+    transform: translateX(-2px);
+}
+
+.navbar-back svg {
+    transition: transform 0.2s ease;
+}
+
+.navbar-back:hover svg {
+    transform: translateX(-3px);
+}
+
+/* ==========================================================================
+   MAIN CONTENT — Centered Form
+   ========================================================================== */
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px 64px;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 540px;
+}
+
+/* ==========================================================================
+   FORM CARD — Clean Minimalist White
+   ========================================================================== */
+.form-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E1EAF0;
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: 0 4px 16px rgba(22, 59, 99, 0.04);
+}
+
+/* --- Card Badge --- */
+.card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #2F6FA3;
+    background-color: #EAF4F8;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    border: 1px solid #E1EAF0;
+}
+
+.card-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #2F6FA3;
+}
+
+/* --- Form Header --- */
+.form-header {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #F0F4F8;
+}
+
+.form-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #163B63;
+    letter-spacing: -0.3px;
+    margin-bottom: 6px;
+}
+
+.form-description {
+    font-size: 13.5px;
+    color: #7188A0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   ALERT
+   ========================================================================== */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    background-color: #F0FDF4;
+    color: #166534;
+    border: 1px solid #DCFCE7;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ==========================================================================
+   FORM FIELDS
+   ========================================================================== */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #163B63;
+    margin-bottom: 8px;
+}
+
+.form-label-required {
+    color: #DC2626;
+    margin-left: 2px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #163B63;
+    background-color: #FFFFFF;
+    border: 1.5px solid #E1EAF0;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.form-input {
+    height: 44px;
+}
+
+.form-textarea {
+    padding: 12px 14px;
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+.form-input:hover,
+.form-textarea:hover {
+    border-color: #CBD5E1;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #163B63;
+    box-shadow: 0 0 0 3px rgba(22, 59, 99, 0.08);
+}
+
+/* Select */
+.form-select-wrapper {
+    position: relative;
+}
+
+.form-select {
+    width: 100%;
+    height: 44px;
+    padding: 0 38px 0 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #163B63;
+    background-color: #FFFFFF;
+    border: 1.5px solid #E1EAF0;
+    border-radius: 8px;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.form-select:hover {
+    border-color: #CBD5E1;
+}
+
+.form-select:focus {
+    border-color: #163B63;
+    box-shadow: 0 0 0 3px rgba(22, 59, 99, 0.08);
+}
+
+.select-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #7188A0;
+}
+
+.form-hint {
+    font-size: 12px;
+    color: #7188A0;
+    margin-top: 6px;
+}
+
+.form-hint code {
+    font-size: 11px;
+    background: #EAF4F8;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #163B63;
+}
+
+/* ==========================================================================
+   LIVE PREVIEW BOX (Keahlian Edit)
+   ========================================================================== */
+.preview-box {
+    background-color: #FAF9F6;
+    border: 1px dashed #E1EAF0;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 22px 0;
+}
+
+.preview-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #7188A0;
+    margin-bottom: 10px;
+}
+
+.preview-card {
+    background: #FFFFFF;
+    border: 1px solid #E1EAF0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.preview-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #163B63;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.status-badge.completed {
+    background-color: #F0FDF4;
+    color: #166534;
+    border: 1px solid #DCFCE7;
+}
+
+.status-badge.completed .status-dot {
+    background-color: #22C55E;
+}
+
+.status-badge.learning {
+    background-color: #EAF4F8;
+    color: #163B63;
+    border: 1px solid #D2DFE8;
+}
+
+.status-badge.learning .status-dot {
+    background-color: #2F6FA3;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+/* ==========================================================================
+   FORM ACTIONS (BUTTONS)
+   ========================================================================== */
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn-submit {
+    flex: 1;
+    height: 44px;
+    padding: 0 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: #163B63;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(22, 59, 99, 0.15);
+    transition: all 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0F2642;
+    box-shadow: 0 6px 16px rgba(22, 59, 99, 0.22);
+}
+
+.btn-cancel {
+    height: 44px;
+    padding: 0 20px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: #47617C;
+    background-color: #FFFFFF;
+    border: 1px solid #E1EAF0;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-cancel:hover {
+    color: #163B63;
+    background-color: #FAF9F6;
+    border-color: #CBD5E1;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+    text-align: center;
+    padding: 24px;
+    border-top: 1px solid #E1EAF0;
+    background-color: #FAF9F6;
+}
+
+.footer p {
+    font-size: 13px;
+    color: #7188A0;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 640px) {
+    .navbar {
+        padding: 14px 20px;
+    }
+
+    .navbar-tag,
+    .navbar-divider {
+        display: none;
+    }
+
+    .main-content {
+        padding: 24px 16px 40px;
+    }
+
+    .form-card {
+        padding: 24px 20px;
+        border-radius: 12px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        width: 100%;
+    }
+}

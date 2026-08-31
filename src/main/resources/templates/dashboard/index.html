@@ -3,310 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin - Portfolio</title>
+    <meta name="description" content="Dashboard admin portfolio Arya - kelola profil, keahlian, dan project dari satu tempat.">
+    <title>Dashboard — Portfolio</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-            min-height: 100vh;
-            display: flex;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- Sidebar --- */
-        .sidebar {
-            width: 260px;
-            background-color: #ffffff;
-            border-right: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            z-index: 50;
-        }
-
-        .sidebar-header {
-            padding: 24px 20px;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .brand-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-            background-color: #0f172a;
-            color: #ffffff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .brand-name {
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            color: #0f172a;
-        }
-
-        .sidebar-menu {
-            padding: 20px 14px;
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            flex: 1;
-        }
-
-        .menu-label {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #94a3b8;
-            padding: 10px 12px 6px;
-        }
-
-        .sidebar-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #475569;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .sidebar-link:hover {
-            color: #0f172a;
-            background-color: #f1f5f9;
-        }
-
-        .sidebar-link.active {
-            color: #0f172a;
-            background-color: #e2e8f0;
-            font-weight: 600;
-        }
-
-        .sidebar-link svg {
-            width: 18px;
-            height: 18px;
-            stroke-width: 2;
-            color: inherit;
-        }
-
-        .sidebar-footer {
-            padding: 16px 14px;
-            border-top: 1px solid #f1f5f9;
-        }
-
-        .sidebar-footer-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            color: #0f172a;
-            background-color: #f1f5f9;
-            text-decoration: none;
-            border: 1px solid #e2e8f0;
-            transition: all 0.2s ease;
-        }
-
-        .sidebar-footer-link:hover {
-            background-color: #0f172a;
-            color: #ffffff;
-            border-color: #0f172a;
-        }
-
-        /* --- Main Content --- */
-        .main-wrapper {
-            margin-left: 260px;
-            flex: 1;
-            padding: 40px 48px 60px;
-            max-width: 1200px;
-        }
-
-        .header-title-box {
-            margin-bottom: 32px;
-        }
-
-        .page-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #0f172a;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-        }
-
-        .page-subtitle {
-            font-size: 14px;
-            color: #64748b;
-        }
-
-        /* --- Stats Cards Grid --- */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 36px;
-        }
-
-        .stat-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 22px 24px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: transform 0.2s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .stat-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #64748b;
-            margin-bottom: 6px;
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0f172a;
-        }
-
-        .stat-icon-wrap {
-            width: 46px;
-            height: 46px;
-            border-radius: 10px;
-            background-color: #f1f5f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0f172a;
-        }
-
-        /* --- Action Quick Cards --- */
-        .quick-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .quick-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s ease;
-        }
-
-        .quick-card:hover {
-            border-color: #0f172a;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-            transform: translateY(-3px);
-        }
-
-        .quick-card-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .quick-card-desc {
-            font-size: 13px;
-            color: #64748b;
-            line-height: 1.5;
-            flex: 1;
-            margin-bottom: 16px;
-        }
-
-        .quick-card-link {
-            font-size: 12px;
-            font-weight: 600;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        @media (max-width: 900px) {
-            .sidebar {
-                width: 70px;
-            }
-            .sidebar .brand-name,
-            .sidebar .menu-label,
-            .sidebar-link span,
-            .sidebar-footer-link span {
-                display: none;
-            }
-            .sidebar-header {
-                justify-content: center;
-                padding: 20px 10px;
-            }
-            .sidebar-link,
-            .sidebar-footer-link {
-                justify-content: center;
-                padding: 12px;
-            }
-            .main-wrapper {
-                margin-left: 70px;
-                padding: 24px 20px 40px;
-            }
-            .stats-grid,
-            .quick-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}" href="/css/dashboard.css">
+    <link rel="stylesheet" th:href="@{/css/dashboard-home.css}" href="/css/dashboard-home.css">
 </head>
 <body>
 
-    <!-- Sidebar Navigation -->
+    <div class="ambient-glow ambient-glow-1"></div>
+    <div class="ambient-glow ambient-glow-2"></div>
+
     <aside class="sidebar">
         <div class="sidebar-header">
-            <div class="brand-logo">A</div>
-            <span class="brand-name">Portfolio Admin</span>
+            <span class="brand-dot"></span>
+            <span class="brand-name">PORTFOLIO</span>
         </div>
 
         <ul class="sidebar-menu">
@@ -335,6 +50,12 @@
                     <span>Project</span>
                 </a>
             </li>
+            <li>
+                <a href="/kontak" class="sidebar-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                    <span>Kontak</span>
+                </a>
+            </li>
         </ul>
 
         <div class="sidebar-footer">
@@ -345,78 +66,269 @@
         </div>
     </aside>
 
-    <!-- Main Content -->
     <main class="main-wrapper">
-        
-        <div class="header-title-box">
-            <h1 class="page-title">Selamat Datang di Dashboard</h1>
-            <p class="page-subtitle">Kelola konten profil, daftar keahlian, dan portofolio proyek dengan mudah.</p>
-        </div>
-
-        <!-- Summary Stats Cards -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div>
-                    <p class="stat-label">Data Profil</p>
-                    <p class="stat-value" th:text="${profile != null ? profile.nama : 'Arya'}">Arya Adhitya</p>
+        <section class="db-hero fade-up">
+            <div class="db-hero-text">
+                <p class="db-hero-eyebrow">Creative Portfolio Control Center</p>
+                <h1 class="db-hero-title">
+                    Selamat datang kembali,
+                    <span th:text="${profile != null ? profile.nama : 'Arya'}">Arya</span> 👋
+                </h1>
+                <p class="db-hero-sub">Kelola portfolio kamu dari satu tempat.</p>
+                <div class="db-hero-actions">
+                    <a href="/profile" class="db-btn-primary" id="btn-lihat-portfolio">
+                        Lihat Portfolio
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                    <a href="/template3" class="db-btn-ghost" id="btn-edit-profile-hero">Edit Profile &rarr;</a>
                 </div>
-                <div class="stat-icon-wrap">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </div>
+            <div class="db-hero-glow"></div>
+        </section>
+        <section class="db-stats-bar fade-up" style="animation-delay:.08s">
+            <div class="db-stat-item" id="stat-keahlian">
+                <div class="db-stat-num" th:text="${totalKeahlian}">0</div>
+                <div class="db-stat-meta">
+                    <span class="db-stat-label">Total Keahlian</span>
+                    <a href="/keahlian" class="db-stat-link">Kelola &rarr;</a>
+                </div>
+            </div>
+            <div class="db-stat-divider"></div>
+            <div class="db-stat-item" id="stat-project">
+                <div class="db-stat-num" th:text="${totalProject}">0</div>
+                <div class="db-stat-meta">
+                    <span class="db-stat-label">Total Project</span>
+                    <a href="/project" class="db-stat-link">Kelola &rarr;</a>
+                </div>
+            </div>
+            <div class="db-stat-divider"></div>
+            <div class="db-stat-item" id="stat-profile">
+                <div class="db-stat-badge" th:classappend="${profile != null ? ' active' : ' empty'}">
+                    <span th:text="${profile != null ? 'Aktif' : 'Kosong'}">Aktif</span>
+                </div>
+                <div class="db-stat-meta">
+                    <span class="db-stat-label">Status Profile</span>
+                    <a href="/template3" class="db-stat-link">Lihat &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="db-two-col fade-up" style="animation-delay:.14s">
+
+            <section class="db-profile-card" id="section-profile-overview">
+                <div class="db-section-label">Profile Overview</div>
+
+                <div class="db-profile-inner" th:if="${profile != null}">
+                    <div class="db-profile-avatar-wrap">
+                        <img
+                            th:src="${profile.foto != null && !profile.foto.isEmpty() ? '/images/' + profile.foto : '/images/arya.png'}"
+                            th:alt="${profile.nama}"
+                            class="db-profile-avatar"
+                            onerror="this.src='/images/arya.png'"
+                        >
+                        <span class="db-avatar-online"></span>
+                    </div>
+                    <div class="db-profile-info">
+                        <h2 class="db-profile-name" th:text="${profile.nama}">Arya Adhitya</h2>
+                        <p class="db-profile-role" th:text="${profile.profesi != null ? profile.profesi : 'Web Developer'}">Web Developer</p>
+                        <div class="db-profile-meta-row">
+                            <span class="db-profile-meta-item" th:if="${profile.lokasi != null}">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <span th:text="${profile.lokasi}">Indonesia</span>
+                            </span>
+                            <span class="db-profile-meta-item" th:if="${profile.pendidikan != null}">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                                <span th:text="${profile.pendidikan}">SMK Assalaam</span>
+                            </span>
+                        </div>
+                        <p class="db-profile-desc"
+                           th:if="${profile.deskripsi != null}"
+                           th:text="${#strings.length(profile.deskripsi) > 100 ? #strings.substring(profile.deskripsi, 0, 100) + '...' : profile.deskripsi}">
+                            Seorang web developer yang bersemangat membangun solusi digital.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="db-profile-empty" th:if="${profile == null}">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <p>Profil belum diatur</p>
+                </div>
+
+                <a href="/template3" class="db-profile-edit-btn" id="btn-edit-profile-card">Edit Profile &rarr;</a>
+            </section>
+
+            <section class="db-quick-actions" id="section-quick-actions">
+                <div class="db-section-label">Quick Actions</div>
+                <div class="db-action-list">
+
+                    <a href="/template3" class="db-action-item" id="action-profile">
+                        <div class="db-action-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
+                        <div class="db-action-text">
+                            <span class="db-action-title">Edit Profile</span>
+                            <span class="db-action-desc">Nama, profesi, lokasi, foto</span>
+                        </div>
+                        <svg class="db-action-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+
+                    <a href="/keahlian" class="db-action-item" id="action-keahlian">
+                        <div class="db-action-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                        </div>
+                        <div class="db-action-text">
+                            <span class="db-action-title">Kelola Keahlian</span>
+                            <span class="db-action-desc">Skill teknis &amp; progres belajar</span>
+                        </div>
+                        <svg class="db-action-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+
+                    <a href="/project" class="db-action-item" id="action-project">
+                        <div class="db-action-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        </div>
+                        <div class="db-action-text">
+                            <span class="db-action-title">Kelola Project</span>
+                            <span class="db-action-desc">Karya, deskripsi, foto showcase</span>
+                        </div>
+                        <svg class="db-action-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+
+                    <a href="/kontak" class="db-action-item" id="action-kontak">
+                        <div class="db-action-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <div class="db-action-text">
+                            <span class="db-action-title">Kelola Kontak</span>
+                            <span class="db-action-desc">Email, sosial media, tautan</span>
+                        </div>
+                        <svg class="db-action-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </a>
+
+                </div>
+            </section>
+        </div>
+        <section class="db-projects-section fade-up" id="section-recent-projects" style="animation-delay:.2s">
+            <div class="db-section-header">
+                <div>
+                    <div class="db-section-label">Recent Projects</div>
+                    <p class="db-section-count">
+                        <span th:text="${totalProject}">0</span> project tersimpan
+                    </p>
+                </div>
+                <a href="/project" class="db-section-action" id="btn-all-projects">Lihat Semua &rarr;</a>
+            </div>
+
+            <div class="db-project-list" th:if="${projectList != null && !#lists.isEmpty(projectList)}">
+                <div th:each="proj, stat : ${projectList}" th:if="${stat.index < 4}" class="db-project-row">
+                    <div class="db-project-index" th:text="${stat.count}">1</div>
+                    <div class="db-project-thumb-wrap">
+                        <img
+                            th:if="${proj.foto != null && !proj.foto.isEmpty()}"
+                            th:src="'/images/' + ${proj.foto}"
+                            th:alt="${proj.name}"
+                            class="db-project-thumb"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                        >
+                        <div class="db-project-thumb-placeholder">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+                        </div>
+                    </div>
+                    <div class="db-project-info">
+                        <span class="db-project-name" th:text="${proj.name}">Nama Project</span>
+                        <span class="db-project-desc"
+                              th:if="${proj.deskripsi != null}"
+                              th:text="${#strings.length(proj.deskripsi) > 80 ? #strings.substring(proj.deskripsi, 0, 80) + '...' : proj.deskripsi}">
+                            Deskripsi project
+                        </span>
+                    </div>
+                    <a th:href="@{/project/edit/{id}(id=${proj.id})}" class="db-project-edit-btn">Edit</a>
                 </div>
             </div>
 
-            <div class="stat-card">
-                <div>
-                    <p class="stat-label">Total Keahlian</p>
-                    <p class="stat-value" th:text="${totalKeahlian}">4</p>
+            <div class="db-project-empty" th:if="${projectList == null || #lists.isEmpty(projectList)}">
+                <div class="db-empty-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                 </div>
-                <div class="stat-icon-wrap">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                </div>
+                <p class="db-empty-text">Belum ada project tersimpan.</p>
+                <a href="/project" class="db-btn-primary-sm" id="btn-add-project-empty">+ Tambah Project</a>
             </div>
+        </section>
+        <div class="db-bottom-row fade-up" style="animation-delay:.26s">
+            <section class="db-timeline-section" id="section-activity">
+                <div class="db-section-label">Aktivitas Terbaru</div>
+                <p class="db-section-hint">Ringkasan status konten portfolio kamu.</p>
 
-            <div class="stat-card">
-                <div>
-                    <p class="stat-label">Total Project</p>
-                    <p class="stat-value" th:text="${totalProject}">1</p>
+                <div class="db-timeline">
+                    <div class="db-tl-item">
+                        <div class="db-tl-dot db-tl-dot--blue"></div>
+                        <div class="db-tl-body">
+                            <span class="db-tl-title">Sistem Aktif</span>
+                            <span class="db-tl-meta">Dashboard berjalan normal</span>
+                        </div>
+                        <span class="db-tl-time">Sekarang</span>
+                    </div>
+                    <div class="db-tl-item">
+                        <div class="db-tl-dot"></div>
+                        <div class="db-tl-body">
+                            <span class="db-tl-title"
+                                  th:text="${totalProject > 0 ? totalProject + ' Project Tersimpan' : 'Belum ada project'}">
+                                Project Tersimpan
+                            </span>
+                            <span class="db-tl-meta">Data dari database</span>
+                        </div>
+                        <span class="db-tl-time">—</span>
+                    </div>
+                    <div class="db-tl-item">
+                        <div class="db-tl-dot"></div>
+                        <div class="db-tl-body">
+                            <span class="db-tl-title"
+                                  th:text="${totalKeahlian > 0 ? totalKeahlian + ' Keahlian Tercatat' : 'Belum ada keahlian'}">
+                                Keahlian Tercatat
+                            </span>
+                            <span class="db-tl-meta">Data dari database</span>
+                        </div>
+                        <span class="db-tl-time">—</span>
+                    </div>
+                    <div class="db-tl-item">
+                        <div class="db-tl-dot db-tl-dot--gray"></div>
+                        <div class="db-tl-body">
+                            <span class="db-tl-title">Riwayat Lengkap</span>
+                            <span class="db-tl-meta">Tersedia saat fitur activity log aktif</span>
+                        </div>
+                        <span class="db-tl-time">—</span>
+                    </div>
                 </div>
-                <div class="stat-icon-wrap">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            </section>
+            <section class="db-live-portfolio" id="section-live-portfolio">
+                <div class="db-section-label">Live Portfolio</div>
+                <div class="db-live-inner">
+                    <div class="db-live-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <h3 class="db-live-title">Website Portfolio Kamu</h3>
+                    <p class="db-live-desc">
+                        Lihat bagaimana tampilan portfolio kamu di depan pengunjung.
+                    </p>
+                    <a href="/profile" class="db-live-btn" id="btn-lihat-website">
+                        Lihat Website ↗
+                    </a>
                 </div>
-            </div>
+                <div class="db-live-glow"></div>
+            </section>
         </div>
-
-        <!-- Quick Access Navigation Cards -->
-        <div class="quick-grid">
-            <a href="/template3" class="quick-card">
-                <div class="quick-card-title">
-                    <span>Kelola Profile</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-                <p class="quick-card-desc">Edit nama, profesi, deskripsi diri, pendidikan, lokasi, dan foto profil utama.</p>
-                <div class="quick-card-link">Buka Halaman Profile &rarr;</div>
-            </a>
-
-            <a href="/keahlian" class="quick-card">
-                <div class="quick-card-title">
-                    <span>Kelola Keahlian</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-                <p class="quick-card-desc">Lihat dan perbarui nama kemampuan teknis serta status progres pembelajaran.</p>
-                <div class="quick-card-link">Buka Halaman Keahlian &rarr;</div>
-            </a>
-
-            <a href="/project" class="quick-card">
-                <div class="quick-card-title">
-                    <span>Kelola Project</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </div>
-                <p class="quick-card-desc">Atur portofolio karya project, deskripsi fitur aplikasi, dan foto showcase.</p>
-                <div class="quick-card-link">Buka Halaman Project &rarr;</div>
-            </a>
-        </div>
-
     </main>
-
+    <script>
+        const fadeEls = document.querySelectorAll('.fade-up');
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.06 });
+        fadeEls.forEach(el => obs.observe(el));
+    </script>
 </body>
 </html>
