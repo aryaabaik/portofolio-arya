@@ -109,7 +109,7 @@
                              onerror="this.style.display='none'">
                     </div>
                     <div class="marine-element marine-shell">
-                        <img th:src="@{/images/elements/mus.png}" 
+                        <img th:src="@{/images/elements/bintang.png}" 
                              alt="Seashell Element" 
                              class="marine-img-shell"
                              onerror="this.style.display='none'">
@@ -170,8 +170,8 @@
             </div>
             <div class="about-artwork-right">
                 <div class="about-art-card">
-                    <img th:src="@{/images/elements/rar.png}" 
-                         alt="Ocean Art Illustration" 
+                    <img th:src="${profile != null and profile.foto2 != null ? '/images/' + profile.foto2 : '/images/arya.png'}"  
+                         th:alt="${'Foto ' + (profile != null ? profile.nama : 'Profile')}" 
                          class="about-art-img"
                          onerror="this.parentElement.style.display='none'">
                 </div>
@@ -299,8 +299,9 @@
                  th:if="${(kontakList != null and !#lists.isEmpty(kontakList)) or (kontaks != null and !#lists.isEmpty(kontaks))}">
 
                 <a th:if="${item.email != null and !item.email.isEmpty()}"
-                   th:href="'mailto:' + ${item.email}"
-                   class="btn-pill btn-pill-solid">
+                    th:href="'https://mail.google.com/mail/?view=cm&fs=1&to=' + ${item.email}"
+                    target="_blank"
+                    class="btn-pill btn-pill-solid">
                     <svg class="btn-pill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>

@@ -69,11 +69,11 @@
 
                 <!-- Hero Title -->
                 <h1 class="hero-title animate-fade-in delay-1">
-                    Arya <span class="highlight">Adhitya</span>
+                   <span th:text="${home.nama}">Arya Adhitya</span>
                 </h1>
 
                 <!-- Hero Description -->
-                <p class="hero-description animate-fade-in delay-2">
+                <p class="hero-description animate-fade-in delay-2" th:text="${home.deskripsi}">
                     Siswa XII RPL 3 yang sedang menjalani PKL dan terus mengembangkan kemampuan
                     di dunia programming. Saat ini banyak belajar membangun aplikasi menggunakan
                     Java, Spring Boot, database, dan teknologi web modern.
@@ -96,8 +96,7 @@
                 <!-- Clean School & Education Information Strip -->
                 <div class="info-strip animate-fade-in delay-4">
                     <div class="info-block">
-                        <span class="info-title">SMK ASSALAAM BANDUNG</span>
-                        <span class="info-subtitle">XII RPL 3 · Jurusan Rekayasa Perangkat Lunak</span>
+                        <span class="info-title" th:text="${home.pendidikan}">SMK ASSALAAM BANDUNG</span>
                     </div>
                 </div>
 
@@ -152,9 +151,9 @@
                     <!-- Main Clean White Photo Card (Editorial Style) -->
                     <div class="photo-main-card">
                         <div class="photo-inner-container">
-                            <img th:src="${profile != null and profile.foto != null ? '/images/' + profile.foto : '/images/tampan.png'}" 
+                            <img th:src="${home != null and home.foto != null ? '/images/' + home.foto : '/images/tampan.png'}" 
                                  alt="Foto Profil Arya" 
-                                 class="profile-portrait-img"
+                                 class="home-portrait-img"
                                  onerror="this.src='/images/tampan.png'">
                         </div>
                     </div>

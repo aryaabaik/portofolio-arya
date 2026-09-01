@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta email="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Edit Home - ' + ${home.nama}">Edit Home</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/dashboard-form.css}" href="/css/dashboard-form.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-brand-group">
+            <a href="/" class="navbar-brand">PORTFOLIO</a>
+            <span class="navbar-divider">/</span>
+            <span class="navbar-tag">Dashboard home</span>
+        </div>
+
+        <div class="navbar-nav">
+            <a th:href="@{/home}" class="navbar-back">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Daftar home
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="form-wrapper">
+            <div class="form-card">
+
+                <div class="card-badge">
+                    <span class="card-badge-dot"></span>
+                    <span>Modul home</span>
+                </div>
+
+                <div class="form-header">
+                    <h1 class="form-title">Edit home</h1>
+                <p class="form-description">Perbarui informasi home yang ditampilkan pada halaman portfolio.</p>
+                </div>
+
+                <!-- Alert Message -->
+                <div th:if="${message}" class="alert">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span th:text="${message}">Perubahan berhasil disimpan.</span>
+                </div>
+
+                <!-- Form -->
+               <form th:action="@{/dashboard/home/edit}" th:object="${home}" method="post">
+
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <label>Nama</label>
+                    <input type="text"
+                        th:field="*{nama}"
+                        class="form-input"
+                        placeholder="Masukkan nama"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Foto</label>
+                    <input type="text"
+                        th:field="*{foto}"
+                        class="form-input"
+                        placeholder="/images/tampan.png"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Deskripsi</label>
+                    <input type="text"
+                        th:field="*{deskripsi}"
+                        class="form-input"
+                        placeholder="Masukkan deskripsi"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label>Pendidikan</label>
+                    <input type="text"
+                        th:field="*{pendidikan}"
+                        class="form-input"
+                        placeholder="Masukkan pendidikan"
+                        required>
+                </div>
+
+                <div class="form-actions">
+                    <a th:href="@{/home}" class="btn-cancel">Batal</a>
+
+                    <button type="submit" class="btn-submit">
+                        Simpan Perubahan
+                    </button>
+                </div>
+
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 Portfolio Dashboard. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <script>
+        // Live preview synchronization
+
+        
+    </script>
+</body>
+</html>

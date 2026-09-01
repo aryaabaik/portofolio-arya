@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li>
-                <a href="/keahlian" class="sidebar-link active">
+                <a href="/keahlian" class="sidebar-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
                     <span>Keahlian</span>
                 </a>
@@ -59,7 +59,7 @@
                 </a>
             </li>
             <li>
-                <a href="/dashboard/home" class="sidebar-link">
+                <a href="/dashboard/home" class="sidebar-link active">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
                     <span>Home</span>
                 </a>
@@ -88,34 +88,72 @@
                     <thead>
                         <tr>
                             <th class="th-num">No</th>
-                            <th>Keahlian</th>
-                            <th>Status Pembelajaran</th>
+                            <th>Foto</th>
+                            <th>Deskripsi</th>
+                            <th>Pendidikan</th>
                             <th class="th-action">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="keahlian, stat : ${keahlianList}">
-                            <td class="td-num" th:text="${stat.count}">1</td>
-                            <td class="td-name" th:text="${keahlian.name}">PHP</td>
-                            <td>
-                                <span class="status-badge" th:classappend="${keahlian.proses != null && #strings.containsIgnoreCase(keahlian.proses, 'sedang')} ? 'learning' : 'completed'">
-                                    <span class="status-dot"></span>
-                                    <span th:text="${keahlian.proses != null ? keahlian.proses : 'Sudah Dipelajari'}">Sudah Dipelajari</span>
-                                </span>
-                            </td>
-                            <td class="td-action">
-                                <a th:href="@{/keahlian/edit/{id}(id=${keahlian.id})}" class="btn-edit">
-                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
-                                    Edit
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
+    <tr>
+        <td class="td-num">1</td>
+
+        <td>
+            <div class="profile-cell">
+                <img
+                    th:src="${home.foto != null && !home.foto.isEmpty()
+                        ? '/images/' + home.foto
+                        : '/images/arya.png'}"
+                    th:alt="${home.nama}"
+                    class="profile-avatar"
+                    onerror="this.src='/images/arya.png'"
+                >
+
+                <div>
+                    <p class="profile-name-text"
+                       th:text="${home.nama}">
+                        Arya Adhitya
+                    </p>
+
+                    <p class="profile-sub-text"
+                       th:text="${home.foto != null ? home.foto : 'default.png'}">
+                        foto.png
+                    </p>
+                </div>
+            </div>
+        </td>
+
+        <td class="td-name"
+            th:text="${home.deskripsi}">
+            PHP
+        </td>
+
+        <td class="td-name"
+            th:text="${home.pendidikan}">
+            SMK ASSALAAM BANDUNG
+        </td>
+
+        <td class="td-action">
+            <a th:href="@{/dashboard/home/edit}"
+               class="btn-edit">
+                Edit
+            </a>
+        </td>
+    </tr>
+</tbody>
                 </table>
             </div>
         </div>
 
     </main>
 
+</body>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+   </main>
 </body>
 </html>

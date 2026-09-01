@@ -22,6 +22,7 @@ public class Profile {
     @Column(columnDefinition = "TEXT")
     private String tentang;
     private String cv;
+    private String foto2;
 
     public Profile() {
     }
@@ -103,6 +104,11 @@ public class Profile {
         this.cv = cv;
     }
 
+     public String getFoto2() {
+        return foto2;
+    }
 
-    
+    public void setFoto2(String foto2) {
+        this.foto2 = foto2;
+    }
 }
