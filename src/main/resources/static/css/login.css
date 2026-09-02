@@ -1,25 +1,24 @@
 /* ==========================================================================
    AUTHENTICATION & LOGIN PAGE STYLES - ARYA ADHITYA PORTFOLIO
-   Theme: Editorial Ocean Luxe / Dual-Tone Curved Header (Pinterest Refined)
+   Theme: Editorial Ocean Luxe / Dual-Tone Curved Header
    ========================================================================== */
 
-/* --- Custom Variables & Tokens --- */
 :root {
-    --bg-page: #F1F4F8;
+    --bg-page: #FAF9F6;
     --card-bg: #FFFFFF;
     
     /* Dark Header Theme */
     --header-dark-start: #0A1626;
     --header-dark-mid: #163B63;
     --header-dark-end: #0F2642;
-    --header-pattern-opacity: 0.14;
+    --header-pattern-opacity: 0.12;
     
     /* Accents & Brand */
     --accent-ocean: #2F6FA3;
     --accent-ocean-light: #4A8EC2;
-    --accent-glow: rgba(47, 111, 163, 0.25);
+    --accent-glow: rgba(47, 111, 163, 0.2);
     
-    /* Text Colors (High Contrast, Crystal Clear) */
+    /* Text Colors */
     --text-heading: #0F172A;
     --text-body: #334155;
     --text-muted: #64748B;
@@ -29,13 +28,13 @@
     --input-bg: #F8FAFC;
     --input-border: #E2E8F0;
     --input-focus-border: #163B63;
-    --input-focus-ring: rgba(22, 59, 99, 0.12);
+    --input-focus-ring: rgba(22, 59, 99, 0.1);
     --input-text: #0F172A;
     --input-placeholder: #94A3B8;
     
     /* Button */
-    --btn-bg: #0F1F33;
-    --btn-hover: #163B63;
+    --btn-bg: #163B63;
+    --btn-hover: #2F6FA3;
     --btn-text: #FFFFFF;
     
     /* Feedback */
@@ -50,17 +49,16 @@
     --success-icon: #16A34A;
     
     /* Radii & Shadows */
-    --radius-card: 32px;
-    --radius-input: 16px;
-    --radius-btn: 16px;
+    --radius-card: 24px;
+    --radius-input: 12px;
+    --radius-btn: 12px;
     --radius-full: 9999px;
     
-    --shadow-card: 0 25px 60px -15px rgba(15, 31, 51, 0.14), 0 0 1px 1px rgba(15, 31, 51, 0.04);
-    --shadow-card-hover: 0 32px 75px -15px rgba(15, 31, 51, 0.2), 0 0 1px 1px rgba(47, 111, 163, 0.12);
-    --shadow-input: 0 2px 4px rgba(15, 23, 42, 0.02);
+    --shadow-card: 0 16px 40px -8px rgba(15, 31, 51, 0.09), 0 1px 3px rgba(15, 31, 51, 0.04);
+    --shadow-card-hover: 0 22px 50px -10px rgba(15, 31, 51, 0.14), 0 2px 6px rgba(47, 111, 163, 0.08);
+    --shadow-input: 0 1px 3px rgba(15, 23, 42, 0.02);
     
-    --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --- Base Reset & Setup --- */
@@ -87,6 +85,7 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* --- Ambient Glows --- */
@@ -96,7 +95,6 @@ body {
     filter: blur(140px);
     pointer-events: none;
     z-index: 0;
-    animation: ambientPulse 14s ease-in-out infinite alternate;
 }
 
 .ambient-glow-1 {
@@ -104,7 +102,7 @@ body {
     height: 580px;
     top: -120px;
     right: -80px;
-    background: radial-gradient(circle, rgba(47, 111, 163, 0.18) 0%, rgba(47, 111, 163, 0) 70%);
+    background: radial-gradient(circle, rgba(47, 111, 163, 0.12) 0%, transparent 70%);
 }
 
 .ambient-glow-2 {
@@ -112,20 +110,7 @@ body {
     height: 540px;
     bottom: -100px;
     left: -100px;
-    background: radial-gradient(circle, rgba(15, 31, 51, 0.14) 0%, rgba(15, 31, 51, 0) 70%);
-    animation-delay: -7s;
-}
-
-@keyframes ambientPulse {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-    50% {
-        transform: translate(25px, 35px) scale(1.06);
-    }
-    100% {
-        transform: translate(-20px, 15px) scale(0.96);
-    }
+    background: radial-gradient(circle, rgba(15, 31, 51, 0.08) 0%, transparent 70%);
 }
 
 /* --- Subtle Animated Wave Lines --- */
@@ -154,7 +139,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 28px;
+    padding: 20px 32px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -170,12 +155,12 @@ body {
     text-decoration: none;
     padding: 8px 16px;
     border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.85);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     transition: var(--transition-smooth);
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
 }
 
 .back-btn svg {
@@ -186,18 +171,18 @@ body {
     background: #FFFFFF;
     color: var(--accent-ocean);
     border-color: var(--accent-ocean);
-    box-shadow: 0 4px 14px rgba(47, 111, 163, 0.15);
-    transform: translateX(-3px);
+    box-shadow: 0 4px 12px rgba(47, 111, 163, 0.12);
+    transform: translateX(-2px);
 }
 
 .back-btn:hover svg {
-    transform: translateX(-3px);
+    transform: translateX(-2px);
 }
 
 .topbar-portal-tag {
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1.8px;
     text-transform: uppercase;
     color: var(--text-muted);
 }
@@ -216,13 +201,13 @@ body {
 .login-card-container {
     width: 100%;
     max-width: 420px;
-    animation: cardAppear 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: cardAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes cardAppear {
     0% {
         opacity: 0;
-        transform: translateY(28px) scale(0.97);
+        transform: translateY(20px) scale(0.98);
     }
     100% {
         opacity: 1;
@@ -230,13 +215,13 @@ body {
     }
 }
 
-/* --- Modern Curved Dual-Tone Card (Pinterest-Inspired) --- */
+/* --- Modern Curved Dual-Tone Card --- */
 .auth-card {
     background: var(--card-bg);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(225, 234, 240, 0.9);
     transition: var(--transition-smooth);
     position: relative;
 }
@@ -245,19 +230,18 @@ body {
     box-shadow: var(--shadow-card-hover);
 }
 
-/* --- Dual-Tone Top Section (Dark with Geometric Shapes & Curved Bottom) --- */
+/* --- Dual-Tone Top Section --- */
 .auth-card-top {
     position: relative;
     background: linear-gradient(145deg, #0A1626 0%, #163B63 60%, #0F2642 100%);
-    padding: 44px 28px 48px;
+    padding: 40px 28px 44px;
     text-align: center;
     color: #FFFFFF;
     overflow: hidden;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
 }
 
-/* Geometric Pattern Overlay on Dark Top */
 .auth-card-pattern {
     position: absolute;
     top: 0;
@@ -266,9 +250,6 @@ body {
     bottom: 0;
     opacity: var(--header-pattern-opacity);
     pointer-events: none;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.25) 0%, transparent 25%),
-        radial-gradient(circle at 80% 70%, rgba(47, 111, 163, 0.4) 0%, transparent 35%);
 }
 
 .pattern-geometry-svg {
@@ -277,108 +258,65 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.18;
+    opacity: 0.14;
 }
 
-/* Floating Logo Squircle Badge in Center */
+/* Floating Logo Squircle Badge */
 .auth-logo-badge {
     position: relative;
     z-index: 2;
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 16px;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 14px;
     background: #FFFFFF;
-    border-radius: 20px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.15);
-    animation: logoFloat 4s ease-in-out infinite;
-    transition: var(--transition-bounce);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25), 0 0 0 2px rgba(255, 255, 255, 0.15);
+    transition: var(--transition-smooth);
 }
 
 .auth-logo-badge:hover {
-    transform: scale(1.08) rotate(-4deg);
-    box-shadow: 0 14px 30px -4px rgba(47, 111, 163, 0.5), 0 0 0 4px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
 }
 
 .auth-logo-badge svg {
     color: #163B63;
 }
 
-@keyframes logoFloat {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-5px);
-    }
-}
-
 .auth-header-title {
     font-family: 'DM Serif Display', Georgia, serif;
     font-size: 24px;
     font-weight: 400;
-    letter-spacing: 0.2px;
+    letter-spacing: -0.2px;
     margin-bottom: 4px;
     color: #FFFFFF;
 }
 
 .auth-header-subtitle {
-    font-size: 12.5px;
+    font-size: 13px;
     color: #CBD5E1;
     font-weight: 400;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.2px;
 }
 
 /* --- Bottom Card Section (Clean White Form) --- */
 .auth-card-body {
-    padding: 32px 32px 36px;
+    padding: 30px 28px 32px;
     background: #FFFFFF;
 }
 
-/* Heading inside Form section */
-.body-heading-group {
-    margin-bottom: 24px;
-    text-align: center;
-}
-
-.body-heading-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-heading);
-    letter-spacing: -0.3px;
-    margin-bottom: 6px;
-}
-
-.body-heading-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-}
-
-/* --- Feedback Alerts (Clean & Crisp) --- */
+/* Feedback Alerts */
 .auth-alert {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
+    gap: 10px;
+    padding: 11px 14px;
     border-radius: var(--radius-input);
     font-size: 13px;
     line-height: 1.4;
-    margin-bottom: 20px;
-    animation: alertSlide 0.35s ease forwards;
-}
-
-@keyframes alertSlide {
-    0% {
-        opacity: 0;
-        transform: translateY(-6px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    margin-bottom: 18px;
 }
 
 .auth-alert-error {
@@ -403,25 +341,24 @@ body {
     stroke: var(--success-icon);
 }
 
-/* --- Form Fields & High-Legibility Dark Text --- */
+/* --- Form Fields --- */
 .auth-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
 }
 
 .form-field-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .field-label {
     font-size: 12.5px;
     font-weight: 600;
     color: var(--text-heading);
-    letter-spacing: 0.2px;
-    margin-left: 2px;
+    letter-spacing: 0.1px;
 }
 
 .field-input-box {
@@ -436,14 +373,14 @@ body {
 }
 
 .field-input-box:focus-within {
-    border-color: var(--input-focus-border);
+    border-color: var(--accent-ocean);
     background-color: #FFFFFF;
-    box-shadow: 0 0 0 4px var(--input-focus-ring), 0 4px 12px rgba(22, 59, 99, 0.06);
+    box-shadow: 0 0 0 3px rgba(47, 111, 163, 0.12);
 }
 
 .field-icon {
     position: absolute;
-    left: 16px;
+    left: 14px;
     color: var(--text-muted);
     pointer-events: none;
     display: flex;
@@ -456,15 +393,14 @@ body {
     color: var(--accent-ocean);
 }
 
-/* Crucial: Dark text color for inputs and auto-fill override */
 .field-input {
     width: 100%;
-    height: 52px;
-    padding: 0 16px 0 46px;
+    height: 46px;
+    padding: 0 14px 0 42px;
     font-family: inherit;
-    font-size: 14.5px;
+    font-size: 14px;
     font-weight: 500;
-    color: #0F172A !important; /* Solid Dark Text */
+    color: #0F172A !important;
     background: transparent;
     border: none;
     outline: none;
@@ -476,7 +412,6 @@ body {
     font-weight: 400;
 }
 
-/* Chrome/Safari Autofill Fix to guarantee dark readable text */
 .field-input:-webkit-autofill,
 .field-input:-webkit-autofill:hover, 
 .field-input:-webkit-autofill:focus,
@@ -484,21 +419,20 @@ body {
     -webkit-text-fill-color: #0F172A !important;
     -webkit-box-shadow: 0 0 0px 1000px #F8FAFC inset !important;
     box-shadow: 0 0 0px 1000px #F8FAFC inset !important;
-    font-size: 14.5px !important;
+    font-size: 14px !important;
     font-weight: 500 !important;
-    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Password Toggle Eye Button */
 .password-eye-toggle {
     position: absolute;
-    right: 14px;
+    right: 12px;
     background: none;
     border: none;
     padding: 6px;
     color: var(--text-muted);
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -510,74 +444,52 @@ body {
     background-color: rgba(15, 23, 42, 0.05);
 }
 
-.password-eye-toggle:focus-visible {
-    outline: 2px solid var(--accent-ocean);
-    outline-offset: 2px;
-}
-
-/* --- Submit Button (Solid Pill / Clean Luxe) --- */
+/* --- Submit Button --- */
 .btn-auth-submit {
     position: relative;
     width: 100%;
-    height: 52px;
-    margin-top: 8px;
+    height: 46px;
+    margin-top: 6px;
     background-color: var(--btn-bg);
     color: var(--btn-text);
     font-family: inherit;
     font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     border: none;
     border-radius: var(--radius-btn);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    box-shadow: 0 6px 20px rgba(15, 31, 51, 0.2);
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(22, 59, 99, 0.18);
     transition: var(--transition-smooth);
-    overflow: hidden;
-}
-
-.btn-auth-submit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-    transform: skewX(-20deg);
-    transition: 0.6s ease;
 }
 
 .btn-auth-submit:hover {
     background-color: var(--btn-hover);
-    box-shadow: 0 10px 28px rgba(22, 59, 99, 0.3);
-    transform: translateY(-2px);
-}
-
-.btn-auth-submit:hover::before {
-    left: 140%;
+    box-shadow: 0 6px 18px rgba(47, 111, 163, 0.25);
+    transform: translateY(-1.5px);
 }
 
 .btn-auth-submit:active {
     transform: translateY(0);
-    box-shadow: 0 4px 14px rgba(15, 31, 51, 0.2);
+    box-shadow: 0 2px 8px rgba(22, 59, 99, 0.15);
 }
 
 .btn-auth-submit svg {
-    transition: transform 0.25s ease;
+    transition: transform 0.2s ease;
 }
 
 .btn-auth-submit:hover svg {
-    transform: translateX(4px);
+    transform: translateX(3px);
 }
 
 /* --- Bottom Card Footer / Security Info --- */
 .card-bottom-info {
-    margin-top: 24px;
-    padding-top: 18px;
+    margin-top: 20px;
+    padding-top: 16px;
     border-top: 1px solid #F1F5F9;
     display: flex;
     align-items: center;
@@ -612,24 +524,24 @@ body {
     }
     
     .auth-card {
-        border-radius: 26px;
+        border-radius: 20px;
     }
     
     .auth-card-top {
-        padding: 36px 20px 40px;
-        border-bottom-left-radius: 32px;
-        border-bottom-right-radius: 32px;
+        padding: 32px 20px 36px;
+        border-bottom-left-radius: 26px;
+        border-bottom-right-radius: 26px;
     }
     
     .auth-card-body {
-        padding: 26px 20px 28px;
+        padding: 24px 18px 26px;
     }
     
     .field-input {
-        height: 48px;
+        height: 44px;
     }
     
     .btn-auth-submit {
-        height: 48px;
+        height: 44px;
     }
 }

@@ -1,6 +1,6 @@
 /**
  * Portfolio JS — Vanilla JavaScript interactions & animations
- * No external libraries. Lightweight & performant.
+ * Lightweight, accessible, and performant.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,171 +12,95 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', (e) => {
             const targetId = anchor.getAttribute('href');
-            if (targetId === '#') return;
+            if (!targetId || targetId === '#') return;
 
             const targetEl = document.querySelector(targetId);
             if (!targetEl) return;
 
             e.preventDefault();
 
-            const navbar = document.querySelector('.navbar');
+            const navbar = document.querySelector('.navbar') || document.querySelector('.home-navbar');
             const navbarHeight = navbar ? navbar.offsetHeight : 0;
             const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
 
             window.scrollTo({
-                top: targetPosition,
+                top: Math.max(0, targetPosition),
                 behavior: 'smooth'
             });
-        });
-    });
 
-    // =========================================
-    // 1b. "Scroll to explore" click handler
-    // =========================================
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    if (scrollIndicator) {
-        scrollIndicator.style.cursor = 'pointer';
-        scrollIndicator.addEventListener('click', () => {
-            const detailsSection = document.getElementById('details');
-            if (!detailsSection) return;
-
-            const navbar = document.querySelector('.navbar');
-            const navbarHeight = navbar ? navbar.offsetHeight : 0;
-            const targetPosition = detailsSection.getBoundingClientRect().top + window.scrollY - navbarHeight - 16;
-
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        });
-    }
-
-    
-    const revealTargets = document.querySelectorAll(
-        '.info-item-editorial, .about-editorial-section, .keahlian-item, .karya-item, .details-section .detail-card, .keahlian-section .keahlian-card, .footer'
-    );
-
-    // Set initial hidden state
-    revealTargets.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(15px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    });
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                revealObserver.unobserve(entry.target); // Run only once
+            // Update URL hash without jumping
+            if (history.pushState) {
+                history.pushState(null, null, targetId);
             }
         });
-    }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -40px 0px'
     });
 
-    revealTargets.forEach(el => revealObserver.observe(el));
-
- 
-    const navbar = document.querySelector('.navbar');
+    // =========================================
+    // 2. Navbar elevation on scroll
+    // =========================================
+    const navbar = document.querySelector('.navbar') || document.querySelector('.home-navbar');
     if (navbar) {
-        let lastScrollY = 0;
         const handleNavbarScroll = () => {
             const scrollY = window.scrollY;
-            if (scrollY > 20) {
-                navbar.style.boxShadow = '0 4px 20px rgba(26, 58, 92, 0.06)';
-                navbar.style.borderBottomColor = 'transparent';
+            if (scrollY > 15) {
+                navbar.style.boxShadow = '0 4px 20px rgba(22, 59, 99, 0.06)';
+                navbar.style.borderBottomColor = 'rgba(225, 234, 240, 0.8)';
             } else {
                 navbar.style.boxShadow = 'none';
-                navbar.style.borderBottomColor = '#e1e8ed';
+                navbar.style.borderBottomColor = 'var(--border, #E1EAF0)';
             }
-            lastScrollY = scrollY;
         };
 
-        // Use passive listener for performance
         window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-        handleNavbarScroll(); // Initial check
+        handleNavbarScroll();
     }
 
     // =========================================
-    // 4. Card hover interaction (subtle lift)
-    //    Already handled in CSS, but we add a
-    //    smoother feel with active/mousedown state
-    // =========================================
-    document.querySelectorAll('.detail-card, .keahlian-card').forEach(card => {
-        card.addEventListener('mousedown', () => {
-            card.style.transform = 'translateY(-2px)';
-        });
-        card.addEventListener('mouseup', () => {
-            card.style.transform = 'translateY(-4px)';
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
-    });
-
-    // =========================================
-    // 5. Button press (click) effect
-    // =========================================
-    document.querySelectorAll('.btn-primary, .btn-cta-primary, .btn-secondary, .navbar-contact').forEach(btn => {
-        btn.addEventListener('mousedown', () => {
-            btn.style.transform = 'translateY(0) scale(0.97)';
-        });
-        btn.addEventListener('mouseup', () => {
-            btn.style.transform = '';
-        });
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = '';
-        });
-    });
-
-    // =========================================
-    // 6. Active navigation indicator (Scrollspy)
+    // 3. Scrollspy: Active navigation indicator
     // =========================================
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.navbar-links a');
+    const navLinks = document.querySelectorAll('.navbar-links a, .home-nav-links a');
 
-    const activateNavLink = () => {
-        if (!sections || sections.length === 0) return;
+    if (sections.length > 0 && navLinks.length > 0) {
+        const activateNavLink = () => {
+            const scrollY = window.scrollY;
+            const navbarEl = document.querySelector('.navbar') || document.querySelector('.home-navbar');
+            const navbarHeight = navbarEl ? navbarEl.offsetHeight : 70;
+            const scrollPosition = scrollY + navbarHeight + 100;
 
-        const scrollY = window.scrollY;
-        const navbar = document.querySelector('.navbar');
-        const navbarHeight = navbar ? navbar.offsetHeight : 70;
-        const scrollPosition = scrollY + navbarHeight + 120;
+            let currentSection = '';
 
-        let currentSection = 'profile';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionId = section.getAttribute('id');
+                if (scrollPosition >= sectionTop && scrollPosition < (sectionTop + sectionHeight)) {
+                    currentSection = sectionId;
+                }
+            });
 
-            if (scrollPosition >= sectionTop) {
-                currentSection = sectionId;
+            // If at bottom of page, activate last section
+            if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 50)) {
+                const lastSection = sections[sections.length - 1];
+                if (lastSection) {
+                    currentSection = lastSection.getAttribute('id');
+                }
             }
-        });
 
-        // If user is at or near the very bottom of the page, pick the last section
-        if ((window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 60)) {
-            const lastSection = sections[sections.length - 1];
-            if (lastSection) {
-                currentSection = lastSection.getAttribute('id');
+            if (currentSection) {
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === '#' + currentSection) {
+                        link.classList.add('active');
+                    } else if (href && href.startsWith('#')) {
+                        link.classList.remove('active', 'nav-active');
+                    }
+                });
             }
-        }
+        };
 
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href');
-            link.classList.remove('active', 'nav-active');
-
-            if (href === '#' + currentSection) {
-                link.classList.add('active');
-            }
-        });
-    };
-
-    window.addEventListener('scroll', activateNavLink, { passive: true });
-    window.addEventListener('resize', activateNavLink, { passive: true });
-    activateNavLink(); // Initial check
-
-    console.log('Portfolio JS loaded');
+        window.addEventListener('scroll', activateNavLink, { passive: true });
+        activateNavLink();
+    }
 });

@@ -47,8 +47,8 @@
                 
                 <div class="hero-eyebrow-line animate-fade-in-delay-1">
                     <span class="eyebrow-dash">—</span>
-                    <span class="eyebrow-text" th:text="${'SISWA XI RPL 3 · ' + (profile != null && profile.lokasi != null ? profile.lokasi : 'BANDUNG') + ' · OPEN TO WORK'}">
-                        SISWA XI RPL 3 · BANDUNG · OPEN TO WORK
+                    <span class="eyebrow-text" th:text="${'SISWA XI RPL 3 · ' + (profile != null && profile.lokasi != null ? profile.lokasi : 'BANDUNG')}">
+                        SISWA XI RPL 3 · BANDUNG
                     </span>
                 </div>
 
@@ -206,16 +206,11 @@
                             <polyline points="8 6 2 12 8 18"></polyline>
                         </svg>
                     </div>
-                    <div class="keahlian-status-indicator"
-                         th:classappend="${item.proses != null and #strings.containsIgnoreCase(item.proses, 'sedang')} ? 'status-learning' : 'status-completed'">
-                        <span class="status-dot"></span>
-                        <span th:text="${item.proses != null ? item.proses : 'Sudah Dipelajari'}">Sudah Dipelajari</span>
-                    </div>
                 </div>
 
                 <div class="keahlian-item-body">
                     <h3 class="keahlian-name" th:text="${item.name}">Public Speaking</h3>
-                    <p class="keahlian-desc" th:text="${item.proses}">Sudah Dipelajari</p>
+                    
                 </div>
             </div>
         </div>

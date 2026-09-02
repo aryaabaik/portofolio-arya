@@ -23,8 +23,8 @@ public class UserController {
 
         User user = new User();
 
-        user.setUsername("admin");
-        user.setPassword(passwordEncoder.encode("123456"));
+        user.setUsername("aryaaa");
+        user.setPassword(passwordEncoder.encode("password"));
 
         userRepository.save(user);
 

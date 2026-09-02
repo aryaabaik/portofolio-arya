@@ -42,9 +42,9 @@ public class TemplateController3 {
         return "redirect:/template3";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteProfile(@PathVariable Long id) {
-        profileService.deleteById(id);
-        return "redirect:/template3";
-    }
+    // @GetMapping("/delete/{id}")
+    // public String deleteProfile(@PathVariable Long id) {
+    //     profileService.deleteById(id);
+    //     return "redirect:/template3";
+    // }
 }

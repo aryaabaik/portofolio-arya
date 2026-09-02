@@ -12,6 +12,31 @@
      --card:        #FFFFFF
    ========================================================================== */
 
+:root {
+    --bg-canvas: #FAF9F6;
+    --navy: #163B63;
+    --navy-dark: #0F2642;
+    --ocean: #2F6FA3;
+    --pale-blue: #EAF4F8;
+    --text-body: #47617C;
+    --text-muted: #7188A0;
+    --text-light: #94A3B8;
+    --border: #E1EAF0;
+    --border-hover: #C4D7E5;
+    --card: #FFFFFF;
+    
+    --shadow-sm: 0 1px 3px rgba(22, 59, 99, 0.03);
+    --shadow-md: 0 4px 16px -2px rgba(22, 59, 99, 0.05), 0 1px 3px rgba(22, 59, 99, 0.02);
+    
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    
+    --transition-fast: all 0.2s ease;
+    --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 /* --- Reset & Base --- */
 *, *::before, *::after {
     margin: 0;
@@ -21,13 +46,14 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #FAF9F6;
-    color: #47617C;
+    background-color: var(--bg-canvas);
+    color: var(--text-body);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 /* ==========================================================================
@@ -41,7 +67,7 @@ body {
     background: rgba(250, 249, 246, 0.94);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid #E1EAF0;
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 50;
@@ -55,22 +81,22 @@ body {
 
 .navbar-brand {
     font-weight: 700;
-    font-size: 14px;
+    font-size: 13.5px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #163B63;
+    color: var(--navy);
     text-decoration: none;
 }
 
 .navbar-divider {
-    color: #E1EAF0;
+    color: var(--border);
     font-size: 14px;
 }
 
 .navbar-tag {
     font-size: 12.5px;
     font-weight: 500;
-    color: #7188A0;
+    color: var(--text-muted);
 }
 
 .navbar-nav {
@@ -82,22 +108,22 @@ body {
 .navbar-back {
     font-size: 13px;
     font-weight: 600;
-    color: #163B63;
+    color: var(--navy);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     background-color: #FFFFFF;
-    border: 1px solid #E1EAF0;
-    transition: all 0.2s ease;
+    border: 1px solid var(--border);
+    transition: var(--transition-fast);
 }
 
 .navbar-back:hover {
-    color: #2F6FA3;
-    border-color: #2F6FA3;
-    background-color: #EAF4F8;
+    color: var(--ocean);
+    border-color: var(--ocean);
+    background-color: var(--pale-blue);
     transform: translateX(-2px);
 }
 
@@ -106,7 +132,7 @@ body {
 }
 
 .navbar-back:hover svg {
-    transform: translateX(-3px);
+    transform: translateX(-2px);
 }
 
 /* ==========================================================================
@@ -117,7 +143,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px 24px 64px;
+    padding: 44px 24px 60px;
 }
 
 .form-wrapper {
@@ -130,10 +156,10 @@ body {
    ========================================================================== */
 .form-card {
     background-color: #FFFFFF;
-    border: 1px solid #E1EAF0;
-    border-radius: 16px;
-    padding: 36px 32px;
-    box-shadow: 0 4px 16px rgba(22, 59, 99, 0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px 30px;
+    box-shadow: var(--shadow-md);
 }
 
 /* --- Card Badge --- */
@@ -145,39 +171,39 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #2F6FA3;
-    background-color: #EAF4F8;
+    color: var(--ocean);
+    background-color: var(--pale-blue);
     padding: 4px 10px;
     border-radius: 6px;
-    margin-bottom: 14px;
-    border: 1px solid #E1EAF0;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
 }
 
 .card-badge-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background-color: #2F6FA3;
+    background-color: var(--ocean);
 }
 
 /* --- Form Header --- */
 .form-header {
-    margin-bottom: 24px;
-    padding-bottom: 18px;
+    margin-bottom: 22px;
+    padding-bottom: 16px;
     border-bottom: 1px solid #F0F4F8;
 }
 
 .form-title {
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 700;
-    color: #163B63;
+    color: var(--navy);
     letter-spacing: -0.3px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .form-description {
     font-size: 13.5px;
-    color: #7188A0;
+    color: var(--text-muted);
     line-height: 1.5;
 }
 
@@ -185,11 +211,11 @@ body {
    ALERT
    ========================================================================== */
 .alert {
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 11px 14px;
+    border-radius: var(--radius-sm);
     font-size: 13px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     background-color: #F0FDF4;
     color: #166534;
     border: 1px solid #DCFCE7;
@@ -202,15 +228,15 @@ body {
    FORM FIELDS
    ========================================================================== */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 .form-label {
     display: block;
     font-size: 13px;
     font-weight: 600;
-    color: #163B63;
-    margin-bottom: 8px;
+    color: var(--navy);
+    margin-bottom: 6px;
 }
 
 .form-label-required {
@@ -228,12 +254,12 @@ body {
     padding: 0 14px;
     font-family: inherit;
     font-size: 14px;
-    color: #163B63;
+    color: var(--navy);
     background-color: #FFFFFF;
-    border: 1.5px solid #E1EAF0;
-    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
     outline: none;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 }
 
 .form-input {
@@ -244,18 +270,18 @@ body {
     padding: 12px 14px;
     min-height: 100px;
     resize: vertical;
-    line-height: 1.5;
+    line-height: 1.55;
 }
 
 .form-input:hover,
 .form-textarea:hover {
-    border-color: #CBD5E1;
+    border-color: var(--border-hover);
 }
 
 .form-input:focus,
 .form-textarea:focus {
-    border-color: #163B63;
-    box-shadow: 0 0 0 3px rgba(22, 59, 99, 0.08);
+    border-color: var(--ocean);
+    box-shadow: 0 0 0 3px rgba(47, 111, 163, 0.1);
 }
 
 /* Select */
@@ -269,24 +295,24 @@ body {
     padding: 0 38px 0 14px;
     font-family: inherit;
     font-size: 14px;
-    color: #163B63;
+    color: var(--navy);
     background-color: #FFFFFF;
-    border: 1.5px solid #E1EAF0;
-    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
     outline: none;
     appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 }
 
 .form-select:hover {
-    border-color: #CBD5E1;
+    border-color: var(--border-hover);
 }
 
 .form-select:focus {
-    border-color: #163B63;
-    box-shadow: 0 0 0 3px rgba(22, 59, 99, 0.08);
+    border-color: var(--ocean);
+    box-shadow: 0 0 0 3px rgba(47, 111, 163, 0.1);
 }
 
 .select-icon {
@@ -295,32 +321,32 @@ body {
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-    color: #7188A0;
+    color: var(--text-muted);
 }
 
 .form-hint {
     font-size: 12px;
-    color: #7188A0;
-    margin-top: 6px;
+    color: var(--text-muted);
+    margin-top: 5px;
 }
 
 .form-hint code {
     font-size: 11px;
-    background: #EAF4F8;
+    background: var(--pale-blue);
     padding: 2px 6px;
     border-radius: 4px;
-    color: #163B63;
+    color: var(--navy);
 }
 
 /* ==========================================================================
    LIVE PREVIEW BOX (Keahlian Edit)
    ========================================================================== */
 .preview-box {
-    background-color: #FAF9F6;
-    border: 1px dashed #E1EAF0;
+    background-color: var(--bg-canvas);
+    border: 1px dashed var(--border);
     border-radius: 10px;
-    padding: 16px;
-    margin: 22px 0;
+    padding: 14px;
+    margin: 20px 0;
 }
 
 .preview-label {
@@ -328,15 +354,15 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    color: #7188A0;
-    margin-bottom: 10px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
 }
 
 .preview-card {
     background: #FFFFFF;
-    border: 1px solid #E1EAF0;
-    border-radius: 8px;
-    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -345,16 +371,16 @@ body {
 .preview-title {
     font-size: 14px;
     font-weight: 600;
-    color: #163B63;
+    color: var(--navy);
 }
 
 .status-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    font-size: 12px;
+    font-size: 11.5px;
     font-weight: 500;
-    padding: 4px 10px;
+    padding: 3px 9px;
     border-radius: 20px;
 }
 
@@ -369,13 +395,13 @@ body {
 }
 
 .status-badge.learning {
-    background-color: #EAF4F8;
-    color: #163B63;
+    background-color: var(--pale-blue);
+    color: var(--navy);
     border: 1px solid #D2DFE8;
 }
 
 .status-badge.learning .status-dot {
-    background-color: #2F6FA3;
+    background-color: var(--ocean);
 }
 
 .status-dot {
@@ -391,7 +417,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: 28px;
+    margin-top: 24px;
 }
 
 .btn-submit {
@@ -399,47 +425,47 @@ body {
     height: 44px;
     padding: 0 20px;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 600;
     color: #FFFFFF;
-    background-color: #163B63;
+    background-color: var(--navy);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     box-shadow: 0 4px 12px rgba(22, 59, 99, 0.15);
-    transition: all 0.2s ease;
+    transition: var(--transition-smooth);
 }
 
 .btn-submit:hover {
-    background-color: #0F2642;
-    box-shadow: 0 6px 16px rgba(22, 59, 99, 0.22);
+    background-color: var(--ocean);
+    box-shadow: 0 6px 16px rgba(47, 111, 163, 0.24);
 }
 
 .btn-cancel {
     height: 44px;
     padding: 0 20px;
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
-    color: #47617C;
+    color: var(--text-body);
     background-color: #FFFFFF;
-    border: 1px solid #E1EAF0;
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: var(--transition-fast);
 }
 
 .btn-cancel:hover {
-    color: #163B63;
-    background-color: #FAF9F6;
-    border-color: #CBD5E1;
+    color: var(--navy);
+    background-color: var(--bg-canvas);
+    border-color: var(--border-hover);
 }
 
 /* ==========================================================================
@@ -447,14 +473,14 @@ body {
    ========================================================================== */
 .footer {
     text-align: center;
-    padding: 24px;
-    border-top: 1px solid #E1EAF0;
-    background-color: #FAF9F6;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    background-color: var(--bg-canvas);
 }
 
 .footer p {
-    font-size: 13px;
-    color: #7188A0;
+    font-size: 12.5px;
+    color: var(--text-muted);
 }
 
 /* ==========================================================================
@@ -475,12 +501,12 @@ body {
     }
 
     .form-card {
-        padding: 24px 20px;
-        border-radius: 12px;
+        padding: 22px 18px;
+        border-radius: var(--radius-md);
     }
 
     .form-title {
-        font-size: 20px;
+        font-size: 19px;
     }
 
     .form-actions {
