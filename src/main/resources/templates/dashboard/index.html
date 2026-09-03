@@ -80,30 +80,81 @@
     </aside>
 
     <main class="main-wrapper">
-        <section class="db-hero fade-up">
-            <div class="db-hero-text">
-                <p class="db-hero-eyebrow">Creative Portfolio Control Center</p>
-                <h1 class="db-hero-title">
-                    Selamat datang kembali,
-                    <span th:text="${profile != null ? profile.nama : 'Arya'}">Arya</span> 👋
-                </h1>
-                <p class="db-hero-sub">Kelola portfolio kamu dari satu tempat.</p>
-                <div class="db-hero-actions">
-                    <a href="/profile" class="db-btn-primary" id="btn-lihat-portfolio">
-                        Lihat Portfolio
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                    </a>
-                    <a href="/template3" class="db-btn-ghost" id="btn-edit-profile-hero">Edit Profile &rarr;</a>
+        <section class="db-identity-hero fade-up">
+            <div class="db-identity-photo-col">
+                <div class="db-identity-photo-wrap">
+                    <img
+                        th:src="${profile != null && profile.foto != null && !profile.foto.isEmpty() ? '/images/' + profile.foto : '/images/arya.png'}"
+                        th:alt="${profile != null ? profile.nama : 'Arya Adhitya'}"
+                        class="db-identity-photo"
+                        onerror="this.src='/images/arya.png'"
+                    >
                 </div>
             </div>
-            <div class="db-hero-glow"></div>
+            <div class="db-identity-info-col">
+                <span class="db-identity-tag">Portfolio Dashboard</span>
+                <h1 class="db-identity-name" th:text="${profile != null ? profile.nama : 'Arya Adhitya'}">Arya Adhitya</h1>
+                <p class="db-identity-role" th:text="${profile != null && profile.profesi != null ? profile.profesi : 'Web Developer'}">Web Developer</p>
+                <div class="db-identity-meta">
+                    <span class="db-identity-meta-item" th:if="${profile != null && profile.lokasi != null}">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span th:text="${profile.lokasi}">Indonesia</span>
+                    </span>
+                    <span class="db-identity-meta-item" th:if="${profile != null && profile.pendidikan != null}">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                        <span th:text="${profile.pendidikan}">SMK Assalaam</span>
+                    </span>
+                </div>
+                <div class="db-identity-actions">
+                    <a href="/profile" class="db-btn-primary" id="btn-lihat-portfolio">
+                        Lihat Portfolio
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                    <a href="/template3" class="db-btn-ghost" id="btn-edit-profile-hero">Edit Profile</a>
+                </div>
+            </div>
+            <div class="db-identity-cv-card">
+                <div class="db-cv-header">
+                    <span class="db-cv-label">Curriculum Vitae</span>
+                    <span class="db-cv-badge">PDF</span>
+                </div>
+                <div class="db-cv-body">
+                    <div class="db-cv-icon-box">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <line x1="10" y1="9" x2="8" y2="9"></line>
+                        </svg>
+                    </div>
+                    <div class="db-cv-info">
+                        <span class="db-cv-name" th:text="${profile != null && profile.cv != null && !profile.cv.isEmpty() ? profile.cv : 'Arya Adhitya CV.pdf'}">
+                            Arya Adhitya CV.pdf
+                        </span>
+                        <span class="db-cv-sub">Dokumen resume profesional</span>
+                    </div>
+                </div>
+                <div class="db-cv-actions">
+                    <a th:href="${profile != null && profile.cv != null && !profile.cv.isEmpty() ? '/images/pdf/' + profile.cv : '/images/pdf/ARYA ADHITYA_20260728_154405_0000.pdf'}"
+                       target="_blank"
+                       class="db-cv-btn-primary"
+                       id="btn-view-cv">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        <span>Lihat CV</span>
+                    </a>
+                    <a href="/template3" class="db-cv-btn-secondary" id="btn-edit-cv">
+                        <span>Ubah</span>
+                    </a>
+                </div>
+            </div>
         </section>
         <section class="db-stats-bar fade-up" style="animation-delay:.08s">
             <div class="db-stat-item" id="stat-keahlian">
                 <div class="db-stat-num" th:text="${totalKeahlian}">0</div>
                 <div class="db-stat-meta">
                     <span class="db-stat-label">Total Keahlian</span>
-                    <a href="/keahlian" class="db-stat-link">Kelola &rarr;</a>
+                    <a href="/keahlian" class="db-stat-link">Lihat</a>
                 </div>
             </div>
             <div class="db-stat-divider"></div>
@@ -111,63 +162,54 @@
                 <div class="db-stat-num" th:text="${totalProject}">0</div>
                 <div class="db-stat-meta">
                     <span class="db-stat-label">Total Project</span>
-                    <a href="/project" class="db-stat-link">Kelola &rarr;</a>
+                    <a href="/project" class="db-stat-link">Lihat</a>
                 </div>
             </div>
             <div class="db-stat-divider"></div>
             <div class="db-stat-item" id="stat-profile">
-                <div class="db-stat-badge" th:classappend="${profile != null ? ' active' : ' empty'}">
-                    <span th:text="${profile != null ? 'Aktif' : 'Kosong'}">Aktif</span>
-                </div>
                 <div class="db-stat-meta">
                     <span class="db-stat-label">Status Profile</span>
-                    <a href="/template3" class="db-stat-link">Lihat &rarr;</a>
+                    <a href="/template3" class="db-stat-link">Lihat</a>
                 </div>
             </div>
         </section>
 
         <div class="db-two-col fade-up" style="animation-delay:.14s">
 
-            <section class="db-profile-card" id="section-profile-overview">
-                <div class="db-section-label">Profile Overview</div>
+            <section class="db-info-panel" id="section-profile-overview">
+                <div class="db-section-label">Informasi Profil</div>
 
-                <div class="db-profile-inner" th:if="${profile != null}">
-                    <div class="db-profile-avatar-wrap">
-                        <img
-                            th:src="${profile.foto != null && !profile.foto.isEmpty() ? '/images/' + profile.foto : '/images/arya.png'}"
-                            th:alt="${profile.nama}"
-                            class="db-profile-avatar"
-                            onerror="this.src='/images/arya.png'"
-                        >
-                        <span class="db-avatar-online"></span>
-                    </div>
-                    <div class="db-profile-info">
-                        <h2 class="db-profile-name" th:text="${profile.nama}">Arya Adhitya</h2>
-                        <p class="db-profile-role" th:text="${profile.profesi != null ? profile.profesi : 'Web Developer'}">Web Developer</p>
-                        <div class="db-profile-meta-row">
-                            <span class="db-profile-meta-item" th:if="${profile.lokasi != null}">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span th:text="${profile.lokasi}">Indonesia</span>
-                            </span>
-                            <span class="db-profile-meta-item" th:if="${profile.pendidikan != null}">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
-                                <span th:text="${profile.pendidikan}">SMK Assalaam</span>
-                            </span>
+                <div th:if="${profile != null}">
+                    <div class="db-info-header">
+                        <div class="db-info-name-block">
+                            <h2 class="db-info-name" th:text="${profile.nama}">Arya Adhitya</h2>
+                            <span class="db-info-role" th:text="${profile.profesi != null ? profile.profesi : '—'}">Web Developer</span>
                         </div>
-                        <p class="db-profile-desc"
-                           th:if="${profile.deskripsi != null}"
-                           th:text="${#strings.length(profile.deskripsi) > 100 ? #strings.substring(profile.deskripsi, 0, 100) + '...' : profile.deskripsi}">
-                            Seorang web developer yang bersemangat membangun solusi digital.
-                        </p>
+                    </div>
+
+                    <div class="db-info-grid">
+                        <div class="db-info-row" th:if="${profile.lokasi != null}">
+                            <span class="db-info-key">Lokasi</span>
+                            <span class="db-info-val" th:text="${profile.lokasi}">—</span>
+                        </div>
+                        <div class="db-info-row" th:if="${profile.pendidikan != null}">
+                            <span class="db-info-key">Pendidikan</span>
+                            <span class="db-info-val" th:text="${profile.pendidikan}">—</span>
+                        </div>
+                        <div class="db-info-row" th:if="${profile.deskripsi != null}">
+                            <span class="db-info-key">Bio</span>
+                            <span class="db-info-val db-info-val--bio"
+                                  th:text="${#strings.length(profile.deskripsi) > 90 ? #strings.substring(profile.deskripsi, 0, 90) + '...' : profile.deskripsi}">—</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="db-profile-empty" th:if="${profile == null}">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     <p>Profil belum diatur</p>
                 </div>
 
-                <a href="/template3" class="db-profile-edit-btn" id="btn-edit-profile-card">Edit Profile &rarr;</a>
+                <a href="/template3" class="db-info-edit-btn" id="btn-edit-profile-card">Edit Profile</a>
             </section>
 
             <section class="db-quick-actions" id="section-quick-actions">
@@ -224,39 +266,45 @@
         <section class="db-projects-section fade-up" id="section-recent-projects" style="animation-delay:.2s">
             <div class="db-section-header">
                 <div>
-                    <div class="db-section-label">Recent Projects</div>
+                    <div class="db-section-label">Project Terbaru</div>
                     <p class="db-section-count">
                         <span th:text="${totalProject}">0</span> project tersimpan
                     </p>
                 </div>
-                <a href="/project" class="db-section-action" id="btn-all-projects">Lihat Semua &rarr;</a>
+                <a href="/project" class="db-section-action" id="btn-all-projects">Lihat Semua</a>
             </div>
 
-            <div class="db-project-list" th:if="${projectList != null && !#lists.isEmpty(projectList)}">
-                <div th:each="proj, stat : ${projectList}" th:if="${stat.index < 4}" class="db-project-row">
-                    <div class="db-project-index" th:text="${stat.count}">1</div>
-                    <div class="db-project-thumb-wrap">
+            <div class="db-proj-grid" th:if="${projectList != null && !#lists.isEmpty(projectList)}">
+                <a th:each="proj, stat : ${projectList}"
+                   th:if="${stat.index < 4}"
+                   th:href="@{/project/edit/{id}(id=${proj.id})}"
+                   class="db-proj-card">
+                    <div class="db-proj-img-wrap">
                         <img
                             th:if="${proj.foto != null && !proj.foto.isEmpty()}"
                             th:src="'/images/' + ${proj.foto}"
                             th:alt="${proj.name}"
-                            class="db-project-thumb"
+                            class="db-proj-img"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                         >
-                        <div class="db-project-thumb-placeholder">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+                        <div class="db-proj-img-fallback">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                         </div>
                     </div>
-                    <div class="db-project-info">
-                        <span class="db-project-name" th:text="${proj.name}">Nama Project</span>
-                        <span class="db-project-desc"
-                              th:if="${proj.deskripsi != null}"
-                              th:text="${#strings.length(proj.deskripsi) > 80 ? #strings.substring(proj.deskripsi, 0, 80) + '...' : proj.deskripsi}">
+                    <div class="db-proj-body">
+                        <span class="db-proj-num" th:text="${'0' + stat.count}">01</span>
+                        <h3 class="db-proj-title" th:text="${proj.name}">Nama Project</h3>
+                        <p class="db-proj-desc"
+                           th:if="${proj.deskripsi != null}"
+                           th:text="${#strings.length(proj.deskripsi) > 70 ? #strings.substring(proj.deskripsi, 0, 70) + '...' : proj.deskripsi}">
                             Deskripsi project
-                        </span>
+                        </p>
                     </div>
-                    <a th:href="@{/project/edit/{id}(id=${proj.id})}" class="db-project-edit-btn">Edit</a>
-                </div>
+                    <div class="db-proj-footer">
+                        <span class="db-proj-edit-label">Edit Project</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </a>
             </div>
 
             <div class="db-project-empty" th:if="${projectList == null || #lists.isEmpty(projectList)}">
@@ -264,53 +312,37 @@
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                 </div>
                 <p class="db-empty-text">Belum ada project tersimpan.</p>
-                <a href="/project" class="db-btn-primary-sm" id="btn-add-project-empty">+ Tambah Project</a>
+                <a href="/project" class="db-btn-primary-sm" id="btn-add-project-empty">Tambah Project</a>
             </div>
         </section>
         <div class="db-bottom-row fade-up" style="animation-delay:.26s">
-            <section class="db-timeline-section" id="section-activity">
-                <div class="db-section-label">Aktivitas Terbaru</div>
-                <p class="db-section-hint">Ringkasan status konten portfolio kamu.</p>
+            <section class="db-skills-section" id="section-skills-summary">
+                <div class="db-section-header">
+                    <div>
+                        <div class="db-section-label">Ringkasan Keahlian</div>
+                        <p class="db-section-count">
+                            <span th:text="${totalKeahlian}">0</span> keahlian tercatat
+                        </p>
+                    </div>
+                    <a href="/keahlian" class="db-section-action" id="btn-all-skills">Lihat Keahlian</a>
+                </div>
 
-                <div class="db-timeline">
-                    <div class="db-tl-item">
-                        <div class="db-tl-dot db-tl-dot--blue"></div>
-                        <div class="db-tl-body">
-                            <span class="db-tl-title">Sistem Aktif</span>
-                            <span class="db-tl-meta">Dashboard berjalan normal</span>
+                <div class="db-skills-list" th:if="${keahlianList != null && !#lists.isEmpty(keahlianList)}">
+                    <div th:each="keahlian, stat : ${keahlianList}" th:if="${stat.index < 4}" class="db-skill-card-item">
+                        <div class="db-skill-item-info">
+                            <span class="db-skill-name" th:text="${keahlian.name}">PHP</span>
                         </div>
-                        <span class="db-tl-time">Sekarang</span>
-                    </div>
-                    <div class="db-tl-item">
-                        <div class="db-tl-dot"></div>
-                        <div class="db-tl-body">
-                            <span class="db-tl-title"
-                                  th:text="${totalProject > 0 ? totalProject + ' Project Tersimpan' : 'Belum ada project'}">
-                                Project Tersimpan
-                            </span>
-                            <span class="db-tl-meta">Data dari database</span>
+                        <div class="db-skill-progress-bar">
+                            <div class="db-skill-progress-fill" 
+                                 th:style="${keahlian.proses != null && #strings.containsIgnoreCase(keahlian.proses, 'sedang')} ? 'width: 60%' : 'width: 100%'">
+                            </div>
                         </div>
-                        <span class="db-tl-time">—</span>
                     </div>
-                    <div class="db-tl-item">
-                        <div class="db-tl-dot"></div>
-                        <div class="db-tl-body">
-                            <span class="db-tl-title"
-                                  th:text="${totalKeahlian > 0 ? totalKeahlian + ' Keahlian Tercatat' : 'Belum ada keahlian'}">
-                                Keahlian Tercatat
-                            </span>
-                            <span class="db-tl-meta">Data dari database</span>
-                        </div>
-                        <span class="db-tl-time">—</span>
-                    </div>
-                    <div class="db-tl-item">
-                        <div class="db-tl-dot db-tl-dot--gray"></div>
-                        <div class="db-tl-body">
-                            <span class="db-tl-title">Riwayat Lengkap</span>
-                            <span class="db-tl-meta">Tersedia saat fitur activity log aktif</span>
-                        </div>
-                        <span class="db-tl-time">—</span>
-                    </div>
+                </div>
+
+                <div class="db-project-empty" th:if="${keahlianList == null || #lists.isEmpty(keahlianList)}">
+                    <p class="db-empty-text">Belum ada data keahlian.</p>
+                    <a href="/keahlian" class="db-btn-primary-sm">Tambah Keahlian</a>
                 </div>
             </section>
             <section class="db-live-portfolio" id="section-live-portfolio">
@@ -324,7 +356,8 @@
                         Lihat bagaimana tampilan portfolio kamu di depan pengunjung.
                     </p>
                     <a href="/profile" class="db-live-btn" id="btn-lihat-website">
-                        Lihat Website ↗
+                        <span>Lihat Website</span>
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     </a>
                 </div>
                 <div class="db-live-glow"></div>

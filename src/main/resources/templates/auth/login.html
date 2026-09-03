@@ -3,105 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light">
     <meta name="description" content="Login Admin - Arya Adhitya Portfolio">
-    <title>Login Admin — Arya Adhitya</title>
+    <title>Login Admin — Portfolio</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Editorial Serif + Clean Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
-    <link rel="stylesheet" th:href="@{/css/login.css}" href="/css/login.css">
+    <!-- CSS with cache bust -->
+    <link rel="stylesheet" th:href="@{/css/login.css(v='3.0')}" href="/css/login.css?v=3.0">
 </head>
-<body>
+<body class="login-body">
 
-    <!-- Ambient Glows -->
-    <div class="ambient-glow ambient-glow-1"></div>
-    <div class="ambient-glow ambient-glow-2"></div>
+    <!-- Ambient Subtle Glows -->
+    <div class="ambient-glow ambient-glow-top"></div>
+    <div class="ambient-glow ambient-glow-bottom"></div>
 
-    <!-- Subtle Wave Lines Background -->
-    <div class="login-backdrop-waves" aria-hidden="true">
-        <svg viewBox="0 0 1440 600" fill="none" preserveAspectRatio="none">
-            <path d="M0,220 C360,120 720,320 1080,200 C1240,150 1360,260 1440,210" stroke="rgba(47, 111, 163, 0.1)" stroke-width="1.5" stroke-dasharray="6 6"/>
-            <path d="M0,320 C320,240 680,380 1040,290 C1200,240 1340,340 1440,300" stroke="rgba(22, 59, 99, 0.06)" stroke-width="1.2"/>
+    <!-- Background Wave Contour Lines -->
+    <div class="login-wave-bg" aria-hidden="true">
+        <svg class="wave-svg" viewBox="0 0 1200 320" preserveAspectRatio="none" fill="none">
+            <path d="M0,180 C240,110 480,250 720,180 C960,110 1100,210 1200,160 L1200,320 L0,320 Z" fill="rgba(234, 244, 248, 0.6)"/>
+            <path d="M0,220 C280,160 520,290 800,210 C1000,140 1120,250 1200,200 L1200,320 L0,320 Z" fill="rgba(47, 111, 163, 0.035)"/>
+            <path d="M0,140 C220,220 460,80 700,160 C920,230 1080,100 1200,140" stroke="rgba(47, 111, 163, 0.14)" stroke-width="1.2" stroke-dasharray="6 6"/>
         </svg>
     </div>
 
-    <!-- Top Bar -->
-    <header class="login-topbar">
-        <a th:href="@{/}" href="/" class="back-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            <span>Kembali</span>
-        </a>
-        <span class="topbar-portal-tag">Admin Portal</span>
+    <!-- Minimalist Navbar -->
+    <header class="navbar-header">
+        <nav class="login-navbar">
+            <a href="/" class="login-brand">
+                <span class="brand-dot"></span>
+                <span class="brand-text">PORTFOLIO</span>
+            </a>
+            <a th:href="@{/}" href="/" class="login-nav-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                <span>Kembali ke Website</span>
+            </a>
+        </nav>
     </header>
 
-    <!-- Main Content -->
+    <!-- Main Content: Single Unified Minimalist Card -->
     <main class="login-main">
-        <div class="login-card-container">
-            <div class="auth-card">
+        <div class="login-unified-card">
 
-                <!-- Dark Curved Top Section with Logo & Pattern -->
-                <div class="auth-card-top">
-                    <!-- Geometric Pattern Overlay -->
-                    <div class="auth-card-pattern"></div>
-                    <svg class="pattern-geometry-svg" viewBox="0 0 420 200" fill="none" aria-hidden="true">
-                        <rect x="20" y="20" width="60" height="60" rx="16" fill="rgba(255,255,255,0.12)"/>
-                        <rect x="90" y="50" width="40" height="40" rx="10" fill="rgba(255,255,255,0.08)"/>
-                        <rect x="60" y="90" width="50" height="50" rx="14" fill="rgba(255,255,255,0.1)"/>
-                        <circle cx="200" cy="40" r="25" fill="rgba(255,255,255,0.06)"/>
-                        <rect x="300" y="30" width="55" height="55" rx="14" fill="rgba(255,255,255,0.1)"/>
-                        <rect x="340" y="80" width="45" height="45" rx="12" fill="rgba(255,255,255,0.07)"/>
-                        <rect x="270" y="100" width="35" height="35" rx="10" fill="rgba(255,255,255,0.09)"/>
-                        <rect x="140" y="120" width="48" height="48" rx="13" fill="rgba(255,255,255,0.06)"/>
-                    </svg>
+            <!-- Left Side: Clean Minimalist Portrait Photo -->
+            <div class="card-visual-col">
+                <div class="visual-photo-wrap">
+                    <img th:src="@{/images/formal.png}"
+                         src="/images/formal.png"
+                         alt="Arya Adhitya"
+                         class="visual-photo"
+                         onerror="this.src='/images/arya.png'">
+                    <div class="visual-overlay">
+                        <div class="visual-badge">ADMIN</div>
+                        <h2 class="visual-name">Arya Adhitya</h2>
+                        <p class="visual-role">Web Developer &bull; SMK Assalaam</p>
+                    </div>
+                </div>
+            </div>
 
-                    <!-- Squircle Logo Badge -->
-                    <div class="auth-logo-badge">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
+            <!-- Right Side: Minimalist Form -->
+            <div class="card-form-col">
+                <div class="form-inner">
+
+                    <!-- Header -->
+                    <div class="form-header">
+                        <span class="form-eyebrow">Portal Admin</span>
+                        <h1 class="form-title">Login</h1>
+                        <p class="form-subtitle">Masukkan username dan password untuk mengelola portofolio.</p>
                     </div>
 
-                    <h1 class="auth-header-title">Login</h1>
-                    <p class="auth-header-subtitle">Akses panel administrasi portofolio</p>
-                </div>
-
-                <!-- White Form Section -->
-                <div class="auth-card-body">
-
-                    <!-- Error Alert -->
-                    <div th:if="${param.error != null}" class="auth-alert auth-alert-error" role="alert">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Alert: Error -->
+                    <div th:if="${param.error != null}" class="login-alert alert-error" role="alert">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="10"></circle>
                             <line x1="12" y1="8" x2="12" y2="12"></line>
                             <line x1="12" y1="16" x2="12.01" y2="16"></line>
                         </svg>
-                        <span>Username atau password tidak valid. Silakan coba kembali.</span>
+                        <span>Username atau password tidak valid.</span>
                     </div>
 
-                    <!-- Logout Alert -->
-                    <div th:if="${param.logout != null}" class="auth-alert auth-alert-success" role="alert">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Alert: Logout -->
+                    <div th:if="${param.logout != null}" class="login-alert alert-success" role="alert">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                             <polyline points="22 4 12 14.01 9 11.01"></polyline>
                         </svg>
                         <span>Anda telah berhasil keluar dari sesi.</span>
                     </div>
 
-                    <!-- Login Form -->
-                    <form th:action="@{/login}" action="/login" method="post" class="auth-form">
+                    <!-- Form -->
+                    <form th:action="@{/login}" action="/login" method="post" class="login-form">
 
-                        <!-- Username -->
-                        <div class="form-field-group">
-                            <label for="username" class="field-label">Username</label>
-                            <div class="field-input-box">
-                                <span class="field-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Username Input -->
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
@@ -110,21 +114,22 @@
                                     type="text"
                                     id="username"
                                     name="username"
-                                    class="field-input"
+                                    class="form-control"
                                     placeholder="Masukkan username"
                                     required
                                     autofocus
                                     autocomplete="username"
+                                    style="color: #000000 !important; -webkit-text-fill-color: #000000 !important;"
                                 >
                             </div>
                         </div>
 
-                        <!-- Password -->
-                        <div class="form-field-group">
-                            <label for="password" class="field-label">Password</label>
-                            <div class="field-input-box">
-                                <span class="field-icon" aria-hidden="true">
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Password Input -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">
+                                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                     </svg>
@@ -133,23 +138,24 @@
                                     type="password"
                                     id="password"
                                     name="password"
-                                    class="field-input"
+                                    class="form-control"
                                     placeholder="Masukkan password"
                                     required
                                     autocomplete="current-password"
+                                    style="color: #000000 !important; -webkit-text-fill-color: #000000 !important;"
                                 >
                                 <button
                                     type="button"
                                     id="togglePasswordBtn"
-                                    class="password-eye-toggle"
+                                    class="btn-toggle-eye"
                                     aria-label="Tampilkan atau sembunyikan password"
                                     title="Lihat password"
                                 >
-                                    <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg id="eyeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                         <circle cx="12" cy="12" r="3"></circle>
                                     </svg>
-                                    <svg id="eyeOffIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                                    <svg id="eyeOffIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
                                         <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
                                         <line x1="1" y1="1" x2="23" y2="23"></line>
                                     </svg>
@@ -157,10 +163,10 @@
                             </div>
                         </div>
 
-                        <!-- Submit -->
-                        <button type="submit" class="btn-auth-submit" id="loginBtn">
-                            <span>Login</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn-login-submit" id="loginBtn">
+                            <span>Masuk ke Dashboard</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                                 <polyline points="12 5 19 12 12 19"></polyline>
                             </svg>
@@ -168,26 +174,27 @@
 
                     </form>
 
-                    <!-- Footer Info -->
-                    <div class="card-bottom-info">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Security Note -->
+                    <div class="form-security-footer">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                         </svg>
-                        <span>Sistem Terenkripsi & Terproteksi</span>
+                        <span>Sistem Terenkripsi &amp; Terproteksi</span>
                     </div>
 
                 </div>
-
             </div>
+
         </div>
     </main>
 
     <!-- Page Footer -->
-    <footer class="login-page-footer">
-        <p>&copy; <span id="currentYear"></span> Arya Adhitya. All rights reserved.</p>
+    <footer class="login-footer">
+        <p>Copyright &copy; <span id="currentYear"></span> Arya. All rights reserved.</p>
+        <span class="footer-note">Built with Spring Boot &amp; Thymeleaf</span>
     </footer>
 
-    <!-- Script -->
+    <!-- Password Toggle Script -->
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 

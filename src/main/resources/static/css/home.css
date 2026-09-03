@@ -1,16 +1,3 @@
-/* ==========================================================================
-   HOME PAGE STYLESHEET (home.css)
-   Theme: Light & Minimalist Editorial Ocean Portfolio (Consistent with Profile)
-   Palette:
-     --bg:         #FAF9F6 (Warm off-white / ivory canvas)
-     --navy-deep:  #163B63 (Deep navy heading & accents)
-     --ocean-blue: #2F6FA3 (Editorial ocean blue highlight)
-     --pale-blue:  #EAF4F8 (Subtle pale blue)
-     --text-body:  #47617C (Dark slate navy body text)
-     --text-muted: #7188A0 (Muted supporting text)
-     --border:     #E1EAF0 (Clean light border)
-     --card:       #FFFFFF (Pure white card background)
-   ========================================================================== */
 
 :root {
     --bg: #FAF9F6;
@@ -41,7 +28,6 @@
     --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* --- Reset & Base --- */
 *,
 *::before,
 *::after {
@@ -70,9 +56,6 @@ body.home-body {
     text-rendering: optimizeLegibility;
 }
 
-/* ==========================================================================
-   AMBIENT WATERCOLOR OCEAN GLOWS (Soft & Minimalist)
-   ========================================================================== */
 .ambient-glow {
     position: fixed;
     border-radius: 50%;
@@ -98,9 +81,6 @@ body.home-body {
     background: radial-gradient(circle, rgba(22, 59, 99, 0.07) 0%, rgba(22, 59, 99, 0.015) 50%, transparent 70%);
 }
 
-/* ==========================================================================
-   MINIMALIST GLASS NAVBAR (Consistent with Profile Page)
-   ========================================================================== */
 .navbar-header {
     position: sticky;
     top: 0;
@@ -209,9 +189,6 @@ body.home-body {
     box-shadow: 0 6px 18px rgba(47, 111, 163, 0.24);
 }
 
-/* ==========================================================================
-   MAIN HERO SECTION (Light Editorial Split Layout)
-   ========================================================================== */
 .home-main {
     flex: 1;
     position: relative;
@@ -235,7 +212,6 @@ body.home-body {
     padding: 36px 40px 48px;
 }
 
-/* Background Flowing Wave SVG */
 .hero-wave-bg {
     position: absolute;
     inset: 0;
@@ -250,7 +226,6 @@ body.home-body {
     opacity: 0.85;
 }
 
-/* --- Left Column: Content --- */
 .hero-left-col {
     display: flex;
     flex-direction: column;
@@ -260,12 +235,21 @@ body.home-body {
     z-index: 2;
 }
 
-/* Eyebrow Line (Matching Profile Style) */
 .hero-eyebrow-line {
     display: inline-flex;
     align-items: center;
     gap: 8px;
     margin-bottom: 16px;
+}
+
+.hero-greeting {
+    font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-style: italic;
+    font-weight: 700;
+    color: #203A5C;
+    line-height: 1.2;
+    margin: 0;
 }
 
 .eyebrow-dash {
@@ -283,7 +267,6 @@ body.home-body {
     text-transform: uppercase;
 }
 
-/* Large Main Heading (Editorial Serif) */
 .hero-title {
     font-family: 'DM Serif Display', 'Playfair Display', Georgia, serif;
     font-size: clamp(40px, 4.6vw, 56px);
@@ -301,7 +284,6 @@ body.home-body {
     display: inline-block;
 }
 
-/* Description Text */
 .hero-description {
     font-size: 15px;
     font-weight: 400;
@@ -311,7 +293,6 @@ body.home-body {
     max-width: 520px;
 }
 
-/* Action Buttons Row */
 .actions-row {
     display: flex;
     align-items: center;
@@ -320,7 +301,6 @@ body.home-body {
     margin-bottom: 32px;
 }
 
-/* Primary Button */
 .btn-primary-action {
     display: inline-flex;
     align-items: center;
@@ -351,7 +331,6 @@ body.home-body {
     transform: translateX(3px);
 }
 
-/* Secondary Button */
 .btn-outline-action {
     display: inline-flex;
     align-items: center;
@@ -375,7 +354,6 @@ body.home-body {
     transform: translateY(-2px);
 }
 
-/* Clean School & Education Information Strip */
 .info-strip {
     display: flex;
     align-items: center;
@@ -405,9 +383,6 @@ body.home-body {
     margin-top: 2px;
 }
 
-/* ==========================================================================
-   RIGHT COLUMN: BALANCED PHOTO CARD + ARTISTIC MARINE ELEMENTS
-   ========================================================================== */
 .hero-right-col {
     position: relative;
     display: flex;
@@ -427,7 +402,6 @@ body.home-body {
     100% { transform: translateY(-6px); }
 }
 
-/* Main Rectangular White Photo Card */
 .photo-main-card {
     position: relative;
     background: var(--card);
@@ -472,16 +446,12 @@ body.home-body {
     transform: scale(1.025);
 }
 
-/* ==========================================================================
-   ARTISTIC OCEAN ILLUSTRATIONS (Vivid, Delicate & Refined)
-   ========================================================================== */
 .ocean-art {
     position: absolute;
     pointer-events: none;
     z-index: 4;
 }
 
-/* 1. Swimming Blue Fish (Top Left of Card) */
 .art-fish {
     top: -34px;
     left: -44px;

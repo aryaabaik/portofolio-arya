@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.portofolio.portofolio_arya.Model.Profile;
-import com.portofolio.portofolio_arya.Service.ProfileService;
+import com.portofolio.portofolio_arya.Repository.ProfileRepository;
 import com.portofolio.portofolio_arya.Model.Keahlian;
 import com.portofolio.portofolio_arya.Repository.KeahlianRepository;
 import com.portofolio.portofolio_arya.Model.Project;
@@ -17,17 +17,17 @@ import java.util.List;
 @Controller
 public class ProfileController {
 
-    private final ProfileService profileService;
+    private final ProfileRepository profileRepository;
     private final KeahlianRepository keahlianRepository;
     private final ProjectRepository projectRepository;
     private final KontakRepository kontakRepository;
     public ProfileController(
-            ProfileService profileService,
+            ProfileRepository profileRepository,
             KeahlianRepository keahlianRepository,
             ProjectRepository projectRepository,
             KontakRepository kontakRepository) {
 
-        this.profileService = profileService;
+        this.profileRepository = profileRepository;
         this.keahlianRepository = keahlianRepository;
         this.projectRepository = projectRepository;
         this.kontakRepository = kontakRepository;
@@ -35,7 +35,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String profile(Model model) {
-        Profile profile = profileService.getProfile();
+        Profile profile = profileRepository.findAll().stream().findFirst().orElse(null);
         List<Keahlian> keahlian = keahlianRepository.findAll();
         List<Project> projects = projectRepository.findAll();
         List<Kontak> kontaks = kontakRepository.findAll();

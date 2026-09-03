@@ -3,7 +3,7 @@
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
 
-import com.portofolio.portofolio_arya.Model.Kontak;
+    import com.portofolio.portofolio_arya.Model.Kontak;
     import com.portofolio.portofolio_arya.Repository.KontakRepository;
 
     import org.springframework.web.bind.annotation.*;

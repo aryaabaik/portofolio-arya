@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.portofolio.portofolio_arya.Model.Profile;
-import com.portofolio.portofolio_arya.Service.ProfileService;
+import com.portofolio.portofolio_arya.Repository.ProfileRepository;
 
 @Controller
 @RequestMapping("/template3")
 public class TemplateController3 {
 
-    private final ProfileService profileService;
+    private final ProfileRepository profileRepository;
 
-    public TemplateController3(ProfileService profileService) {
-        this.profileService = profileService;
+    public TemplateController3(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
     }
 
     @GetMapping
     public String profile(Model model) {
-        model.addAttribute("profileList", profileService.findAll());
+        model.addAttribute("profileList", profileRepository.findAll());
         return "dashboard/profile/index";
     }
 
     @GetMapping("/edit/{id}")
     public String editprofile(@PathVariable Long id, Model model) {
-        Profile profile = profileService.findById(id)
+        Profile profile = profileRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("profile tidak ada"));
 
         model.addAttribute("profile", profile);
@@ -38,13 +38,13 @@ public class TemplateController3 {
 
     @PostMapping({"", "/edit"})
     public String updateprofile(@ModelAttribute("profile") Profile profile) {
-        profileService.save(profile);
+        profileRepository.save(profile);
         return "redirect:/template3";
     }
 
     // @GetMapping("/delete/{id}")
     // public String deleteProfile(@PathVariable Long id) {
-    //     profileService.deleteById(id);
+    //     profileRepository.deleteById(id);
     //     return "redirect:/template3";
     // }
 }

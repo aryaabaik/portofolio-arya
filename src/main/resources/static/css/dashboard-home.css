@@ -295,9 +295,9 @@
 }
 
 /* ──────────────────────────────────────────────────────────────
-   PROFILE OVERVIEW CARD
+   INFO PANEL (replaces old profile overview card)
 ────────────────────────────────────────────────────────────── */
-.db-profile-card {
+.db-info-panel {
     background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
@@ -308,85 +308,109 @@
     transition: box-shadow 0.25s ease;
 }
 
-.db-profile-card:hover {
+.db-info-panel:hover {
     box-shadow: var(--shadow-md);
 }
 
-.db-profile-inner {
+/* Header row: name block + status badge */
+.db-info-header {
     display: flex;
-    gap: 18px;
-    flex: 1;
-    margin-bottom: 18px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
 }
 
-.db-profile-avatar-wrap {
-    position: relative;
-    flex-shrink: 0;
-}
-
-.db-profile-avatar {
-    width: 68px;
-    height: 68px;
-    border-radius: 12px;
-    object-fit: cover;
-    border: 2px solid var(--border);
-    background-color: var(--pale-blue);
-    display: block;
-}
-
-.db-avatar-online {
-    position: absolute;
-    bottom: 2px;
-    right: 2px;
-    width: 11px;
-    height: 11px;
-    background-color: #22C55E;
-    border-radius: 50%;
-    border: 2px solid #FFFFFF;
-}
-
-.db-profile-info {
-    flex: 1;
+.db-info-name-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     min-width: 0;
 }
 
-.db-profile-name {
-    font-size: 16.5px;
-    font-weight: 700;
+.db-info-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
     color: var(--navy);
-    letter-spacing: -0.2px;
-    margin-bottom: 2px;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    margin: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.db-profile-role {
+.db-info-role {
     font-size: 12.5px;
     font-weight: 500;
     color: var(--ocean);
-    margin-bottom: 8px;
+    letter-spacing: 0.1px;
 }
 
-.db-profile-meta-row {
+/* Status badge */
+.db-info-status-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 600;
+    background-color: #F1F5F9;
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+}
+
+.db-info-status-badge.is-active {
+    background-color: #F0FDF4;
+    color: #166534;
+    border-color: #DCFCE7;
+}
+
+/* Key-value grid */
+.db-info-grid {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 8px;
+    gap: 0;
+    flex: 1;
+    margin-bottom: 18px;
 }
 
-.db-profile-meta-item {
+.db-info-row {
     display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11.5px;
-    color: var(--text-muted);
+    align-items: baseline;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid #F0F4F8;
 }
 
-.db-profile-desc {
-    font-size: 12.5px;
+.db-info-row:last-child {
+    border-bottom: none;
+}
+
+.db-info-key {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.9px;
+    color: var(--text-muted);
+    min-width: 72px;
+    flex-shrink: 0;
+}
+
+.db-info-val {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    min-width: 0;
+}
+
+.db-info-val--bio {
+    font-weight: 400;
     color: var(--text-body);
     line-height: 1.55;
+    font-size: 12.5px;
 }
 
 /* Empty state for profile */
@@ -402,8 +426,8 @@
     font-size: 13px;
 }
 
-/* Edit Profile link button */
-.db-profile-edit-btn {
+/* Edit button */
+.db-info-edit-btn {
     display: inline-flex;
     align-items: center;
     font-size: 12.5px;
@@ -416,7 +440,7 @@
     transition: color 0.2s ease;
 }
 
-.db-profile-edit-btn:hover {
+.db-info-edit-btn:hover {
     color: var(--ocean);
 }
 
@@ -508,7 +532,7 @@
 }
 
 /* ──────────────────────────────────────────────────────────────
-   RECENT PROJECTS
+   PROJECT CARD GRID (replaces old list layout)
 ────────────────────────────────────────────────────────────── */
 .db-projects-section {
     background: #FFFFFF;
@@ -519,111 +543,128 @@
     box-shadow: var(--shadow-sm);
 }
 
-.db-project-list {
+/* 4-column grid */
+.db-proj-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 4px;
+}
+
+/* Individual card — acts as a link */
+.db-proj-card {
     display: flex;
     flex-direction: column;
-    gap: 0;
-}
-
-.db-project-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid #F0F4F8;
-    transition: background-color 0.15s ease;
-}
-
-.db-project-row:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.db-project-row:first-child {
-    padding-top: 0;
-}
-
-.db-project-index {
-    width: 24px;
-    font-size: 12px;
-    font-weight: 700;
-    color: #B8CADB;
-    text-align: center;
-    flex-shrink: 0;
-    font-variant-numeric: tabular-nums;
-}
-
-.db-project-thumb-wrap {
-    width: 48px;
-    height: 36px;
-    border-radius: 6px;
-    overflow: hidden;
-    flex-shrink: 0;
-    background-color: var(--pale-blue);
+    background: #FAFBFC;
     border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+}
+
+.db-proj-card:hover {
+    box-shadow: 0 6px 24px rgba(22, 59, 99, 0.10);
+    transform: translateY(-2px);
+    border-color: #C8DBE8;
+}
+
+/* Photo area — tall crop */
+.db-proj-img-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background-color: var(--pale-blue);
     position: relative;
 }
 
-.db-project-thumb {
+.db-proj-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.4s ease;
 }
 
-.db-project-thumb-placeholder {
+.db-proj-card:hover .db-proj-img {
+    transform: scale(1.04);
+}
+
+.db-proj-img-fallback {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
+    background: linear-gradient(135deg, #EAF4F8 0%, #F4F8FC 100%);
 }
 
-.db-project-info {
+/* Card body */
+.db-proj-body {
+    padding: 14px 14px 10px;
     flex: 1;
-    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 5px;
 }
 
-.db-project-name {
+.db-proj-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--ocean);
+    opacity: 0.7;
+}
+
+.db-proj-title {
     font-size: 13.5px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--navy);
-    white-space: nowrap;
+    line-height: 1.35;
+    letter-spacing: -0.1px;
+    margin: 0;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-.db-project-desc {
-    font-size: 12px;
+.db-proj-desc {
+    font-size: 11.5px;
     color: var(--text-muted);
-    white-space: nowrap;
+    line-height: 1.5;
+    margin: 0;
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
-.db-project-edit-btn {
-    display: inline-flex;
+/* Card footer */
+.db-proj-footer {
+    display: flex;
     align-items: center;
-    padding: 4px 10px;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-top: 1px solid #EEF2F6;
+}
+
+.db-proj-edit-label {
     font-size: 11.5px;
     font-weight: 600;
-    color: var(--text-body);
-    background: #F4F8FC;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    text-decoration: none;
-    flex-shrink: 0;
-    transition: var(--transition-fast);
+    color: var(--ocean);
 }
 
-.db-project-edit-btn:hover {
-    background: var(--navy);
-    color: #FFFFFF;
-    border-color: var(--navy);
+.db-proj-footer svg {
+    color: #B8CADB;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.db-proj-card:hover .db-proj-footer svg {
+    transform: translateX(2px);
+    color: var(--ocean);
 }
 
 /* Project Empty State */
@@ -664,82 +705,86 @@
 }
 
 /* ──────────────────────────────────────────────────────────────
-   ACTIVITY TIMELINE
+   SKILLS SUMMARY SECTION (replaces old timeline)
 ────────────────────────────────────────────────────────────── */
-.db-timeline-section {
+.db-skills-section {
     background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     padding: 24px;
     box-shadow: var(--shadow-sm);
-}
-
-.db-timeline {
     display: flex;
     flex-direction: column;
-    gap: 0;
 }
 
-.db-tl-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 11px 0;
-    border-bottom: 1px solid #F4F7FA;
-    position: relative;
-}
-
-.db-tl-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.db-tl-item:first-child {
-    padding-top: 0;
-}
-
-.db-tl-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: #D2DFE8;
-    flex-shrink: 0;
-    margin-top: 5px;
-}
-
-.db-tl-dot--blue {
-    background-color: var(--ocean);
-    box-shadow: 0 0 0 3px rgba(47, 111, 163, 0.15);
-}
-
-.db-tl-dot--gray {
-    background-color: #D2DFE8;
-}
-
-.db-tl-body {
-    flex: 1;
+.db-skills-list {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 10px;
+    margin-top: 4px;
 }
 
-.db-tl-title {
-    font-size: 12.5px;
+.db-skill-card-item {
+    background: #FAFBFC;
+    border: 1px solid #EDF2F7;
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: all 0.2s ease;
+}
+
+.db-skill-card-item:hover {
+    background: #FFFFFF;
+    border-color: #D6E4EE;
+    box-shadow: 0 2px 8px rgba(22, 59, 99, 0.04);
+}
+
+.db-skill-item-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.db-skill-name {
+    font-size: 13.5px;
     font-weight: 600;
     color: var(--navy);
+    letter-spacing: -0.1px;
 }
 
-.db-tl-meta {
-    font-size: 11.5px;
-    color: var(--text-muted);
-}
-
-.db-tl-time {
+.db-skill-status-tag {
     font-size: 11px;
-    color: #B8CADB;
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding-top: 2px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    letter-spacing: 0.2px;
+}
+
+.db-skill-status-tag.completed {
+    background-color: #F0FDF4;
+    color: #166534;
+    border: 1px solid #DCFCE7;
+}
+
+.db-skill-status-tag.learning {
+    background-color: #FFFBEB;
+    color: #92400E;
+    border: 1px solid #FEF3C7;
+}
+
+.db-skill-progress-bar {
+    width: 100%;
+    height: 5px;
+    background-color: #EBF2F7;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.db-skill-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--ocean), #163B63);
+    border-radius: 99px;
+    transition: width 0.4s ease;
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -807,6 +852,7 @@
 .db-live-btn {
     display: inline-flex;
     align-items: center;
+    gap: 8px;
     align-self: flex-start;
     padding: 9px 18px;
     font-size: 12.5px;
@@ -826,15 +872,271 @@
 }
 
 /* ──────────────────────────────────────────────────────────────
+   IDENTITY HERO (replaces old db-hero)
+────────────────────────────────────────────────────────────── */
+.db-identity-hero {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle right-side accent line */
+.db-identity-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--ocean), transparent);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+
+/* Photo column - Large & Clear */
+.db-identity-photo-col {
+    flex-shrink: 0;
+}
+
+.db-identity-photo-wrap {
+    position: relative;
+    width: 135px;
+    height: 155px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(22, 59, 99, 0.08);
+}
+
+.db-identity-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    background-color: var(--pale-blue);
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.db-identity-photo:hover {
+    transform: scale(1.03);
+}
+
+/* Info column */
+.db-identity-info-col {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.db-identity-tag {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--ocean);
+    opacity: 0.85;
+}
+
+.db-identity-name {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.db-identity-role {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.1px;
+    margin: 0;
+}
+
+.db-identity-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.db-identity-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.db-identity-meta-item svg {
+    flex-shrink: 0;
+    color: var(--ocean);
+    opacity: 0.7;
+}
+
+.db-identity-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+/* Right CV Card Widget */
+.db-identity-cv-card {
+    width: 300px;
+    flex-shrink: 0;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 1px 4px rgba(22, 59, 99, 0.04);
+}
+
+.db-cv-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.db-cv-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--text-muted);
+}
+
+.db-cv-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background-color: #FEF2F2;
+    color: #DC2626;
+    border: 1px solid #FECACA;
+}
+
+.db-cv-body {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.db-cv-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: #EEF4F9;
+    border: 1px solid #D8E5F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    flex-shrink: 0;
+}
+
+.db-cv-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.db-cv-name {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--navy);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.db-cv-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.db-cv-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.db-cv-btn-primary {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: var(--navy);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.db-cv-btn-primary:hover {
+    background-color: var(--ocean);
+}
+
+.db-cv-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    background-color: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+.db-cv-btn-secondary:hover {
+    background-color: #F1F5F9;
+}
+
+/* ──────────────────────────────────────────────────────────────
    RESPONSIVE
 ────────────────────────────────────────────────────────────── */
 @media (max-width: 1100px) {
-    .db-hero {
-        padding: 32px 32px;
+    .db-identity-hero {
+        flex-wrap: wrap;
+        padding: 24px 26px;
+        gap: 20px;
     }
 
-    .db-hero-title {
-        font-size: 28px;
+    .db-identity-cv-card {
+        width: 100%;
+    }
+
+    .db-proj-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -857,16 +1159,13 @@
         grid-template-columns: 1fr;
     }
 
-    .db-hero {
-        padding: 26px 20px;
+    .db-identity-hero {
+        padding: 24px 20px;
+        gap: 20px;
     }
 
-    .db-hero-title {
-        font-size: 24px;
-    }
-
-    .db-hero-eyebrow {
-        display: none;
+    .db-identity-name {
+        font-size: 26px;
     }
 
     .db-stat-item {
@@ -875,16 +1174,24 @@
 }
 
 @media (max-width: 600px) {
-    .db-hero {
+    .db-identity-hero {
+        flex-direction: column;
+        align-items: flex-start;
         padding: 22px 18px;
+        gap: 16px;
     }
 
-    .db-hero-title {
+    .db-identity-photo-wrap {
+        width: 120px;
+        height: 135px;
+    }
+
+    .db-identity-name {
         font-size: 22px;
     }
 
-    .db-hero-sub {
-        font-size: 13.5px;
+    .db-proj-grid {
+        grid-template-columns: 1fr;
     }
 
     .db-profile-inner {
@@ -900,3 +1207,4 @@
         font-size: 24px;
     }
 }
+
