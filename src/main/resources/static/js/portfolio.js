@@ -38,16 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     // 2. Navbar elevation on scroll
     // =========================================
-    const navbar = document.querySelector('.navbar') || document.querySelector('.home-navbar');
-    if (navbar) {
+    const header = document.querySelector('.navbar-header');
+    if (header) {
         const handleNavbarScroll = () => {
-            const scrollY = window.scrollY;
-            if (scrollY > 15) {
-                navbar.style.boxShadow = '0 4px 20px rgba(22, 59, 99, 0.06)';
-                navbar.style.borderBottomColor = 'rgba(225, 234, 240, 0.8)';
+            if (window.scrollY > 20) {
+                header.classList.add('scrolled');
             } else {
-                navbar.style.boxShadow = 'none';
-                navbar.style.borderBottomColor = 'var(--border, #E1EAF0)';
+                header.classList.remove('scrolled');
             }
         };
 

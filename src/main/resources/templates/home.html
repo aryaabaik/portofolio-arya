@@ -35,7 +35,7 @@
                 <li><a href="/" class="active">Home</a></li>
                 <li><a href="/profile">Profile</a></li>
                 <li><a href="/profile#keahlian">Keahlian</a></li>
-                <li><a href="/profile#details">About</a></li>
+                <li><a href="/profile#about">About</a></li>
                 <li><a href="/profile#project">Project</a></li>
             </ul>
             <a href="/profile" class="home-nav-btn">Masuk Portofolio</a>
@@ -47,16 +47,36 @@
          ═══════════════════════════════════════════════════════════════ -->
     <main class="home-main">
 
-        <section class="split-hero-container">
+        <!-- Full-Section Ambient Ocean Backdrop (Full bleed, no cutoffs) -->
+        <div class="home-main-backdrop">
+            <svg class="home-backdrop-svg" viewBox="0 0 1440 900" fill="none" preserveAspectRatio="none">
+                <!-- Soft flowing currents across the entire section -->
+                <path d="M-100,220 C260,140 600,320 960,200 C1220,130 1400,260 1600,190" stroke="rgba(47, 111, 163, 0.12)" stroke-width="1.5" stroke-dasharray="8 8"/>
+                <path d="M-100,340 C220,230 560,420 920,310 C1180,220 1360,370 1600,290" stroke="rgba(22, 59, 99, 0.08)" stroke-width="1.2"/>
+                <path d="M-100,480 C300,360 660,550 1040,430 C1280,350 1420,470 1600,410" stroke="rgba(47, 111, 163, 0.1)" stroke-width="1.5" stroke-dasharray="6 6"/>
+                <path d="M-100,620 C240,520 600,680 980,570 C1240,490 1400,600 1600,540" stroke="rgba(22, 59, 99, 0.07)" stroke-width="1.2"/>
+                <path d="M-100,760 C280,680 640,820 1020,720 C1260,650 1420,750 1600,700" stroke="rgba(47, 111, 163, 0.08)" stroke-width="1.5" stroke-dasharray="8 8"/>
+                
+                <!-- Ambient water depth glow circles -->
+                <circle cx="1200" cy="250" r="380" fill="url(#circleGlow1)" opacity="0.6"/>
+                <circle cx="200" cy="700" r="350" fill="url(#circleGlow2)" opacity="0.5"/>
 
-            <!-- Flowing Ambient Wave Contour Lines -->
-            <div class="hero-wave-bg">
-                <svg class="wave-svg" viewBox="0 0 1200 320" preserveAspectRatio="none" fill="none">
-                    <path d="M0,180 C240,110 480,250 720,180 C960,110 1100,210 1200,160 L1200,320 L0,320 Z" fill="rgba(234, 244, 248, 0.6)"/>
-                    <path d="M0,220 C280,160 520,290 800,210 C1000,140 1120,250 1200,200 L1200,320 L0,320 Z" fill="rgba(47, 111, 163, 0.035)"/>
-                    <path d="M0,140 C220,220 460,80 700,160 C920,230 1080,100 1200,140" stroke="rgba(47, 111, 163, 0.16)" stroke-width="1.2" stroke-dasharray="6 6"/>
-                </svg>
-            </div>
+                <defs>
+                    <radialGradient id="circleGlow1" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#CDE4F2" stop-opacity="0.6"/>
+                        <stop offset="60%" stop-color="#CDE4F2" stop-opacity="0.15"/>
+                        <stop offset="100%" stop-color="#CDE4F2" stop-opacity="0"/>
+                    </radialGradient>
+                    <radialGradient id="circleGlow2" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#D6E9F5" stop-opacity="0.5"/>
+                        <stop offset="70%" stop-color="#D6E9F5" stop-opacity="0.1"/>
+                        <stop offset="100%" stop-color="#D6E9F5" stop-opacity="0"/>
+                    </radialGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <section class="split-hero-container">
 
             <!-- Left Side: Identity, Typography, Description & Actions -->
             <div class="hero-left-col animate-fade-in">
@@ -180,6 +200,7 @@
         <p class="footer-tech">Built with Spring Boot &amp; Thymeleaf</p>
     </footer>
 
+    <script th:src="@{/js/portfolio.js}"></script>
 </body>
 
 </html>

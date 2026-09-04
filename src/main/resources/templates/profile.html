@@ -25,7 +25,7 @@
             <ul class="navbar-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="#profile">Profile</a></li>
-                <li><a href="#details">About</a></li>
+                <li><a href="#about">About</a></li>
                 <li><a href="#keahlian">Keahlian</a></li>
                 <li><a href="#project">Project</a></li>
             </ul>
@@ -126,36 +126,35 @@
             </div>
         </div>
 
-    </section>
-
-    <section id="details" class="personal-info-section">
-        <div class="info-container">
-            <div class="info-grid-editorial">
+        <div id="details" class="hero-meta-grid-wrap animate-fade-in-delay-3">
+            <div class="hero-meta-grid">
                 
-                <div class="info-item-editorial animate-fade-in-delay-1">
-                    <span class="info-meta-label">Nama</span>
-                    <p class="info-meta-value" th:text="${profile != null && profile.nama != null ? profile.nama : '-'}">Arya Adhitya</p>
+                <div class="hero-meta-card animate-fade-in-delay-1">
+                    <span class="meta-card-label">Nama</span>
+                    <p class="meta-card-value" th:text="${profile != null && profile.nama != null ? profile.nama : '-'}">Arya Adhitya</p>
                 </div>
 
-                <div class="info-item-editorial animate-fade-in-delay-2">
-                    <span class="info-meta-label">Profesi</span>
-                    <p class="info-meta-value" th:text="${profile != null && profile.profesi != null ? profile.profesi : '-'}">Programmer</p>
+                <div class="hero-meta-card animate-fade-in-delay-2">
+                    <span class="meta-card-label">Profesi</span>
+                    <p class="meta-card-value" th:text="${profile != null && profile.profesi != null ? profile.profesi : '-'}">Programmer</p>
                 </div>
 
-                <div class="info-item-editorial animate-fade-in-delay-3">
-                    <span class="info-meta-label">Pendidikan</span>
-                    <p class="info-meta-value" th:text="${profile != null && profile.pendidikan != null ? profile.pendidikan : '-'}">SMK ASSALAAM BANDUNG</p>
+                <div class="hero-meta-card animate-fade-in-delay-3">
+                    <span class="meta-card-label">Pendidikan</span>
+                    <p class="meta-card-value" th:text="${profile != null && profile.pendidikan != null ? profile.pendidikan : '-'}">SMK ASSALAAM BANDUNG</p>
                 </div>
 
-                <div class="info-item-editorial animate-fade-in-delay-4">
-                    <span class="info-meta-label">Lokasi</span>
-                    <p class="info-meta-value" th:text="${profile != null && profile.lokasi != null ? profile.lokasi : '-'}">Bandung, Jawa Barat</p>
+                <div class="hero-meta-card animate-fade-in-delay-4">
+                    <span class="meta-card-label">Lokasi</span>
+                    <p class="meta-card-value" th:text="${profile != null && profile.lokasi != null ? profile.lokasi : '-'}">Bandung, Jawa Barat</p>
                 </div>
 
             </div>
         </div>
+
     </section>
-    <section class="about-editorial-section">
+
+    <section id="about" class="about-editorial-section">
         <div class="about-container">
             <div class="about-content-left">
                 <div class="section-badge-line">
@@ -179,38 +178,40 @@
         </div>
     </section>
     <section id="keahlian" class="keahlian-section">
-        <div class="keahlian-header">
-            <div class="keahlian-decor-omba">
-                <img th:src="@{/images/elements/omba.png}" 
-                     alt="Ocean Wave Illustration" 
-                     class="keahlian-img-omba"
-                     onerror="this.style.display='none'">
-            </div>
-
-            <div class="section-badge-line">
-                <span class="eyebrow-dash">—</span>
-                <span class="section-script-tag">KEAHLIAN &amp; KOMPETENSI</span>
-            </div>
-            <h2 class="keahlian-title">Keahlian &amp; Teknologi</h2>
-            <p class="keahlian-subtitle">
-                Kemampuan teknis dan kompetensi yang telah dipelajari serta terus dikembangkan dalam pengembangan perangkat lunak modern.
-            </p>
-        </div>
-
-        <div class="keahlian-grid">
-            <div class="keahlian-item" th:each="item : ${keahlian}">
-                <div class="keahlian-item-top">
-                    <div class="keahlian-item-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="16 18 22 12 16 6"></polyline>
-                            <polyline points="8 6 2 12 8 18"></polyline>
-                        </svg>
-                    </div>
+        <div class="keahlian-container">
+            <div class="keahlian-header">
+                <div class="keahlian-decor-omba">
+                    <img th:src="@{/images/elements/omba.png}" 
+                         alt="Ocean Wave Illustration" 
+                         class="keahlian-img-omba"
+                         onerror="this.style.display='none'">
                 </div>
 
-                <div class="keahlian-item-body">
-                    <h3 class="keahlian-name" th:text="${item.name}">Public Speaking</h3>
-                    
+                <div class="section-badge-line">
+                    <span class="eyebrow-dash">—</span>
+                    <span class="section-script-tag">KEAHLIAN &amp; KOMPETENSI</span>
+                </div>
+                <h2 class="keahlian-title">Keahlian &amp; Teknologi</h2>
+                <p class="keahlian-subtitle">
+                    Kemampuan teknis dan kompetensi yang telah dipelajari serta terus dikembangkan dalam pengembangan perangkat lunak modern.
+                </p>
+            </div>
+
+            <div class="keahlian-grid">
+                <div class="keahlian-item" th:each="item : ${keahlian}">
+                    <div class="keahlian-item-top">
+                        <div class="keahlian-item-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="keahlian-item-body">
+                        <h3 class="keahlian-name" th:text="${item.name}">Public Speaking</h3>
+                        
+                    </div>
                 </div>
             </div>
         </div>

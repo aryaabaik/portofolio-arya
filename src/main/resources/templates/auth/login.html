@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- CSS with cache bust -->
-    <link rel="stylesheet" th:href="@{/css/login.css(v='3.0')}" href="/css/login.css?v=3.0">
+    <link rel="stylesheet" th:href="@{/css/login.css(v='4.0')}" href="/css/login.css?v=4.0">
 </head>
 <body class="login-body">
 
@@ -54,8 +54,8 @@
             <!-- Left Side: Clean Minimalist Portrait Photo -->
             <div class="card-visual-col">
                 <div class="visual-photo-wrap">
-                    <img th:src="@{/images/formal.png}"
-                         src="/images/formal.png"
+                    <img th:src="@{/images/9.jpg}"
+                         src="/images/9.jpg"
                          alt="Arya Adhitya"
                          class="visual-photo"
                          onerror="this.src='/images/arya.png'">
@@ -67,15 +67,34 @@
                 </div>
             </div>
 
-            <!-- Right Side: Minimalist Form -->
+            <!-- Right Side: Editorial Scrapbook Form (Matching 9.jpg Theme) -->
             <div class="card-form-col">
+                <!-- Washi Tape Scrapbook Accent -->
+                <div class="washi-tape-strip" aria-hidden="true"></div>
+
                 <div class="form-inner">
+
+                    <!-- Receipt Metadata Header (Matching 'receipt ORDER #0010' from photo) -->
+                    <div class="receipt-meta-header">
+                        <div class="receipt-badge-wrap">
+                            <span class="receipt-dot"></span>
+                            <span class="receipt-code">ORDER #0010 &bull; AUTH-PORTAL</span>
+                        </div>
+                        <div class="wave-doodle-icon" aria-hidden="true" title="Wave to Earth">
+                            <svg width="36" height="13" viewBox="0 0 38 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 10C5 5 9 5 12 10C15 5 19 5 22 10C25 5 29 5 33 10C35 8 36 7 37 8" />
+                                <path d="M6 12C9 8 12 8 15 12C18 8 21 8 24 12C27 8 30 8 33 12" opacity="0.45"/>
+                            </svg>
+                        </div>
+                    </div>
 
                     <!-- Header -->
                     <div class="form-header">
-                        <span class="form-eyebrow">Portal Admin</span>
-                        <h1 class="form-title">Login</h1>
+                        <h1 class="form-title">Login <span class="form-title-tag">Portal</span></h1>
                         <p class="form-subtitle">Masukkan username dan password untuk mengelola portofolio.</p>
+                        <div class="receipt-perforated-border" aria-hidden="true">
+                            <span class="perforated-text">SETLIST &bull; VERIFIED ACCESS</span>
+                        </div>
                     </div>
 
                     <!-- Alert: Error -->

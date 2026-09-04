@@ -101,6 +101,19 @@ body {
     top: 0;
     z-index: 100;
     width: 100%;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                -webkit-backdrop-filter 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar-header.scrolled {
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(22, 59, 99, 0.05);
 }
 
 .navbar {
@@ -110,10 +123,9 @@ body {
     max-width: 1220px;
     margin: 0 auto;
     padding: 18px 40px;
-    background: rgba(250, 249, 246, 0.94);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
+    background: transparent;
+    border: none;
+    box-shadow: none;
     transition: var(--transition-smooth);
 }
 
@@ -192,14 +204,18 @@ body {
 
 /* ==========================================================================
    1. HERO PROFILE SECTION (Ocean Editorial Split 2-Column Layout)
+   Theme: Soft Morning Mist & Ivory Coast
    ========================================================================== */
 .hero-editorial-split {
     position: relative;
     width: 100%;
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 56px 40px 72px;
-    overflow: visible;
+    padding: 68px 0 84px;
+    overflow: hidden;
+    background: 
+        radial-gradient(ellipse 65% 55% at 85% 30%, rgba(214, 233, 245, 0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 15% 75%, rgba(230, 240, 247, 0.5) 0%, transparent 65%),
+        linear-gradient(180deg, #FAF9F6 0%, #F4F8FA 55%, #EEF5F8 100%);
+    border-bottom: 1px solid rgba(214, 228, 238, 0.7);
 }
 
 .hero-split-backdrop {
@@ -216,12 +232,15 @@ body {
 .hero-backdrop-wave {
     width: 100%;
     height: 100%;
-    opacity: 0.6;
+    opacity: 0.55;
 }
 
 .hero-split-container {
     position: relative;
     z-index: 2;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 40px;
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
     gap: 56px;
@@ -642,35 +661,50 @@ body {
 }
 
 /* ==========================================================================
-   2. PERSONAL INFORMATION (Editorial Typography Grid)
+   2. HERO METADATA STRIP (Unified inside Hero Profile)
    ========================================================================== */
-.personal-info-section {
-    width: 100%;
+.hero-meta-grid-wrap {
+    position: relative;
+    z-index: 2;
     max-width: 1220px;
-    margin: 0 auto;
-    padding: 0 40px 56px;
-}
-
-.info-container {
+    margin: 48px auto 0;
+    padding: 32px 40px 0;
+    border-top: 1px solid rgba(22, 59, 99, 0.08);
     width: 100%;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 32px 0;
 }
 
+.hero-meta-grid,
 .info-grid-editorial {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 20px;
     width: 100%;
 }
 
+.hero-meta-card,
 .info-item-editorial {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(220, 233, 242, 0.95);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(22, 59, 99, 0.03);
+    transition: var(--transition-smooth);
 }
 
+.hero-meta-card:hover,
+.info-item-editorial:hover {
+    background: #FFFFFF;
+    transform: translateY(-2px);
+    border-color: var(--border-accent);
+    box-shadow: 0 8px 22px rgba(22, 59, 99, 0.07);
+}
+
+.meta-card-label,
 .info-meta-label {
     font-size: 11px;
     font-weight: 600;
@@ -680,8 +714,9 @@ body {
     margin-bottom: 6px;
 }
 
+.meta-card-value,
 .info-meta-value {
-    font-size: 16.5px;
+    font-size: 15.5px;
     font-weight: 700;
     color: var(--navy-deep);
     line-height: 1.4;
@@ -690,15 +725,23 @@ body {
 
 /* ==========================================================================
    3. ABOUT PROFILE SECTION ("Sedikit tentang saya")
+   Theme: Warm Pearl Linen & Coastal Sand
    ========================================================================== */
 .about-editorial-section {
     width: 100%;
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 36px 40px 72px;
+    padding: 76px 0 84px;
+    background: 
+        radial-gradient(ellipse 55% 45% at 10% 25%, rgba(246, 240, 233, 0.85) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 90% 80%, rgba(230, 240, 248, 0.65) 0%, transparent 65%),
+        linear-gradient(145deg, #FDFBF8 0%, #F6F2EB 50%, #F0F4F7 100%);
+    border-bottom: 1px solid rgba(216, 226, 234, 0.7);
+    position: relative;
 }
 
 .about-container {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 40px;
     display: grid;
     grid-template-columns: 0.85fr 1.15fr;
     gap: 56px;
@@ -766,11 +809,24 @@ body {
 
 /* ==========================================================================
    4. KEAHLIAN SECTION (Clean Minimalist Competencies)
+   Theme: Nordic Ocean Mist & Tech Micro-Grid
    ========================================================================== */
 .keahlian-section {
+    width: 100%;
+    padding: 80px 0 92px;
+    background-color: #EDF3F7;
+    background-image: 
+        radial-gradient(rgba(47, 111, 163, 0.08) 1.2px, transparent 1.2px),
+        linear-gradient(180deg, #EEF4F8 0%, #E4EEF4 100%);
+    background-size: 26px 26px, 100% 100%;
+    border-bottom: 1px solid rgba(198, 216, 230, 0.7);
+    position: relative;
+}
+
+.keahlian-container {
     max-width: 1220px;
     margin: 0 auto;
-    padding: 36px 40px 72px;
+    padding: 0 40px;
     width: 100%;
 }
 
@@ -826,20 +882,20 @@ body {
 }
 
 .keahlian-item {
-    background-color: var(--card);
-    border: 1px solid var(--border);
+    background-color: #FFFFFF;
+    border: 1px solid rgba(214, 228, 238, 0.85);
     border-radius: var(--radius-lg);
     padding: 24px 22px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 4px 16px rgba(22, 59, 99, 0.04);
     transition: var(--transition-smooth);
 }
 
 .keahlian-item:hover {
     transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 12px 28px rgba(22, 59, 99, 0.08);
     border-color: var(--border-accent);
 }
 
@@ -882,15 +938,23 @@ body {
 
 /* ==========================================================================
    5. KARYA AKU / PROJECT SECTION (Open Magazine Layout)
+   Theme: Modern Studio Gallery Canvas
    ========================================================================== */
 .karya-section {
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 36px 40px 88px;
     width: 100%;
+    padding: 84px 0 96px;
+    background: 
+        radial-gradient(ellipse 70% 35% at 50% 0%, rgba(228, 240, 248, 0.55) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 45% at 90% 90%, rgba(232, 242, 248, 0.45) 0%, transparent 60%),
+        linear-gradient(180deg, #FAFBFD 0%, #F2F6F9 50%, #EDF3F7 100%);
+    border-bottom: 1px solid rgba(198, 216, 230, 0.7);
+    position: relative;
 }
 
 .karya-container {
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 40px;
     width: 100%;
 }
 
@@ -935,8 +999,8 @@ body {
 .karya-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 48px;
-    row-gap: 52px;
+    column-gap: 40px;
+    row-gap: 44px;
     width: 100%;
 }
 
@@ -944,13 +1008,18 @@ body {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-bottom: 32px;
-    border-bottom: 1.5px solid var(--border);
+    background: #FFFFFF;
+    border: 1px solid rgba(220, 232, 241, 0.95);
+    border-radius: var(--radius-lg);
+    padding: 30px 28px;
+    box-shadow: 0 6px 20px rgba(22, 59, 99, 0.04);
     transition: var(--transition-smooth);
 }
 
 .karya-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    border-color: var(--border-accent);
+    box-shadow: 0 16px 36px rgba(22, 59, 99, 0.09);
 }
 
 .karya-top-bar {
@@ -1029,19 +1098,24 @@ body {
 
 /* ==========================================================================
    6. CONTACT SECTION (Ocean Editorial Theme)
+   Theme: Deep Oceanic Midnight Sanctuary
    ========================================================================== */
 .contact-section {
     position: relative;
-    padding: 92px 32px 104px;
-    background-color: var(--bg);
-    border-top: 1px solid var(--border);
+    width: 100%;
+    padding: 104px 40px 116px;
+    background: 
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(47, 111, 163, 0.22) 0%, transparent 70%),
+        radial-gradient(circle at 10% 90%, rgba(32, 70, 110, 0.25) 0%, transparent 50%),
+        linear-gradient(150deg, #0D2035 0%, #132E4E 50%, #0F2642 100%);
+    border-top: 1px solid rgba(55, 95, 135, 0.3);
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* Watermark Serif Transparan di Background */
+/* Watermark Serif Transparan di Background Dark Navy */
 .contact-watermark {
     position: absolute;
     top: 50%;
@@ -1050,8 +1124,8 @@ body {
     font-family: 'DM Serif Display', 'Playfair Display', Georgia, serif;
     font-size: clamp(70px, 14vw, 170px);
     font-weight: 400;
-    color: rgba(47, 111, 163, 0.035);
-    letter-spacing: 10px;
+    color: rgba(255, 255, 255, 0.028);
+    letter-spacing: 12px;
     user-select: none;
     pointer-events: none;
     white-space: nowrap;
@@ -1062,7 +1136,7 @@ body {
 .contact-ocean-decor {
     position: absolute;
     pointer-events: none;
-    color: var(--ocean-blue);
+    color: #6EA8D4;
     z-index: 1;
 }
 
@@ -1071,7 +1145,7 @@ body {
     right: 8%;
     width: 44px;
     height: 44px;
-    opacity: 0.35;
+    opacity: 0.45;
     animation: swimContact 8s ease-in-out infinite alternate;
 }
 
@@ -1080,7 +1154,7 @@ body {
     left: 7%;
     width: 30px;
     height: 50px;
-    opacity: 0.45;
+    opacity: 0.4;
 }
 
 @keyframes swimContact {
@@ -1101,22 +1175,22 @@ body {
 }
 
 .contact-header {
-    margin-bottom: 28px;
+    margin-bottom: 30px;
 }
 
 .contact-main-heading {
     font-family: 'DM Serif Display', 'Playfair Display', Georgia, serif;
-    font-size: clamp(32px, 4.5vw, 44px);
+    font-size: clamp(32px, 4.5vw, 46px);
     font-weight: 400;
-    color: var(--navy-deep);
+    color: #FFFFFF;
     line-height: 1.2;
     margin-bottom: 14px;
     letter-spacing: -0.4px;
 }
 
 .contact-subtext {
-    font-size: 15px;
-    color: var(--text-body);
+    font-size: 15.5px;
+    color: #B2C8DD;
     line-height: 1.75;
     max-width: 560px;
     margin: 0 auto;
@@ -1137,7 +1211,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    padding: 11px 22px;
+    padding: 12px 24px;
     border-radius: var(--radius-full);
     font-family: 'Inter', sans-serif;
     font-size: 13.5px;
@@ -1156,18 +1230,18 @@ body {
 
 /* Gaya 1: Solid Pill (Email) */
 .btn-pill-solid {
-    background: var(--navy-deep);
-    color: #FFFFFF;
-    border: 1px solid var(--navy-deep);
-    box-shadow: 0 4px 12px rgba(22, 59, 99, 0.18);
+    background: #FFFFFF;
+    color: #0E2238;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .btn-pill-solid:hover {
-    background: var(--ocean-blue);
-    border-color: var(--ocean-blue);
+    background: #E8F2FA;
+    border-color: #E8F2FA;
+    color: #0B1C2E;
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(47, 111, 163, 0.25);
-    color: #FFFFFF;
+    box-shadow: 0 8px 24px rgba(47, 111, 163, 0.35);
 }
 
 .btn-pill-solid:hover .btn-pill-icon {
@@ -1176,33 +1250,37 @@ body {
 
 /* Gaya 2: Outline Pill (WhatsApp, Instagram, GitHub) */
 .btn-pill-outline {
-    background: #FFFFFF;
-    color: #203A5C;
-    border: 1px solid var(--border-hover);
-    box-shadow: var(--shadow-sm);
+    background: rgba(255, 255, 255, 0.08);
+    color: #E2EEF8;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .btn-pill-outline:hover {
-    background: #F0F6F9;
-    border-color: var(--border-accent);
-    color: var(--navy-deep);
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #FFFFFF;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(47, 111, 163, 0.12);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .btn-pill-outline:hover .btn-pill-icon {
     transform: scale(1.08);
-    color: var(--ocean-blue);
+    color: #88C0E8;
 }
 
 /* ==========================================================================
    FOOTER
+   Theme: Deep Abyssal Navy Anchor
    ========================================================================== */
 .footer {
+    width: 100%;
     text-align: center;
-    padding: 32px 40px;
-    border-top: 1px solid var(--border);
-    background-color: #FFFFFF;
+    padding: 36px 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: #081726;
 }
 
 .footer-container {
@@ -1212,14 +1290,14 @@ body {
 
 .footer p {
     font-size: 13px;
-    color: var(--text-muted);
+    color: #839BB2;
     font-weight: 400;
 }
 
 .footer-tech {
     font-size: 11px;
-    color: var(--text-light);
-    margin-top: 4px;
+    color: #5B758E;
+    margin-top: 5px;
     letter-spacing: 0.3px;
 }
 
@@ -1268,10 +1346,11 @@ body {
     }
 
     .hero-editorial-split {
-        padding: 36px 24px 56px;
+        padding: 48px 0 60px;
     }
 
     .hero-split-container {
+        padding: 0 24px;
         grid-template-columns: 1fr;
         gap: 44px;
     }
@@ -1296,20 +1375,23 @@ body {
         font-size: 46px;
     }
 
-    .personal-info-section {
-        padding: 0 24px 48px;
+    .hero-meta-grid-wrap {
+        margin: 40px auto 0;
+        padding: 24px 24px 0;
     }
 
+    .hero-meta-grid,
     .info-grid-editorial {
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 16px;
     }
 
     .about-editorial-section {
-        padding: 28px 24px 56px;
+        padding: 48px 0 60px;
     }
 
     .about-container {
+        padding: 0 24px;
         grid-template-columns: 1fr;
         gap: 32px;
     }
@@ -1331,7 +1413,11 @@ body {
     }
 
     .keahlian-section {
-        padding: 20px 24px 56px;
+        padding: 48px 0 64px;
+    }
+
+    .keahlian-container {
+        padding: 0 24px;
     }
 
     .keahlian-decor-omba {
@@ -1341,7 +1427,11 @@ body {
     }
 
     .karya-section {
-        padding: 20px 24px 64px;
+        padding: 52px 0 68px;
+    }
+
+    .karya-container {
+        padding: 0 24px;
     }
 
     .karya-decor-bintang {
@@ -1352,11 +1442,15 @@ body {
 
     .karya-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 32px;
     }
 
     .karya-main-title {
         font-size: 36px;
+    }
+
+    .contact-section {
+        padding: 80px 24px 92px;
     }
 }
 
@@ -1366,7 +1460,11 @@ body {
     }
 
     .hero-editorial-split {
-        padding: 28px 18px 48px;
+        padding: 36px 0 48px;
+    }
+
+    .hero-split-container {
+        padding: 0 18px;
     }
 
     .hero-editorial-title {
@@ -1423,12 +1521,23 @@ body {
         right: -15px;
     }
 
+    .hero-meta-grid-wrap {
+        margin: 32px auto 0;
+        padding: 20px 18px 0;
+    }
+
+    .hero-meta-grid,
     .info-grid-editorial {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 12px;
+    }
+
+    .about-editorial-section {
+        padding: 40px 0 52px;
     }
 
     .about-container {
+        padding: 0 18px;
         grid-template-columns: 1fr;
         gap: 24px;
     }
@@ -1445,6 +1554,14 @@ body {
         font-size: 14.5px;
     }
 
+    .keahlian-section {
+        padding: 40px 0 52px;
+    }
+
+    .keahlian-container {
+        padding: 0 18px;
+    }
+
     .keahlian-title {
         font-size: 30px;
     }
@@ -1459,6 +1576,18 @@ body {
         grid-template-columns: 1fr;
     }
 
+    .karya-section {
+        padding: 40px 0 56px;
+    }
+
+    .karya-container {
+        padding: 0 18px;
+    }
+
+    .karya-item {
+        padding: 22px 18px;
+    }
+
     .karya-decor-bintang {
         width: 55px;
         top: -5px;
@@ -1470,7 +1599,7 @@ body {
     }
 
     .contact-section {
-        padding: 64px 20px 72px;
+        padding: 68px 18px 76px;
     }
 
     .contact-main-heading {
@@ -1487,7 +1616,11 @@ body {
     }
 
     .btn-pill {
-        padding: 10px 18px;
+        padding: 11px 18px;
         font-size: 13px;
+    }
+
+    .footer {
+        padding: 28px 18px;
     }
 }
