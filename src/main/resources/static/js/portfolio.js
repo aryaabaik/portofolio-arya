@@ -6,6 +6,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     'use strict';
 
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // =========================================
     // 1. Smooth Scrolling for all anchor links
     // =========================================
@@ -99,5 +102,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('scroll', activateNavLink, { passive: true });
         activateNavLink();
+    }
+
+    // =========================================
+    // 4. Scroll Reveal: Animate elements on scroll
+    // =========================================
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-revealed');
+                    entry.target.classList.remove('reveal-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        // About section elements
+        document.querySelectorAll('.about-content-left, .about-art-card').forEach(el => {
+            el.classList.add('reveal-on-scroll');
+            observer.observe(el);
+        });
+
+        // Skills cards with stagger
+        document.querySelectorAll('.keahlian-grid .keahlian-item').forEach((el, i) => {
+            el.classList.add('reveal-on-scroll');
+            el.style.animationDelay = `${i * 0.08}s`;
+            observer.observe(el);
+        });
+
+        // Project cards with stagger
+        document.querySelectorAll('.karya-grid .karya-item').forEach((el, i) => {
+            el.classList.add('reveal-on-scroll');
+            el.style.animationDelay = `${i * 0.08}s`;
+            observer.observe(el);
+        });
+
+        // Contact container
+        const contactContainer = document.querySelector('.contact-container');
+        if (contactContainer) {
+            contactContainer.classList.add('reveal-on-scroll');
+            observer.observe(contactContainer);
+        }
+
+        // Footer container
+        const footerContainer = document.querySelector('.footer-container');
+        if (footerContainer) {
+            footerContainer.classList.add('reveal-on-scroll');
+            observer.observe(footerContainer);
+        }
     }
 });
