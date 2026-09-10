@@ -123,38 +123,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, observerOptions);
 
-        // About section elements
-        document.querySelectorAll('.about-content-left, .about-art-card').forEach(el => {
+        document.querySelectorAll('.about-content-left, .about-art-card, .keahlian-header, .karya-header, .contact-container, .footer-container').forEach(el => {
             el.classList.add('reveal-on-scroll');
             observer.observe(el);
         });
 
-        // Skills cards with stagger
         document.querySelectorAll('.keahlian-grid .keahlian-item').forEach((el, i) => {
             el.classList.add('reveal-on-scroll');
-            el.style.animationDelay = `${i * 0.08}s`;
+            el.style.transitionDelay = `${i * 0.08}s`;
             observer.observe(el);
         });
 
-        // Project cards with stagger
         document.querySelectorAll('.karya-grid .karya-item').forEach((el, i) => {
             el.classList.add('reveal-on-scroll');
-            el.style.animationDelay = `${i * 0.08}s`;
+            el.style.transitionDelay = `${i * 0.1}s`;
             observer.observe(el);
         });
 
-        // Contact container
-        const contactContainer = document.querySelector('.contact-container');
-        if (contactContainer) {
-            contactContainer.classList.add('reveal-on-scroll');
-            observer.observe(contactContainer);
-        }
-
-        // Footer container
-        const footerContainer = document.querySelector('.footer-container');
-        if (footerContainer) {
-            footerContainer.classList.add('reveal-on-scroll');
-            observer.observe(footerContainer);
-        }
+        document.querySelectorAll('.about-artwork-right, .keahlian-decor-omba, .karya-decor-bintang, .contact-ocean-decor').forEach((el, i) => {
+            el.classList.add('reveal-on-scroll');
+            el.style.transitionDelay = `${0.12 + i * 0.05}s`;
+            observer.observe(el);
+        });
     }
 });
