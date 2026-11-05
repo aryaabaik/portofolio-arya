@@ -1,0 +1,36 @@
+name: Build Spring Boot JAR
+
+on:
+  push: 
+    branches:
+      - dev
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B clean package -DskipTests
+
+      - name: Upload JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: spring-boot-app
+          path: target/*.jar
+          if-no-files-found: error
+          retention-days: 1
