@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio - Arya Adhitya | Creative Web Developer">
-    <title> Arya Adhitya</title>
+    <title>Arya Adhitya</title>
 
     <!-- Google Fonts: Editorial Serif + Clean Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
@@ -18,41 +18,20 @@
 
 <body class="home-body">
 
-    <!-- Ambient Watercolor Glow Orbs (Light & Minimalist) -->
-    <div class="ambient-glow ambient-glow-top"></div>
-    <div class="ambient-glow ambient-glow-bottom"></div>
+    <!-- Ambient Watercolor Glow Orbs -->
+    <div class="ambient-glow ambient-glow-1"></div>
+    <div class="ambient-glow ambient-glow-2"></div>
 
     <!-- ═══════════════════════════════════════════════════════════════
-         MINIMALIST GLASS NAVBAR (Consistent with Profile)
-         ═══════════════════════════════════════════════════════════════ -->
-    <header class="navbar-header">
-        <nav class="home-navbar">
-            <a href="/" class="home-brand">
-                <span class="brand-dot"></span>
-                <span class="brand-text">PORTFOLIO</span>
-            </a>
-            <ul class="home-nav-links">
-                <li><a href="/" class="active">Home</a></li>
-                <li><a href="/profile">Profile</a></li>
-                <li><a href="/profile#keahlian">Keahlian</a></li>
-                <li><a href="/profile#about">About</a></li>
-                <li><a href="/profile#project">Project</a></li>
-            </ul>
-            <a href="/profile" class="home-nav-btn">Masuk Portofolio</a>
-        </nav>
-    </header>
-
-    <!-- ═══════════════════════════════════════════════════════════════
-         MAIN HERO SECTION (Spacious Editorial Portfolio Hero)
+         MAIN HERO SECTION — Editorial Welcome
          ═══════════════════════════════════════════════════════════════ -->
     <main class="home-hero-main">
 
-        <!-- Background Wave Contour Lines (Consistent with theme) -->
-        <div class="home-wave-bg" aria-hidden="true">
-            <svg class="wave-svg" viewBox="0 0 1200 320" preserveAspectRatio="none" fill="none">
-                <path d="M0,180 C240,110 480,250 720,180 C960,110 1100,210 1200,160 L1200,320 L0,320 Z" fill="rgba(234, 244, 248, 0.6)"/>
-                <path d="M0,220 C280,160 520,290 800,210 C1000,140 1120,250 1200,200 L1200,320 L0,320 Z" fill="rgba(47, 111, 163, 0.035)"/>
-                <path d="M0,140 C220,220 460,80 700,160 C920,230 1080,100 1200,140" stroke="rgba(47, 111, 163, 0.14)" stroke-width="1.2" stroke-dasharray="6 6"/>
+        <!-- Background Wave Contour Lines -->
+        <div class="home-wave-bg">
+            <svg class="wave-svg" viewBox="0 0 1200 400" fill="none" preserveAspectRatio="none">
+                <path d="M0,240 C300,160 600,320 900,220 C1050,170 1150,260 1200,210" stroke="rgba(47, 111, 163, 0.12)" stroke-width="1.5" stroke-dasharray="6 6"/>
+                <path d="M0,290 C250,210 550,340 850,250 C1020,200 1120,300 1200,260" stroke="rgba(22, 59, 99, 0.08)" stroke-width="1.2"/>
             </svg>
         </div>
 
@@ -61,37 +40,32 @@
             <!-- ── LEFT COLUMN: Editorial Hero Content ── -->
             <div class="hero-content-col">
 
-                <!-- Receipt-style Meta Eyebrow -->
-                <div class="hero-eyebrow">
-                    <div class="eyebrow-pill">
-                        <span class="eyebrow-dot"></span>
-                        <span class="eyebrow-code">PORTFOLIO ARYA ADHITYA</span>
-                    </div>
-                    <div class="eyebrow-wave" aria-hidden="true" title="Wave to Earth vibe">
-                        <svg width="34" height="12" viewBox="0 0 38 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M2 10C5 5 9 5 12 10C15 5 19 5 22 10C25 5 29 5 33 10C35 8 36 7 37 8" />
-                            <path d="M6 12C9 8 12 8 15 12C18 8 21 8 24 12C27 8 30 8 33 12" opacity="0.45"/>
-                        </svg>
-                    </div>
+                <!-- Eyebrow Line -->
+                <div class="hero-eyebrow-line animate-fade-in-delay-1">
+                    <span class="eyebrow-dash">—</span>
+                    <span class="eyebrow-text">SELAMAT DATANG DI PORTFOLIO SAYA</span>
                 </div>
 
                 <!-- Main Headline -->
-                <div class="hero-headline-group">
+                <div class="hero-headline-group animate-fade-in-delay-1">
                     <span class="hero-greeting">HALO, SAYA</span>
                     <h1 class="hero-name">
-                        <span th:text="${home != null ? home.nama : 'Arya Adhitya'}">Arya Adhitya</span>
+                        <span class="title-first-line">Arya</span>
+                        <span class="title-second-line">
+                            <em class="title-italic-serif" th:text="${home != null && home.nama != null && #strings.contains(home.nama, ' ') ? #strings.substring(home.nama, #strings.indexOf(home.nama, ' ') + 1) : 'Adhitya'}">Adhitya</em>
+                        </span>
                     </h1>
                 </div>
 
                 <!-- Bio Description -->
-                <p class="hero-description" th:text="${home != null ? home.deskripsi : 'Siswa XII RPL 3 yang sedang menjalani PKL dan terus mengembangkan kemampuan di dunia programming. Saat ini banyak belajar membangun aplikasi menggunakan Java, Spring Boot, database, dan teknologi web modern.'}">
+                <p class="hero-description animate-fade-in-delay-2" th:text="${home != null ? home.deskripsi : 'Siswa XII RPL 3 yang sedang menjalani PKL dan terus mengembangkan kemampuan di dunia programming. Saat ini banyak belajar membangun aplikasi menggunakan Java, Spring Boot, database, dan teknologi web modern.'}">
                     Siswa XII RPL 3 yang sedang menjalani PKL dan terus mengembangkan kemampuan
                     di dunia programming. Saat ini banyak belajar membangun aplikasi menggunakan
                     Java, Spring Boot, database, dan teknologi web modern.
                 </p>
 
                 <!-- Call to Action Buttons -->
-                <div class="hero-actions">
+                <div class="hero-actions animate-fade-in-delay-3">
                     <a href="/profile" class="btn-hero-primary">
                         <span>Lihat Profil Lengkap</span>
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -102,13 +76,10 @@
                     <a href="/profile#keahlian" class="btn-hero-outline">
                         <span>Lihat Keahlian</span>
                     </a>
-                    <a href="/profile#project" class="btn-hero-text">
-                        <span>Koleksi Project &rarr;</span>
-                    </a>
                 </div>
 
                 <!-- School Meta Footer Strip -->
-                <div class="hero-meta-strip">
+                <div class="hero-meta-strip animate-fade-in-delay-3">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                         <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
@@ -120,19 +91,32 @@
 
             <!-- ── RIGHT COLUMN: Editorial Portrait Card ── -->
             <div class="hero-visual-col">
-                <div class="editorial-card-wrapper">
-                    
-                    <!-- Scrapbook Washi Tape Accent at Top Right of Photo Card -->
-                    <div class="washi-tape-photo" aria-hidden="true"></div>
+                <div class="editorial-portrait-frame">
 
-                    <!-- Portrait Card (4:5 ratio, clean & proportional) -->
+                    <!-- Floating Decorative Elements -->
+                    <div class="decor-element decor-fish">
+                        <img th:src="@{/images/elements/w2e1.png}"
+                             alt="Ocean Element"
+                             class="decor-img-fish"
+                             onerror="this.style.display='none'">
+                    </div>
+                    <div class="decor-element decor-shell">
+                        <img th:src="@{/images/elements/bintang.png}"
+                             alt="Star Element"
+                             class="decor-img-shell"
+                             onerror="this.style.display='none'">
+                    </div>
+
+                    <!-- Portrait Card Container -->
                     <div class="portrait-card">
-                        <img th:src="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}"
-                             src="/images/9.jpg"
-                             alt="Arya Adhitya"
-                             class="portrait-img"
-                             onerror="this.src='/images/9.jpg'">
-                        
+                        <div class="portrait-wrapper">
+                            <img th:src="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}"
+                                 src="/images/9.jpg"
+                                 alt="Arya Adhitya"
+                                 class="portrait-img"
+                                 onerror="this.src='/images/9.jpg'">
+                        </div>
+
                         <!-- Overlay Caption Bar -->
                         <div class="portrait-overlay">
                             <h2 class="portrait-name" th:text="${home != null ? home.nama : 'Arya Adhitya'}">Arya Adhitya</h2>
@@ -147,21 +131,15 @@
 
     </main>
 
-
     <!-- ═══════════════════════════════════════════════════════════════
-         FOOTER — Editorial Scrapbook (Se-tema dengan Login)
+         FOOTER — Editorial Scrapbook
          ═══════════════════════════════════════════════════════════════ -->
     <footer class="home-footer">
         <div class="footer-inner">
-            <div class="footer-receipt-row">
-                <span class="footer-receipt-dot"></span>
-                <span class="footer-receipt-code">PORTFOLIO ARYA ADHITYA &bull; 2026</span>
-            </div>
             <p class="footer-copyright">Copyright &copy; <span id="currentYear"></span> Arya Adhitya. All rights reserved.</p>
-            <span class="footer-note">Built with Spring Boot &amp; Thymeleaf Bagus</span>
+            <span class="footer-note">Built with Spring Boot &amp; Thymeleaf</span>
         </div>
     </footer>
-
 
     <script th:src="@{/js/portfolio.js}"></script>
 </body>

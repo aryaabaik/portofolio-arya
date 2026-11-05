@@ -26,4 +26,8 @@ public class Project {
     private String deskripsi;
 
     private String foto;
+    private String foto2;
+    private String foto3;
+    private String foto4;
+    private String foto5;
 }

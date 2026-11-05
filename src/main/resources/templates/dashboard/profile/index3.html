@@ -52,9 +52,12 @@
                 <!-- Alert Message -->
                 <p th:if="${message}" th:text="${message}" class="alert"></p>
 
-                <form th:action="@{/template3/edit}" method="POST" th:object="${profile}">
+                <form th:action="@{/template3/edit}" method="POST" th:object="${profile}" enctype="multipart/form-data">
 
                     <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{foto}">
+                    <input type="hidden" th:field="*{foto2}">
+                    <input type="hidden" th:field="*{cv}">
 
                     <div class="form-group">
                         <label class="form-label" for="nama">
@@ -93,20 +96,135 @@
                         </div>
                     </div>
 
+                    <!-- FOTO UTAMA -->
                     <div class="form-group">
-                        <label class="form-label" for="foto">Nama File Foto</label>
-                        <div class="input-wrapper">
-                            <input type="text" th:field="*{foto}" id="foto" class="form-input" placeholder="Contoh: arya.png, profile.jpg" autocomplete="off">
+                        <label class="form-label">Foto Profil Utama</label>
+                        <div class="file-upload-container">
+
+                            <!-- Current Foto 1 -->
+                            <div class="current-file-card" th:if="${profile.foto != null && !profile.foto.isEmpty()}">
+                                <img 
+                                    th:src="${'/images/' + profile.foto}" 
+                                    alt="Foto Profil" 
+                                    class="current-file-thumb"
+                                    onerror="this.src='/images/arya.png'"
+                                >
+                                <div class="current-file-info">
+                                    <span class="current-file-label">Foto Saat Ini</span>
+                                    <span class="current-file-name" th:text="${profile.foto}">arya.png</span>
+                                </div>
+                            </div>
+
+                            <!-- Dropzone Foto 1 -->
+                            <div class="file-dropzone" id="fotoDropzone">
+                                <input 
+                                    type="file" 
+                                    id="fotoFile" 
+                                    name="fotoFile" 
+                                    accept="image/*" 
+                                    class="file-input-hidden"
+                                >
+                                <div class="file-dropzone-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <div class="file-dropzone-title">
+                                    <span class="file-dropzone-btn">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                            <polyline points="21 15 16 10 5 21"></polyline>
+                                        </svg>
+                                        Pilih Foto Profil dari Explorer
+                                    </span>
+                                    <span>atau tarik foto ke sini</span>
+                                </div>
+                                <p class="file-dropzone-hint">Format didukung: PNG, JPG, JPEG, WEBP. Kosongkan jika tidak ingin mengubah foto.</p>
+                            </div>
+
+                            <!-- Preview Foto 1 Baru -->
+                            <div class="file-new-preview" id="fotoPreviewBox">
+                                <img id="fotoPreviewThumb" src="" alt="Preview Baru" class="file-new-thumb">
+                                <div class="file-new-info">
+                                    <span class="file-new-badge">Foto Baru Dipilih</span>
+                                    <span class="file-new-name" id="fotoPreviewName">foto-baru.png</span>
+                                    <span class="file-new-size" id="fotoPreviewSize">0 KB</span>
+                                </div>
+                            </div>
+
                         </div>
-                        <p class="form-hint">Letakkan file gambar di folder <code>src/main/resources/static/images/</code>.</p>
                     </div>
 
+                    <!-- CV FILE -->
                     <div class="form-group">
-                        <label class="form-label" for="cv">CV Anda</label>
-                        <div class="input-wrapper">
-                            <input type="text" th:field="*{cv}" id="cv" class="form-input" placeholder="Contoh: arya.png, profile.jpg" autocomplete="off">
+                        <label class="form-label">Berkas CV (Curriculum Vitae)</label>
+                        <div class="file-upload-container">
+
+                            <!-- Current CV -->
+                            <div class="current-file-card" th:if="${profile.cv != null && !profile.cv.isEmpty()}">
+                                <div class="current-file-thumb" style="display:flex;align-items:center;justify-content:center;background:#FEF2F2;color:#DC2626;border-color:#FCA5A5;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="current-file-info">
+                                    <span class="current-file-label">CV Saat Ini</span>
+                                    <span class="current-file-name" th:text="${profile.cv}">cv.pdf</span>
+                                </div>
+                            </div>
+
+                            <!-- Dropzone CV -->
+                            <div class="file-dropzone" id="cvDropzone">
+                                <input 
+                                    type="file" 
+                                    id="cvFile" 
+                                    name="cvFile" 
+                                    accept=".pdf,.doc,.docx,application/pdf" 
+                                    class="file-input-hidden"
+                                >
+                                <div class="file-dropzone-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                                        <polyline points="10 9 9 9 8 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="file-dropzone-title">
+                                    <span class="file-dropzone-btn">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                            <polyline points="17 8 12 3 7 8"></polyline>
+                                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                                        </svg>
+                                        Pilih Berkas CV dari Explorer
+                                    </span>
+                                    <span>atau tarik berkas ke sini</span>
+                                </div>
+                                <p class="file-dropzone-hint">Format didukung: PDF, DOC, DOCX. Kosongkan jika tidak ingin mengubah CV.</p>
+                            </div>
+
+                            <!-- Preview CV Baru -->
+                            <div class="file-new-preview" id="cvPreviewBox">
+                                <div class="file-new-thumb" style="display:flex;align-items:center;justify-content:center;background:#FEF2F2;color:#DC2626;">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                        <polyline points="14 2 14 8 20 8"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="file-new-info">
+                                    <span class="file-new-badge">CV Baru Dipilih</span>
+                                    <span class="file-new-name" id="cvPreviewName">dokumen.pdf</span>
+                                    <span class="file-new-size" id="cvPreviewSize">0 KB</span>
+                                </div>
+                            </div>
+
                         </div>
-                        <p class="form-hint">Letakkan file di folder <code>src/main/resources/static/images/pdf</code>.</p>
                     </div>
 
                     <div class="form-group">
@@ -116,12 +234,66 @@
                         </div>
                     </div>
 
+                    <!-- FOTO 2 -->
                     <div class="form-group">
-                        <label class="form-label" for="foto2">Nama File Foto 2</label>
-                        <div class="input-wrapper">
-                            <input type="text" th:field="*{foto2}" id="foto2" class="form-input" placeholder="Contoh: arya.png, profile.jpg" autocomplete="off">
+                        <label class="form-label">Foto Tambahan / Foto 2</label>
+                        <div class="file-upload-container">
+
+                            <!-- Current Foto 2 -->
+                            <div class="current-file-card" th:if="${profile.foto2 != null && !profile.foto2.isEmpty()}">
+                                <img 
+                                    th:src="${'/images/' + profile.foto2}" 
+                                    alt="Foto Tambahan" 
+                                    class="current-file-thumb"
+                                    onerror="this.src='/images/arya.png'"
+                                >
+                                <div class="current-file-info">
+                                    <span class="current-file-label">Foto 2 Saat Ini</span>
+                                    <span class="current-file-name" th:text="${profile.foto2}">foto2.png</span>
+                                </div>
+                            </div>
+
+                            <!-- Dropzone Foto 2 -->
+                            <div class="file-dropzone" id="foto2Dropzone">
+                                <input 
+                                    type="file" 
+                                    id="foto2File" 
+                                    name="foto2File" 
+                                    accept="image/*" 
+                                    class="file-input-hidden"
+                                >
+                                <div class="file-dropzone-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                        <polyline points="17 8 12 3 7 8"></polyline>
+                                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                                    </svg>
+                                </div>
+                                <div class="file-dropzone-title">
+                                    <span class="file-dropzone-btn">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                            <polyline points="21 15 16 10 5 21"></polyline>
+                                        </svg>
+                                        Pilih Foto 2 dari Explorer
+                                    </span>
+                                    <span>atau tarik foto ke sini</span>
+                                </div>
+                                <p class="file-dropzone-hint">Format didukung: PNG, JPG, JPEG, WEBP. Kosongkan jika tidak ingin mengubah foto 2.</p>
+                            </div>
+
+                            <!-- Preview Foto 2 Baru -->
+                            <div class="file-new-preview" id="foto2PreviewBox">
+                                <img id="foto2PreviewThumb" src="" alt="Preview Baru" class="file-new-thumb">
+                                <div class="file-new-info">
+                                    <span class="file-new-badge">Foto 2 Baru Dipilih</span>
+                                    <span class="file-new-name" id="foto2PreviewName">foto2-baru.png</span>
+                                    <span class="file-new-size" id="foto2PreviewSize">0 KB</span>
+                                </div>
+                            </div>
+
                         </div>
-                        <p class="form-hint">Letakkan file gambar di folder <code>src/main/resources/static/images/</code>.</p>
                     </div>
 
                     <div class="form-actions">
@@ -147,5 +319,50 @@
         <p>&copy; 2026 Portfolio Dashboard. Semua Hak Dilindungi.</p>
     </footer>
 
+    <!-- File Explorer Preview Script -->
+    <script>
+        function setupFilePreview(inputId, boxId, nameId, sizeId, thumbId, dropzoneId) {
+            const input = document.getElementById(inputId);
+            const box = document.getElementById(boxId);
+            const name = document.getElementById(nameId);
+            const size = document.getElementById(sizeId);
+            const thumb = thumbId ? document.getElementById(thumbId) : null;
+            const dropzone = document.getElementById(dropzoneId);
+
+            if (!input) return;
+
+            input.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    if (name) name.textContent = file.name;
+                    if (size) size.textContent = (file.size / 1024).toFixed(1) + ' KB';
+
+                    if (thumb && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            thumb.src = e.target.result;
+                            if (box) box.classList.add('active');
+                        };
+                        reader.readAsDataURL(file);
+                    } else if (box) {
+                        box.classList.add('active');
+                    }
+                }
+            });
+
+            if (dropzone) {
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, () => dropzone.classList.add('drag-active'), false);
+                });
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropzone.addEventListener(eventName, () => dropzone.classList.remove('drag-active'), false);
+                });
+            }
+        }
+
+        setupFilePreview('fotoFile', 'fotoPreviewBox', 'fotoPreviewName', 'fotoPreviewSize', 'fotoPreviewThumb', 'fotoDropzone');
+        setupFilePreview('cvFile', 'cvPreviewBox', 'cvPreviewName', 'cvPreviewSize', null, 'cvDropzone');
+        setupFilePreview('foto2File', 'foto2PreviewBox', 'foto2PreviewName', 'foto2PreviewSize', 'foto2PreviewThumb', 'foto2Dropzone');
+    </script>
 </body>
 </html>

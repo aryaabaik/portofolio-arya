@@ -22,14 +22,22 @@
     <header class="navbar-header">
         <nav class="navbar">
             <a href="/" class="navbar-brand" th:text="${profile != null ? profile.nama : 'PORTFOLIO'}">PORTFOLIO</a>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle Navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
             <ul class="navbar-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="#profile">Profile</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#keahlian">Keahlian</a></li>
                 <li><a href="#project">Project</a></li>
+                <li class="mobile-only"><a href="#contact" class="navbar-contact">Contact</a></li>
             </ul>
-            <a href="#contact" class="navbar-contact">Contact</a>
+            <a href="#contact" class="navbar-contact desktop-only">Contact</a>
         </nav>
     </header>
 
@@ -217,6 +225,10 @@
         </div>
     </section>
     <section id="project" class="karya-section">
+        <!-- Ambient Ocean Shimmer Orbs -->
+        <div class="karya-ambient-orb karya-orb-1"></div>
+        <div class="karya-ambient-orb karya-orb-2"></div>
+
         <div class="karya-container">
             <div class="karya-header">
                 <div class="karya-decor-bintang">
@@ -231,30 +243,118 @@
                     <span class="section-script-tag">SELECTED WORKS</span>
                 </div>
                 <h2 class="karya-main-title">Karya aku</h2>
+                <p class="karya-section-subtitle">Koleksi proyek pilihan yang telah dirancang &amp; dikembangkan. Geser atau klik foto untuk melihat galeri lengkap.</p>
             </div>
 
-            <div class="karya-grid">
-                <article class="karya-item" th:each="item, stat : ${projects}">
-                    <div class="karya-top-bar">
-                        <span class="karya-meta-category">SMK ASSALAAM BANDUNG · WEB &amp; PROGRAMMING</span>
-                        <span class="karya-watermark-num" th:text="${stat.count < 10 ? '0' + stat.count : stat.count}">01</span>
-                    </div>
+            <!-- Deck Controls Bar -->
+            <div class="karya-deck-controls" th:if="${projects != null && !#lists.isEmpty(projects)}">
+                <div class="karya-deck-hint">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 9l-3 3 3 3M19 9l3 3-3 3M2 12h20"/>
+                    </svg>
+                    <span>Geser untuk menjelajahi kartu</span>
+                </div>
+                <div class="karya-deck-arrows">
+                    <button type="button" class="karya-deck-btn deck-btn-prev" aria-label="Geser ke kiri" title="Geser ke kiri">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button type="button" class="karya-deck-btn deck-btn-next" aria-label="Geser ke kanan" title="Geser ke kanan">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                </div>
+            </div>
 
-                    <h3 class="karya-title" th:text="${item.name}">Toko Peralatan Sekolah</h3>
+            <div class="karya-grid" th:if="${projects != null && !#lists.isEmpty(projects)}">
+                <div class="karya-fan-row" id="karyaFanRow">
+                    <article class="karya-item" 
+                             th:each="item, stat : ${projects}"
+                             th:data-title="${item.name}"
+                             th:data-desc="${item.deskripsi}"
+                             th:data-foto="${item.foto}"
+                             th:data-foto2="${item.foto2}"
+                             th:data-foto3="${item.foto3}"
+                             th:data-foto4="${item.foto4}"
+                             th:data-foto5="${item.foto5}">
+                        
+                        <!-- 3D Holographic Glare Overlay -->
+                        <div class="karya-card-glare"></div>
+                        <div class="karya-card-border-glow"></div>
 
-                    <div class="karya-image-container" th:if="${item.foto != null && !item.foto.isEmpty()}">
-                        <img 
-                            th:src="${'/images/' + item.foto}" 
-                            th:alt="${item.name}" 
-                            class="karya-img"
-                            onerror="this.parentElement.style.display='none'"
-                        >
-                    </div>
+                        <div class="karya-top-bar">
+                            <span class="karya-meta-category">SMK ASSALAAM BANDUNG · WEB &amp; PROGRAMMING</span>
+                            <span class="karya-watermark-num" th:text="${stat.count < 10 ? '0' + stat.count : stat.count}">01</span>
+                        </div>
 
-                    <p class="karya-desc" th:text="${item.deskripsi}">
-                        Deskripsi project yang menjelaskan implementasi fitur dan teknologi yang digunakan.
-                    </p>
-                </article>
+                        <h3 class="karya-title" th:text="${item.name}">Toko Peralatan Sekolah</h3>
+
+                        <!-- Interactive Multi-Photo Carousel Container -->
+                        <div class="karya-image-container" 
+                             th:with="hasMultiple=${(item.foto2 != null && !item.foto2.isEmpty()) || (item.foto3 != null && !item.foto3.isEmpty()) || (item.foto4 != null && !item.foto4.isEmpty()) || (item.foto5 != null && !item.foto5.isEmpty())}">
+                            
+                            <div class="karya-slides-track">
+                                <div class="karya-slide active" th:if="${item.foto != null && !item.foto.isEmpty()}">
+                                    <img th:src="${'/images/' + item.foto}" th:alt="${item.name}" class="karya-img" loading="lazy">
+                                </div>
+                                <div class="karya-slide" th:if="${item.foto2 != null && !item.foto2.isEmpty()}">
+                                    <img th:src="${'/images/' + item.foto2}" th:alt="${item.name + ' - Slide 2'}" class="karya-img" loading="lazy">
+                                </div>
+                                <div class="karya-slide" th:if="${item.foto3 != null && !item.foto3.isEmpty()}">
+                                    <img th:src="${'/images/' + item.foto3}" th:alt="${item.name + ' - Slide 3'}" class="karya-img" loading="lazy">
+                                </div>
+                                <div class="karya-slide" th:if="${item.foto4 != null && !item.foto4.isEmpty()}">
+                                    <img th:src="${'/images/' + item.foto4}" th:alt="${item.name + ' - Slide 4'}" class="karya-img" loading="lazy">
+                                </div>
+                                <div class="karya-slide" th:if="${item.foto5 != null && !item.foto5.isEmpty()}">
+                                    <img th:src="${'/images/' + item.foto5}" th:alt="${item.name + ' - Slide 5'}" class="karya-img" loading="lazy">
+                                </div>
+                            </div>
+
+                            <!-- Carousel Nav Buttons (if multiple photos) -->
+                            <button type="button" class="karya-slide-nav slide-prev" aria-label="Foto Sebelumnya" th:if="${hasMultiple}">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                            </button>
+                            <button type="button" class="karya-slide-nav slide-next" aria-label="Foto Selanjutnya" th:if="${hasMultiple}">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </button>
+
+                            <!-- Carousel Dots Indicator -->
+                            <div class="karya-slide-dots" th:if="${hasMultiple}">
+                                <span class="karya-dot active" data-index="0"></span>
+                                <span class="karya-dot" data-index="1" th:if="${item.foto2 != null && !item.foto2.isEmpty()}"></span>
+                                <span class="karya-dot" data-index="2" th:if="${item.foto3 != null && !item.foto3.isEmpty()}"></span>
+                                <span class="karya-dot" data-index="3" th:if="${item.foto4 != null && !item.foto4.isEmpty()}"></span>
+                                <span class="karya-dot" data-index="4" th:if="${item.foto5 != null && !item.foto5.isEmpty()}"></span>
+                            </div>
+
+                            <!-- Expand / Zoom Button -->
+                            <button type="button" class="karya-expand-badge" aria-label="Buka Galeri Foto" title="Lihat semua foto">
+                                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 3 21 3 21 9"></polyline>
+                                    <polyline points="9 21 3 21 3 15"></polyline>
+                                    <line x1="21" y1="3" x2="14" y2="10"></line>
+                                    <line x1="3" y1="21" x2="10" y2="14"></line>
+                                </svg>
+                                <span>Galeri</span>
+                            </button>
+                        </div>
+
+                        <p class="karya-desc" th:text="${item.deskripsi}">
+                            Deskripsi project yang menjelaskan implementasi fitur dan teknologi yang digunakan.
+                        </p>
+
+                        <!-- Bottom Wave & Badge Details -->
+                        <div class="karya-card-footer">
+                            <div class="karya-wave-line"></div>
+                            <button type="button" class="karya-card-action-btn" aria-label="Lihat Detail Galeri">
+                                <span>Detail Proyek</span>
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </article>
+                </div>
             </div>
 
             <div class="karya-empty-state" th:if="${projects == null || #lists.isEmpty(projects)}">
@@ -352,6 +452,59 @@
             <p class="footer-tech">Built with Spring Boot &amp; Thymeleaf · Ocean Editorial Edition</p>
         </div>
     </footer>
+    
+    <!-- ═══════════════════════════════════════════════════════════════
+         PROJECT FULLSCREEN LIGHTBOX GALLERY MODAL (Level Dewa)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="karyaLightbox" class="karya-lightbox" aria-hidden="true" role="dialog" aria-label="Galeri Foto Proyek">
+        <div class="karya-lightbox-overlay" id="lightboxOverlay"></div>
+        <div class="karya-lightbox-dialog">
+            
+            <!-- Close Button -->
+            <button type="button" class="karya-lightbox-close" id="lightboxClose" aria-label="Tutup Galeri">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Main Stage -->
+            <div class="karya-lightbox-stage">
+                <!-- Nav Arrows -->
+                <button type="button" class="karya-lightbox-arrow arrow-left" id="lightboxPrev" aria-label="Foto Sebelumnya">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                <div class="karya-lightbox-img-wrap">
+                    <img id="lightboxMainImg" src="" alt="Foto Proyek" class="karya-lightbox-img">
+                    <div class="karya-lightbox-badge" id="lightboxCounter">1 / 5</div>
+                </div>
+
+                <button type="button" class="karya-lightbox-arrow arrow-right" id="lightboxNext" aria-label="Foto Selanjutnya">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Details Caption -->
+            <div class="karya-lightbox-caption">
+                <div class="karya-lightbox-titles">
+                    <span class="karya-lightbox-tag">PROYEK TERPILIH</span>
+                    <h3 id="lightboxTitle" class="karya-lightbox-title">Judul Proyek</h3>
+                </div>
+                <p id="lightboxDesc" class="karya-lightbox-desc">Deskripsi proyek.</p>
+            </div>
+
+            <!-- Thumbnails Strip -->
+            <div class="karya-lightbox-thumbs" id="lightboxThumbs">
+                <!-- Dynamically injected thumbnails -->
+            </div>
+
+        </div>
+    </div>
 
     <script th:src="@{/js/portfolio.js}"></script>
 </body>

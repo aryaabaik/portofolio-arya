@@ -5,24 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="'Edit Project - ' + ${project.name}">Edit Project</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/dashboard-form.css}" href="/css/dashboard-form.css">
+
+    <style>
+        .current-photos-grid.drag-active .add-photo-tile {
+            border-color: var(--ocean);
+            background: #F4F9FD;
+        }
+
+        .add-photo-tile {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            aspect-ratio: 1 / 1;
+            min-width: 0;
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-sm);
+            background: #fff;
+            color: var(--ocean);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        .add-photo-tile:hover {
+            border-color: var(--ocean);
+            background: #F4F9FD;
+        }
+        .add-photo-tile[hidden] { display: none; }
+        .add-photo-tile input[type="file"] {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .add-photo-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--pale-blue);
+            color: var(--ocean);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            line-height: 1;
+            transition: var(--transition-fast);
+        }
+        .add-photo-copy { font-size: 11px; font-weight: 700; color: var(--navy); }
+        .add-photo-hint { font-size: 10px; line-height: 1.3; color: var(--text-muted); }
+
+        /* Current photos grid */
+        .current-photos-label {
+            font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 8px;
+        }
+        .current-photos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+        .current-photo-item {
+            position: relative;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 1 / 1;
+        }
+        .current-photo-item[hidden] { display: none; }
+        .current-photo-item img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+        .current-photo-badge {
+            position: absolute; top: 4px; left: 4px;
+            font-size: 9px; font-weight: 700; text-transform: uppercase;
+            background: rgba(22,59,99,0.82); color: #fff;
+            padding: 2px 5px; border-radius: 3px;
+        }
+        .current-photo-remove {
+            position: absolute; top: 4px; right: 4px;
+            width: 22px; height: 22px; border: 0; border-radius: 50%;
+            background: rgba(22, 59, 99, 0.88); color: #fff;
+            font-size: 15px; line-height: 1; cursor: pointer;
+        }
+
+        /* New previews join the same grid as the existing photos. */
+        .preview-grid { display: contents; }
+        .preview-item {
+            position: relative; border-radius: var(--radius-sm);
+            overflow: hidden; border: 1px solid #BBF7D0;
+            background: var(--bg-canvas); aspect-ratio: 1 / 1;
+        }
+        .preview-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .preview-item-badge {
+            position: absolute; top: 4px; left: 4px;
+            font-size: 9px; font-weight: 700; text-transform: uppercase;
+            background: rgba(21,128,61,0.85); color: #fff;
+            padding: 2px 5px; border-radius: 3px;
+        }
+        .preview-item-name {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            font-size: 9px; background: rgba(0,0,0,0.55); color: #fff;
+            padding: 3px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .preview-remove {
+            position: absolute; top: 4px; right: 4px;
+            width: 22px; height: 22px; border: 0; border-radius: 50%;
+            background: rgba(22, 59, 99, 0.88); color: #fff;
+            font-size: 15px; line-height: 1; cursor: pointer;
+        }
+
+        .count-bar {
+            display: none; align-items: center; gap: 8px; margin-top: 10px;
+            padding: 9px 13px; background: #FFFBEB; border: 1px solid #FDE68A;
+            border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; color: #92400E;
+        }
+        .count-bar.visible { display: flex; }
+        .count-bar .change-btn {
+            margin-left: auto; font-size: 12px; font-weight: 600; color: var(--ocean);
+            background: none; border: none; cursor: pointer; text-decoration: underline; padding: 0;
+        }
+        .max-warn {
+            font-size: 12px; color: #B45309; background: #FFFBEB;
+            border: 1px solid #FDE68A; border-radius: var(--radius-sm);
+            padding: 8px 12px; margin-top: 8px; display: none;
+        }
+        .max-warn.visible { display: block; }
+        .replace-note {
+            font-size: 12px; color: var(--text-muted);
+            background: var(--pale-blue); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 8px 12px; margin-bottom: 12px;
+            display: flex; align-items: center; gap: 7px;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-brand-group">
             <a href="/dashboard" class="navbar-brand">PORTFOLIO</a>
             <span class="navbar-divider">/</span>
             <span class="navbar-tag">Dashboard Project</span>
         </div>
-
         <div class="navbar-nav">
             <a th:href="@{/project}" class="navbar-back">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -34,7 +167,6 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
         <div class="form-wrapper">
             <div class="form-card">
@@ -46,53 +178,100 @@
 
                 <div class="form-header">
                     <h1 class="form-title">Edit Data Project</h1>
-                    <p class="form-description">Perbarui nama, deskripsi, dan foto karya project Anda.</p>
+                    <p class="form-description">Perbarui nama, deskripsi, dan foto project Anda.</p>
                 </div>
 
-                <form th:action="@{/project/edit}" th:object="${project}" method="post">
-                    
+                <form th:action="@{/project/edit}" th:object="${project}" method="post" enctype="multipart/form-data">
+
                     <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{foto}">
+                    <input type="hidden" th:field="*{foto2}">
+                    <input type="hidden" th:field="*{foto3}">
+                    <input type="hidden" th:field="*{foto4}">
+                    <input type="hidden" th:field="*{foto5}">
 
                     <div class="form-group">
                         <label for="name" class="form-label">
                             Nama Project <span class="form-label-required">*</span>
                         </label>
                         <div class="input-wrapper">
-                            <input 
-                                type="text" 
-                                id="name" 
-                                th:field="*{name}" 
-                                class="form-input" 
-                                placeholder="Masukkan nama project" 
-                                required
-                                autocomplete="off"
-                            >
+                            <input type="text" id="name" th:field="*{name}" class="form-input"
+                                   placeholder="Masukkan nama project" required autocomplete="off">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="deskripsi" class="form-label">Deskripsi Project</label>
-                        <textarea 
-                            id="deskripsi" 
-                            th:field="*{deskripsi}" 
-                            class="form-textarea" 
-                            placeholder="Deskripsi fitur dan teknologi project..."
-                        ></textarea>
+                        <textarea id="deskripsi" th:field="*{deskripsi}" class="form-textarea"
+                                  placeholder="Deskripsi fitur dan teknologi project..."></textarea>
                     </div>
 
+                    <!-- Photo section -->
                     <div class="form-group">
-                        <label for="foto" class="form-label">Nama File Foto</label>
-                        <div class="input-wrapper">
-                            <input 
-                                type="text" 
-                                id="foto" 
-                                th:field="*{foto}" 
-                                class="form-input" 
-                                placeholder="Contoh: toko.png, app.jpg"
-                                autocomplete="off"
-                            >
+                        <label class="form-label">
+                            Foto Project
+                            <span style="font-weight:400;color:var(--text-muted);margin-left:4px;">(maks. 5 foto)</span>
+                        </label>
+
+                        <!-- Existing photos and add-photo tile -->
+                        <p class="current-photos-label" th:if="${project.foto != null && !project.foto.isEmpty()}">Foto Saat Ini</p>
+                        <div class="current-photos-grid" id="currentPhotosGrid">
+                                <div class="current-photo-item" data-photo-index="0" th:if="${project.foto != null && !project.foto.isEmpty()}">
+                                    <img th:src="${'/images/' + project.foto}" alt="Foto 1" onerror="this.src='/images/arya.png'">
+                                    <span class="current-photo-badge">Foto 1</span>
+                                    <button type="button" class="current-photo-remove" aria-label="Hapus Foto 1">×</button>
+                                </div>
+                                <div class="current-photo-item" data-photo-index="1" th:if="${project.foto2 != null && !project.foto2.isEmpty()}">
+                                    <img th:src="${'/images/' + project.foto2}" alt="Foto 2" onerror="this.src='/images/arya.png'">
+                                    <span class="current-photo-badge">Foto 2</span>
+                                    <button type="button" class="current-photo-remove" aria-label="Hapus Foto 2">×</button>
+                                </div>
+                                <div class="current-photo-item" data-photo-index="2" th:if="${project.foto3 != null && !project.foto3.isEmpty()}">
+                                    <img th:src="${'/images/' + project.foto3}" alt="Foto 3" onerror="this.src='/images/arya.png'">
+                                    <span class="current-photo-badge">Foto 3</span>
+                                    <button type="button" class="current-photo-remove" aria-label="Hapus Foto 3">×</button>
+                                </div>
+                                <div class="current-photo-item" data-photo-index="3" th:if="${project.foto4 != null && !project.foto4.isEmpty()}">
+                                    <img th:src="${'/images/' + project.foto4}" alt="Foto 4" onerror="this.src='/images/arya.png'">
+                                    <span class="current-photo-badge">Foto 4</span>
+                                    <button type="button" class="current-photo-remove" aria-label="Hapus Foto 4">×</button>
+                                </div>
+                                <div class="current-photo-item" data-photo-index="4" th:if="${project.foto5 != null && !project.foto5.isEmpty()}">
+                                    <img th:src="${'/images/' + project.foto5}" alt="Foto 5" onerror="this.src='/images/arya.png'">
+                                    <span class="current-photo-badge">Foto 5</span>
+                                    <button type="button" class="current-photo-remove" aria-label="Hapus Foto 5">×</button>
+                                </div>
+                            <div class="preview-grid" id="previewGrid"></div>
+                            <label class="add-photo-tile" id="addPhotoTile">
+                                <input type="file" id="imageFiles" name="imageFiles" accept="image/*" multiple>
+                                <span class="add-photo-icon" aria-hidden="true">+</span>
+                                <span class="add-photo-copy">Tambah foto</span>
+                                <span class="add-photo-hint" id="remainingText">5 slot tersedia</span>
+                            </label>
                         </div>
-                        <p class="form-hint">Letakkan file gambar di folder <code>src/main/resources/static/images/</code>.</p>
+
+                        <!-- Note -->
+                        <div class="replace-note">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="8" x2="12" y2="12"></line>
+                                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                            </svg>
+                            Hapus foto lama dengan tombol ×, lalu tambahkan pengganti. Perubahan tersimpan setelah klik "Simpan Perubahan". Maks. 5 foto total.
+                        </div>
+
+                        <div class="max-warn" id="maxWarn">
+                            Maksimal 5 foto total. Foto lama tetap dipertahankan.
+                        </div>
+
+                        <div class="count-bar" id="countBar">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 6v6l4 2"></path>
+                            </svg>
+                            <span id="countText">0 foto dipilih</span>
+                            <button type="button" class="change-btn" onclick="document.getElementById('imageFiles').click()">Tambah lagi</button>
+                        </div>
                     </div>
 
                     <div class="form-actions">
@@ -108,15 +287,143 @@
                     </div>
 
                 </form>
-
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2026 Portfolio Dashboard. Semua Hak Dilindungi.</p>
     </footer>
 
+    <script>
+        const input = document.getElementById('imageFiles');
+        const photoGrid = document.getElementById('currentPhotosGrid');
+        const addPhotoTile = document.getElementById('addPhotoTile');
+        const previewGrid = document.getElementById('previewGrid');
+        const countBar = document.getElementById('countBar');
+        const countText = document.getElementById('countText');
+        const maxWarn = document.getElementById('maxWarn');
+        const remainingText = document.getElementById('remainingText');
+        const MAX_PHOTOS = 5;
+        const existingPhotoItems = [...photoGrid.querySelectorAll('.current-photo-item')];
+        const removedPhotoIndexes = new Set();
+        const selectedFiles = [];
+
+        const retainedPhotoCount = () => existingPhotoItems.length - removedPhotoIndexes.size;
+
+        const syncInputFiles = () => {
+            const transfer = new DataTransfer();
+            selectedFiles.forEach(file => transfer.items.add(file));
+            input.files = transfer.files;
+        };
+
+        const renderSelection = () => {
+            previewGrid.innerHTML = '';
+            previewGrid.classList.toggle('has-files', selectedFiles.length > 0);
+            countBar.classList.toggle('visible', selectedFiles.length > 0);
+            const retainedCount = retainedPhotoCount();
+            countText.textContent = `${retainedCount} foto dipertahankan + ${selectedFiles.length} foto baru (${retainedCount + selectedFiles.length}/${MAX_PHOTOS})`;
+            remainingText.textContent = `${MAX_PHOTOS - retainedCount - selectedFiles.length} slot tersedia`;
+
+            const isFull = retainedCount + selectedFiles.length >= MAX_PHOTOS;
+            addPhotoTile.hidden = isFull;
+            countBar.querySelector('.change-btn').disabled = isFull;
+
+            selectedFiles.forEach((file, index) => {
+                const item = document.createElement('div');
+                item.className = 'preview-item';
+
+                const badge = document.createElement('span');
+                badge.className = 'preview-item-badge';
+                badge.textContent = `Foto ${retainedCount + index + 1}`;
+                item.appendChild(badge);
+
+                const image = document.createElement('img');
+                const reader = new FileReader();
+                reader.onload = event => { image.src = event.target.result; };
+                reader.readAsDataURL(file);
+                item.appendChild(image);
+
+                const name = document.createElement('span');
+                name.className = 'preview-item-name';
+                name.textContent = file.name;
+                item.appendChild(name);
+
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'preview-remove';
+                removeButton.setAttribute('aria-label', `Hapus ${file.name}`);
+                removeButton.textContent = '×';
+                removeButton.addEventListener('click', () => {
+                    selectedFiles.splice(index, 1);
+                    maxWarn.classList.remove('visible');
+                    syncInputFiles();
+                    renderSelection();
+                });
+                item.appendChild(removeButton);
+
+                previewGrid.appendChild(item);
+            });
+        };
+
+        const addFiles = files => {
+            const knownFiles = new Set(selectedFiles.map(file => `${file.name}:${file.size}:${file.lastModified}`));
+            const uniqueFiles = files.filter(file => {
+                const key = `${file.name}:${file.size}:${file.lastModified}`;
+                if (knownFiles.has(key)) return false;
+                knownFiles.add(key);
+                return true;
+            });
+            const available = Math.max(0, MAX_PHOTOS - retainedPhotoCount() - selectedFiles.length);
+            const additions = uniqueFiles.slice(0, available);
+            selectedFiles.push(...additions);
+            maxWarn.classList.toggle('visible', uniqueFiles.length > additions.length);
+            syncInputFiles();
+            renderSelection();
+        };
+
+        input.addEventListener('change', () => addFiles(Array.from(input.files)));
+
+        existingPhotoItems.forEach(item => {
+            item.querySelector('.current-photo-remove').addEventListener('click', () => {
+                const index = Number(item.dataset.photoIndex);
+                if (removedPhotoIndexes.has(index)) return;
+
+                removedPhotoIndexes.add(index);
+                item.hidden = true;
+
+                const removedInput = document.createElement('input');
+                removedInput.type = 'hidden';
+                removedInput.name = 'removedPhotoIndexes';
+                removedInput.value = index;
+                input.form.appendChild(removedInput);
+
+                existingPhotoItems
+                    .filter(photo => !removedPhotoIndexes.has(Number(photo.dataset.photoIndex)))
+                    .forEach((photo, position) => {
+                        photo.querySelector('.current-photo-badge').textContent = `Foto ${position + 1}`;
+                    });
+
+                maxWarn.classList.remove('visible');
+                syncInputFiles();
+                renderSelection();
+            });
+        });
+
+        photoGrid.addEventListener('dragover', event => {
+            event.preventDefault();
+            photoGrid.classList.add('drag-active');
+        });
+        photoGrid.addEventListener('dragleave', event => {
+            if (!photoGrid.contains(event.relatedTarget)) photoGrid.classList.remove('drag-active');
+        });
+        photoGrid.addEventListener('drop', event => {
+            event.preventDefault();
+            photoGrid.classList.remove('drag-active');
+            addFiles(Array.from(event.dataTransfer.files));
+        });
+
+        renderSelection();
+    </script>
 </body>
 </html>

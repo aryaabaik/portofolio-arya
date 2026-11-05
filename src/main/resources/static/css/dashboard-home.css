@@ -1177,13 +1177,15 @@
     .db-identity-hero {
         flex-direction: column;
         align-items: flex-start;
-        padding: 22px 18px;
+        padding: 20px 16px;
         gap: 16px;
+        border-radius: var(--radius-md);
     }
 
     .db-identity-photo-wrap {
-        width: 120px;
-        height: 135px;
+        width: 100px;
+        height: 115px;
+        border-radius: var(--radius-sm);
     }
 
     .db-identity-name {
@@ -1192,6 +1194,7 @@
 
     .db-proj-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
     }
 
     .db-profile-inner {
@@ -1200,11 +1203,29 @@
     }
 
     .db-stats-bar {
-        padding: 14px 18px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 16px;
+        border-radius: var(--radius-md);
+    }
+
+    .db-stat-divider {
+        display: none;
+    }
+
+    .db-stat-item {
+        width: 100%;
+        padding: 4px 0;
     }
 
     .db-stat-num {
         font-size: 24px;
     }
+
+    .db-stat-label {
+        font-size: 11px;
+    }
 }
+
 

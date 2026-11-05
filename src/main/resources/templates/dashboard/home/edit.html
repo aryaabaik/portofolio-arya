@@ -53,9 +53,10 @@
                 </div>
 
                 <!-- Form -->
-               <form th:action="@{/dashboard/home/edit}" th:object="${home}" method="post">
+               <form th:action="@{/dashboard/home/edit}" th:object="${home}" method="post" enctype="multipart/form-data">
 
                 <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{foto}">
 
                 <div class="form-group">
                     <label>Nama</label>
@@ -67,12 +68,64 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Foto</label>
-                    <input type="text"
-                        th:field="*{foto}"
-                        class="form-input"
-                        placeholder="/images/tampan.png"
-                        required>
+                    <label>Foto Profile</label>
+                    <div class="file-upload-container">
+
+                        <!-- Foto Saat Ini -->
+                        <div class="current-file-card" th:if="${home.foto != null && !home.foto.isEmpty()}">
+                            <img 
+                                th:src="${'/images/' + home.foto}" 
+                                alt="Foto Saat Ini" 
+                                class="current-file-thumb"
+                                onerror="this.src='/images/arya.png'"
+                            >
+                            <div class="current-file-info">
+                                <span class="current-file-label">Foto Saat Ini</span>
+                                <span class="current-file-name" th:text="${home.foto}">foto.png</span>
+                            </div>
+                        </div>
+
+                        <!-- Input Explorer File Picker -->
+                        <div class="file-dropzone" id="homeDropzone">
+                            <input 
+                                type="file" 
+                                id="imageFile" 
+                                name="imageFile" 
+                                accept="image/*" 
+                                class="file-input-hidden"
+                            >
+                            <div class="file-dropzone-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <div class="file-dropzone-title">
+                                <span class="file-dropzone-btn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                        <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                        <polyline points="21 15 16 10 5 21"></polyline>
+                                    </svg>
+                                    Pilih Foto dari Explorer
+                                </span>
+                                <span>atau tarik foto ke sini</span>
+                            </div>
+                            <p class="file-dropzone-hint">Format didukung: PNG, JPG, JPEG, WEBP. Kosongkan jika tidak ingin mengubah foto.</p>
+                        </div>
+
+                        <!-- Preview Foto Baru Dipilih -->
+                        <div class="file-new-preview" id="imagePreviewBox">
+                            <img id="imagePreviewThumb" src="" alt="Preview Baru" class="file-new-thumb">
+                            <div class="file-new-info">
+                                <span class="file-new-badge">Foto Baru Dipilih</span>
+                                <span class="file-new-name" id="imagePreviewName">nama-file.png</span>
+                                <span class="file-new-size" id="imagePreviewSize">0 KB</span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -112,10 +165,39 @@
         <p>&copy; 2026 Portfolio Dashboard. Semua Hak Dilindungi.</p>
     </footer>
 
+    <!-- File Explorer Preview Script -->
     <script>
-        // Live preview synchronization
+        const fileInput = document.getElementById('imageFile');
+        const previewBox = document.getElementById('imagePreviewBox');
+        const previewThumb = document.getElementById('imagePreviewThumb');
+        const previewName = document.getElementById('imagePreviewName');
+        const previewSize = document.getElementById('imagePreviewSize');
+        const dropzone = document.getElementById('homeDropzone');
 
-        
+        if (fileInput) {
+            fileInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    previewName.textContent = file.name;
+                    previewSize.textContent = (file.size / 1024).toFixed(1) + ' KB';
+
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewThumb.src = e.target.result;
+                        previewBox.classList.add('active');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Drag and drop visual cues
+            ['dragenter', 'dragover'].forEach(name => {
+                dropzone.addEventListener(name, () => dropzone.classList.add('drag-active'), false);
+            });
+            ['dragleave', 'drop'].forEach(name => {
+                dropzone.addEventListener(name, () => dropzone.classList.remove('drag-active'), false);
+            });
+        }
     </script>
 </body>
 </html>

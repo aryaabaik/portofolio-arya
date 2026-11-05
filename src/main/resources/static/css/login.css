@@ -657,43 +657,113 @@ input:-webkit-autofill:active {
     }
 
     .login-main {
-        padding: 28px 16px;
+        padding: 28px 16px 40px;
     }
 
     .login-unified-card {
         grid-template-columns: 1fr;
         max-width: 440px;
+        margin: 0 auto;
+        border-radius: 16px;
     }
 
     .visual-photo-wrap {
-        height: 280px;
-        min-height: 280px;
+        height: 240px;
+        min-height: 240px;
+        border-radius: 16px 16px 0 0;
     }
 
     .card-form-col {
-        padding: 32px 24px 26px;
+        padding: 30px 24px 26px;
     }
 }
 
 @media (max-width: 480px) {
-    .login-nav-btn span {
-        display: none;
+    .login-navbar {
+        padding: 12px 16px;
+    }
+
+    .login-brand {
+        font-size: 13px;
+        letter-spacing: 1.6px;
     }
 
     .login-nav-btn {
-        padding: 6px 10px;
+        padding: 8px 14px;
+        min-height: 40px;
+        gap: 6px;
+        font-size: 11.5px;
+        border-radius: 9999px;
+    }
+
+    .login-main {
+        padding: 20px 14px 36px;
+        align-items: flex-start;
+    }
+
+    .login-unified-card {
+        border-radius: 14px;
+        max-width: 100%;
+        box-shadow: 0 16px 36px -8px rgba(22, 59, 99, 0.12), 0 4px 12px rgba(0,0,0,0.04);
     }
 
     .visual-photo-wrap {
-        height: 230px;
-        min-height: 230px;
+        height: 200px;
+        min-height: 200px;
+        border-radius: 14px 14px 0 0;
+    }
+
+    .visual-overlay {
+        padding: 24px 16px 14px;
+    }
+
+    .visual-name {
+        font-size: 20px;
+    }
+
+    .visual-role {
+        font-size: 11px;
     }
 
     .card-form-col {
-        padding: 26px 20px 22px;
+        padding: 24px 18px 22px;
     }
 
     .form-title {
-        font-size: 26px;
+        font-size: 24px;
     }
+
+    .form-subtitle {
+        font-size: 12.5px;
+    }
+
+    .form-control {
+        min-height: 48px;
+        font-size: 14.5px;
+        border-radius: 8px;
+    }
+
+    .btn-login-submit {
+        min-height: 48px;
+        font-size: 14px;
+        border-radius: 9999px;
+        transition: transform 0.15s ease, background-color 0.2s ease;
+    }
+
+    .btn-login-submit:active {
+        transform: scale(0.98);
+    }
+}
+
+@media (max-width: 360px) {
+    .login-navbar { padding: 10px 12px; }
+    .login-main { padding: 16px 10px 30px; }
+    .login-brand { font-size: 12px; letter-spacing: 1px; }
+    .login-nav-btn span { display: none; }
+    .login-nav-btn { min-width: 38px; min-height: 38px; padding: 6px; justify-content: center; }
+    .visual-photo-wrap { height: 180px; min-height: 180px; }
+    .card-form-col { padding: 20px 14px 18px; }
+    .form-title { font-size: 22px; }
+    .receipt-perforated-border,
+    .wave-doodle-icon { display: none; }
 }
