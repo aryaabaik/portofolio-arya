@@ -10,10 +10,16 @@
     <!-- Google Fonts: Editorial Serif + Clean Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
     <!-- CSS -->
     <link rel="stylesheet" th:href="@{/css/home.css}">
+
+    <!-- Glyph Background Styles -->
+    <link rel="stylesheet" href="/css/glyph-background.css">
+    
+    <!-- Parallax Styles -->
+    <link rel="stylesheet" th:href="@{/css/parallax-scroll.css(v='25')}">
 </head>
 
 <body class="home-body">
@@ -25,10 +31,14 @@
     <!-- ═══════════════════════════════════════════════════════════════
          MAIN HERO SECTION — Editorial Welcome
          ═══════════════════════════════════════════════════════════════ -->
-    <main class="home-hero-main">
+    <main class="home-hero-main" data-parallax-section="home">
+        <!-- Glyph Background for About Me section -->
+        <div class="glyph-bg" aria-hidden="true" data-parallax-layer="bg">
+            <div class="glyph-layer" role="presentation"></div>
+        </div>
 
         <!-- Background Wave Contour Lines -->
-        <div class="home-wave-bg">
+        <div class="home-wave-bg" data-parallax-layer="bg">
             <svg class="wave-svg" viewBox="0 0 1200 400" fill="none" preserveAspectRatio="none">
                 <path d="M0,240 C300,160 600,320 900,220 C1050,170 1150,260 1200,210" stroke="rgba(47, 111, 163, 0.12)" stroke-width="1.5" stroke-dasharray="6 6"/>
                 <path d="M0,290 C250,210 550,340 850,250 C1020,200 1120,300 1200,260" stroke="rgba(22, 59, 99, 0.08)" stroke-width="1.2"/>
@@ -38,7 +48,7 @@
         <div class="hero-container animate-fade-in">
 
             <!-- ── LEFT COLUMN: Editorial Hero Content ── -->
-            <div class="hero-content-col">
+            <div class="hero-content-col" data-parallax-layer="3">
 
                 <!-- Eyebrow Line -->
                 <div class="hero-eyebrow-line animate-fade-in-delay-1">
@@ -90,17 +100,17 @@
             </div>
 
             <!-- ── RIGHT COLUMN: Editorial Portrait Card ── -->
-            <div class="hero-visual-col">
+            <div class="hero-visual-col" data-parallax-layer="2">
                 <div class="editorial-portrait-frame">
 
                     <!-- Floating Decorative Elements -->
-                    <div class="decor-element decor-fish">
+                    <div class="decor-element decor-fish" data-parallax-layer="4">
                         <img th:src="@{/images/elements/w2e1.png}"
                              alt="Ocean Element"
                              class="decor-img-fish"
                              onerror="this.style.display='none'">
                     </div>
-                    <div class="decor-element decor-shell">
+                    <div class="decor-element decor-shell" data-parallax-layer="4">
                         <img th:src="@{/images/elements/bintang.png}"
                              alt="Star Element"
                              class="decor-img-shell"
@@ -108,7 +118,7 @@
                     </div>
 
                     <!-- Portrait Card Container -->
-                    <div class="portrait-card">
+                    <div class="portrait-card" data-parallax-layer="2">
                         <div class="portrait-wrapper">
                             <img th:src="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}"
                                  src="/images/9.jpg"
@@ -129,6 +139,14 @@
 
         </div>
 
+        <!-- Editorial Scroll Prompt -->
+        <div class="home-scroll-prompt" data-parallax-layer="1" aria-hidden="true">
+            <span class="home-scroll-text">Scroll to explore</span>
+            <svg class="home-scroll-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 10l5 5 5-5"/>
+            </svg>
+        </div>
+
     </main>
 
     <!-- ═══════════════════════════════════════════════════════════════
@@ -141,7 +159,20 @@
         </div>
     </footer>
 
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    
     <script th:src="@{/js/portfolio.js}"></script>
+
+    <!-- Glyph Background Script -->
+    <script src="/js/glyph-background.js" defer></script>
+    
+    <!-- Parallax Scroll System -->
+    <script th:src="@{/js/parallax-scroll.js(v='25')}"></script>
 </body>
 
 </html>

@@ -1,0 +1,238 @@
+/**
+ * Light Kinetic Grid Styles
+ * Warm editorial ivory/cream canvas with subtle beige grid and champagne gold accents
+ */
+
+.kinetic-grid-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #F8F5EF 0%, #F4EFE6 100%);
+    z-index: 0;
+    pointer-events: auto;
+}
+
+.kinetic-grid-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Hero typography overlay - Tightly and Symmetrically Framed */
+.hero-kinetic-title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translate(-15px, -50%);
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+}
+
+.hero-title-side {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Syne', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(26px, 4.4vw, 58px);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    color: #111113;
+    text-transform: uppercase;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    text-shadow: 0 3px 14px rgba(0, 0, 0, 0.07);
+}
+
+/* Left side: brought closer to face/earring */
+.hero-title-left {
+    right: calc(50% + clamp(28px, 3.8vw, 55px));
+    text-align: right;
+    justify-content: flex-end;
+}
+
+/* Right side: brought closer to face/earring */
+.hero-title-right {
+    left: calc(50% + clamp(28px, 3.8vw, 55px));
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.typewriter-word {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Luxury Champagne Gold Cursor with Ambient Glow */
+.typewriter-cursor {
+    display: inline-block;
+    color: #C6A66B;
+    font-weight: 300;
+    margin-left: 4px;
+    animation: typewriterBlink 0.85s step-start infinite;
+    user-select: none;
+    opacity: 1;
+    -webkit-text-fill-color: #C6A66B;
+    text-shadow: 0 0 10px rgba(198, 166, 107, 0.6);
+}
+
+@keyframes typewriterBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .hero-kinetic-title {
+        top: 51%;
+        transform: translate(-10px, -50%);
+    }
+    .hero-title-side {
+        font-size: clamp(22px, 4.2vw, 46px);
+        letter-spacing: 0.07em;
+    }
+    .hero-title-left {
+        right: calc(50% + clamp(24px, 3.6vw, 46px));
+    }
+    .hero-title-right {
+        left: calc(50% + clamp(24px, 3.6vw, 46px));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-kinetic-title {
+        top: 51%;
+        transform: translate(-5px, -50%);
+    }
+    
+    .hero-title-side {
+        font-size: clamp(17px, 4vw, 32px);
+        letter-spacing: 0.05em;
+    }
+
+    .hero-title-left {
+        right: calc(50% + clamp(18px, 3.5vw, 35px));
+    }
+    .hero-title-right {
+        left: calc(50% + clamp(18px, 3.5vw, 35px));
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-kinetic-title {
+        top: 52%;
+        transform: translate(-2px, -50%);
+    }
+
+    .hero-title-side {
+        font-size: clamp(13px, 3.6vw, 22px);
+        letter-spacing: 0.04em;
+    }
+
+    .hero-title-left {
+        right: calc(50% + clamp(14px, 3.2vw, 26px));
+    }
+    .hero-title-right {
+        left: calc(50% + clamp(14px, 3.2vw, 26px));
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .kinetic-grid-canvas {
+        opacity: 0.7;
+    }
+    
+    .typewriter-cursor {
+        animation: none;
+        opacity: 0;
+    }
+}
+
+/* ==========================================================================
+   PROJECT SECTION — Black Kinetic Grid & "MY PROJECT" Typography
+   ========================================================================== */
+
+.project-showcase-section {
+    position: relative;
+    background: linear-gradient(135deg, #F8F5EF 0%, #F4EFE6 100%) !important;
+    overflow: hidden;
+}
+
+.project-showcase-section .kinetic-grid-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: auto;
+}
+
+.project-showcase-container {
+    position: relative;
+    z-index: 2;
+}
+
+.project-kinetic-title {
+    margin: 8px 0 16px;
+    position: relative;
+    z-index: 2;
+}
+
+.project-typewriter-wrapper {
+    font-family: 'Syne', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(36px, 6.2vw, 76px);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1.05;
+    color: #111113;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.07);
+}
+
+.project-typewriter-text {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.project-typewriter-cursor {
+    display: inline-block;
+    color: #111113;
+    font-weight: 300;
+    margin-left: 5px;
+    animation: typewriterBlink 0.85s step-start infinite;
+    user-select: none;
+    opacity: 1;
+    -webkit-text-fill-color: #111113;
+}
+
+@media (max-width: 768px) {
+    .project-typewriter-wrapper {
+        font-size: clamp(28px, 6vw, 44px);
+        letter-spacing: 0.06em;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-typewriter-wrapper {
+        font-size: clamp(22px, 5.5vw, 32px);
+        letter-spacing: 0.05em;
+    }
+}
+

@@ -25,7 +25,7 @@ public class HomeController {
     public String home(Model model) {
 
         Home home = homeRepository.findById(1L)
-                .orElseThrow(() -> new RuntimeException("Data Home tidak ada"));
+                .orElseGet(() -> homeRepository.findAll().stream().findFirst().orElse(new Home()));
 
         model.addAttribute("home", home);
 
@@ -36,7 +36,7 @@ public class HomeController {
     public String editHome(Model model) {
 
         Home home = homeRepository.findById(1L)
-                .orElseThrow(() -> new RuntimeException("Data Home tidak ada"));
+                .orElseGet(() -> homeRepository.findAll().stream().findFirst().orElse(new Home()));
 
         model.addAttribute("home", home);
 

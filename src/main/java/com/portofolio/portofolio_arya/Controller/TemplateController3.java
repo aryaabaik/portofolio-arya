@@ -80,10 +80,4 @@ public class TemplateController3 {
         profileRepository.save(profile);
         return "redirect:/template3";
     }
-
-    // @GetMapping("/delete/{id}")
-    // public String deleteProfile(@PathVariable Long id) {
-    //     profileRepository.deleteById(id);
-    //     return "redirect:/template3";
-    // }
 }

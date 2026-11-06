@@ -21,6 +21,7 @@ public class ProfileController {
     private final KeahlianRepository keahlianRepository;
     private final ProjectRepository projectRepository;
     private final KontakRepository kontakRepository;
+
     public ProfileController(
             ProfileRepository profileRepository,
             KeahlianRepository keahlianRepository,
@@ -45,7 +46,6 @@ public class ProfileController {
         model.addAttribute("projects", projects);
         model.addAttribute("kontaks", kontaks);
         model.addAttribute("kontakList", kontaks);
-        
 
         return "profile";
     }
