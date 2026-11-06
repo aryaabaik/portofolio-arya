@@ -12,17 +12,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Preload Hero Image -->
-    <link rel="preload" as="image" th:href="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}" fetchpriority="high">
+    <!-- Preload Hero WebP Image -->
+    <link rel="preload" as="image" type="image/webp" th:href="${home != null and home.foto != null ? '/images/' + #strings.replace(home.foto, #strings.substring(home.foto, #strings.lastIndexOf(home.foto, '.')), '.webp') : '/images/9.webp'}" fetchpriority="high">
 
-    <!-- CSS -->
-    <link rel="stylesheet" th:href="@{/css/home.css(v='2')}">
+    <!-- Critical CSS Minified -->
+    <link rel="stylesheet" th:href="@{/css/home.min.css(v='3')}">
 
-    <!-- Glyph Background Styles -->
-    <link rel="stylesheet" href="/css/glyph-background.css">
+    <!-- Non-critical CSS - deferred and minified -->
+    <link rel="preload" href="/css/glyph-background.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/css/glyph-background.min.css"></noscript>
     
-    <!-- Parallax Styles -->
-    <link rel="stylesheet" th:href="@{/css/parallax-scroll.css(v='27')}">
+    <link rel="preload" th:href="@{/css/parallax-scroll.min.css(v='27')}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" th:href="@{/css/parallax-scroll.min.css(v='27')}"></noscript>
 </head>
 
 <body class="home-body">
@@ -111,27 +112,36 @@
                         <img th:src="@{/images/elements/w2e1.png}"
                              alt="Ocean Element"
                              class="decor-img-fish"
+                             loading="lazy"
+                             width="80"
+                             height="80"
                              onerror="this.style.display='none'">
                     </div>
                     <div class="decor-element decor-shell" data-parallax-layer="4">
                         <img th:src="@{/images/elements/bintang.png}"
                              alt="Star Element"
                              class="decor-img-shell"
+                             loading="lazy"
+                             width="60"
+                             height="60"
                              onerror="this.style.display='none'">
                     </div>
 
                     <!-- Portrait Card Container -->
                     <div class="portrait-card" data-parallax-layer="2">
                         <div class="portrait-wrapper">
-                            <img th:src="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}"
-                                 src="/images/9.jpg"
-                                 alt="Arya Adhitya"
-                                 class="portrait-img"
-                                 width="400"
-                                 height="500"
-                                 fetchpriority="high"
-                                 decoding="async"
-                                 onerror="this.src='/images/9.jpg'">
+                            <picture>
+                                <source type="image/webp" th:srcset="${home != null and home.foto != null ? '/images/' + #strings.replace(home.foto, #strings.substring(home.foto, #strings.lastIndexOf(home.foto, '.')), '.webp') : '/images/9.webp'}">
+                                <img th:src="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}"
+                                     src="/images/9.jpg"
+                                     alt="Arya Adhitya"
+                                     class="portrait-img"
+                                     width="400"
+                                     height="500"
+                                     fetchpriority="high"
+                                     decoding="async"
+                                     onerror="this.src='/images/9.jpg'">
+                            </picture>
                         </div>
 
                         <!-- Overlay Caption Bar -->
@@ -173,13 +183,10 @@
     <!-- Lenis Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
     
-    <script th:src="@{/js/portfolio.js}" defer></script>
-
-    <!-- Glyph Background Script -->
-    <script src="/js/glyph-background.js" defer></script>
-    
-    <!-- Parallax Scroll System -->
-    <script th:src="@{/js/parallax-scroll.js(v='27')}" defer></script>
+    <!-- Minified Scripts -->
+    <script th:src="@{/js/portfolio.min.js}" defer></script>
+    <script src="/js/glyph-background.min.js" defer></script>
+    <script th:src="@{/js/parallax-scroll.min.js(v='27')}" defer></script>
 </body>
 
 </html>

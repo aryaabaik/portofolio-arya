@@ -11,19 +11,21 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-    <!-- Preload Hero LCP Image -->
-    <link rel="preload" as="image" th:href="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + profile.foto + '?v=2' : '/images/bang-jago.png?v=2'}" fetchpriority="high">
+    <!-- Preload Hero LCP WebP Image -->
+    <link rel="preload" as="image" type="image/webp" th:href="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + #strings.replace(profile.foto, #strings.substring(profile.foto, #strings.lastIndexOf(profile.foto, '.')), '.webp') : '/images/bang-jago.webp'}" fetchpriority="high">
 
-    <link rel="stylesheet" th:href="@{/css/profile.css(v='22')}">
+    <!-- Critical CSS Minified -->
+    <link rel="stylesheet" th:href="@{/css/profile.min.css(v='23')}">
 
-    <!-- Glyph Background Styles -->
-    <link rel="stylesheet" th:href="@{/css/glyph-background.css(v='20')}">
+    <!-- Non-critical CSS - deferred and minified -->
+    <link rel="preload" th:href="@{/css/glyph-background.min.css(v='20')}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" th:href="@{/css/glyph-background.min.css(v='20')}"></noscript>
     
-    <!-- Kinetic Grid Styles -->
-    <link rel="stylesheet" th:href="@{/css/kinetic-grid.css(v='19')}">
+    <link rel="preload" th:href="@{/css/kinetic-grid.min.css(v='19')}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" th:href="@{/css/kinetic-grid.min.css(v='19')}"></noscript>
     
-    <!-- Parallax Styles -->
-    <link rel="stylesheet" th:href="@{/css/parallax-scroll.css(v='27')}">
+    <link rel="preload" th:href="@{/css/parallax-scroll.min.css(v='27')}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" th:href="@{/css/parallax-scroll.min.css(v='27')}"></noscript>
 </head>
 
 <body>
@@ -90,14 +92,17 @@
 
         <!-- Portrait photo centered over the ARYA ADHITYA text -->
         <div class="hero-portrait-stage animate-fade-in" data-parallax-layer="2">
-            <img th:src="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + profile.foto + '?v=2' : '/images/bang-jago.png?v=2'}"
-                 th:alt="${profile != null && profile.nama != null ? profile.nama : 'Arya Adhitya'}"
-                 class="hero-cover-img"
-                 width="600"
-                 height="750"
-                 fetchpriority="high"
-                 decoding="async"
-                 onerror="this.onerror=null; this.src='/images/bang-jago.png?v=2'">
+            <picture>
+                <source type="image/webp" th:srcset="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + #strings.replace(profile.foto, #strings.substring(profile.foto, #strings.lastIndexOf(profile.foto, '.')), '.webp') : '/images/bang-jago.webp'}">
+                <img th:src="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + profile.foto : '/images/bang-jago.png'}"
+                     th:alt="${profile != null && profile.nama != null ? profile.nama : 'Arya Adhitya'}"
+                     class="hero-cover-img"
+                     width="600"
+                     height="750"
+                     fetchpriority="high"
+                     decoding="async"
+                     onerror="this.onerror=null; this.src='/images/bang-jago.png'">
+            </picture>
         </div>
     </section>
 
@@ -128,14 +133,17 @@
                 <div class="about-art-glow" aria-hidden="true"></div>
                 <div class="about-art-backdrop-frame" aria-hidden="true"></div>
                 <div class="about-art-card">
-                    <img th:src="${profile != null and profile.foto2 != null ? '/images/' + profile.foto2 : '/images/arya.png'}"  
-                         th:alt="${'Foto ' + (profile != null ? profile.nama : 'Profile')}" 
-                         class="about-art-img"
-                         width="380"
-                         height="475"
-                         loading="lazy"
-                         decoding="async"
-                         onerror="this.parentElement.style.display='none'">
+                    <picture>
+                        <source type="image/webp" th:srcset="${profile != null and profile.foto2 != null ? '/images/' + #strings.replace(profile.foto2, #strings.substring(profile.foto2, #strings.lastIndexOf(profile.foto2, '.')), '.webp') : '/images/arya.webp'}">
+                        <img th:src="${profile != null and profile.foto2 != null ? '/images/' + profile.foto2 : '/images/arya.png'}"  
+                             th:alt="${'Foto ' + (profile != null ? profile.nama : 'Profile')}" 
+                             class="about-art-img"
+                             width="380"
+                             height="475"
+                             loading="lazy"
+                             decoding="async"
+                             onerror="this.parentElement.style.display='none'">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -402,19 +410,12 @@
     <!-- Lenis Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
     
-    <script th:src="@{/js/portfolio.js}" defer></script>
-
-    <!-- Glyph Background Script -->
-    <script th:src="@{/js/glyph-background.js}" defer></script>
-    
-    <!-- Kinetic Grid Script -->
-    <script th:src="@{/js/kinetic-grid.js(v='19')}" defer></script>
-    
-    <!-- Expanding Gallery Script -->
-    <script th:src="@{/js/expanding-gallery.js(v='2')}" defer></script>
-    
-    <!-- Parallax Scroll System -->
-    <script th:src="@{/js/parallax-scroll.js(v='27')}" defer></script>
+    <!-- Minified Scripts -->
+    <script th:src="@{/js/portfolio.min.js}" defer></script>
+    <script th:src="@{/js/glyph-background.min.js}" defer></script>
+    <script th:src="@{/js/kinetic-grid.min.js(v='19')}" defer></script>
+    <script th:src="@{/js/expanding-gallery.min.js(v='2')}" defer></script>
+    <script th:src="@{/js/parallax-scroll.min.js(v='27')}" defer></script>
 </body>
 
 </html>
