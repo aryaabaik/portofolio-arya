@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
     <!-- Preload Hero LCP WebP Image -->
-    <link rel="preload" as="image" type="image/webp" th:href="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + #strings.replace(profile.foto, #strings.substring(profile.foto, #strings.lastIndexOf(profile.foto, '.')), '.webp') : '/images/bang-jago.webp'}" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" th:href="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + (profile.foto.contains('.') ? profile.foto.substring(0, profile.foto.lastIndexOf('.')) + '.webp' : profile.foto) : '/images/bang-jago.webp'}" fetchpriority="high">
 
     <!-- Critical CSS Minified -->
     <link rel="stylesheet" th:href="@{/css/profile.min.css(v='23')}">
@@ -93,7 +93,7 @@
         <!-- Portrait photo centered over the ARYA ADHITYA text -->
         <div class="hero-portrait-stage animate-fade-in" data-parallax-layer="2">
             <picture>
-                <source type="image/webp" th:srcset="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + #strings.replace(profile.foto, #strings.substring(profile.foto, #strings.lastIndexOf(profile.foto, '.')), '.webp') : '/images/bang-jago.webp'}">
+                <source type="image/webp" th:srcset="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + (profile.foto.contains('.') ? profile.foto.substring(0, profile.foto.lastIndexOf('.')) + '.webp' : profile.foto) : '/images/bang-jago.webp'}">
                 <img th:src="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + profile.foto : '/images/bang-jago.png'}"
                      th:alt="${profile != null && profile.nama != null ? profile.nama : 'Arya Adhitya'}"
                      class="hero-cover-img"
@@ -134,7 +134,7 @@
                 <div class="about-art-backdrop-frame" aria-hidden="true"></div>
                 <div class="about-art-card">
                     <picture>
-                        <source type="image/webp" th:srcset="${profile != null and profile.foto2 != null ? '/images/' + #strings.replace(profile.foto2, #strings.substring(profile.foto2, #strings.lastIndexOf(profile.foto2, '.')), '.webp') : '/images/arya.webp'}">
+                        <source type="image/webp" th:srcset="${profile != null and profile.foto2 != null ? '/images/' + (profile.foto2.contains('.') ? profile.foto2.substring(0, profile.foto2.lastIndexOf('.')) + '.webp' : profile.foto2) : '/images/arya.webp'}">
                         <img th:src="${profile != null and profile.foto2 != null ? '/images/' + profile.foto2 : '/images/arya.png'}"  
                              th:alt="${'Foto ' + (profile != null ? profile.nama : 'Profile')}" 
                              class="about-art-img"

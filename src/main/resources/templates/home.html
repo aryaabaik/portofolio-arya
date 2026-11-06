@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Preload Hero WebP Image -->
-    <link rel="preload" as="image" type="image/webp" th:href="${home != null and home.foto != null ? '/images/' + #strings.replace(home.foto, #strings.substring(home.foto, #strings.lastIndexOf(home.foto, '.')), '.webp') : '/images/9.webp'}" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" th:href="${home != null and home.foto != null ? '/images/' + (home.foto.contains('.') ? home.foto.substring(0, home.foto.lastIndexOf('.')) + '.webp' : home.foto) : '/images/9.webp'}" fetchpriority="high">
 
     <!-- Critical CSS Minified -->
     <link rel="stylesheet" th:href="@{/css/home.min.css(v='3')}">
@@ -131,7 +131,7 @@
                     <div class="portrait-card" data-parallax-layer="2">
                         <div class="portrait-wrapper">
                             <picture>
-                                <source type="image/webp" th:srcset="${home != null and home.foto != null ? '/images/' + #strings.replace(home.foto, #strings.substring(home.foto, #strings.lastIndexOf(home.foto, '.')), '.webp') : '/images/9.webp'}">
+                                <source type="image/webp" th:srcset="${home != null and home.foto != null ? '/images/' + (home.foto.contains('.') ? home.foto.substring(0, home.foto.lastIndexOf('.')) + '.webp' : home.foto) : '/images/9.webp'}">
                                 <img th:src="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}"
                                      src="/images/9.jpg"
                                      alt="Arya Adhitya"
