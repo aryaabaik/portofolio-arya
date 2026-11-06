@@ -10,16 +10,19 @@
     <!-- Google Fonts: Editorial Serif + Clean Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Preload Hero Image -->
+    <link rel="preload" as="image" th:href="${home != null and home.foto != null ? '/images/' + home.foto : '/images/9.jpg'}" fetchpriority="high">
 
     <!-- CSS -->
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" th:href="@{/css/home.css(v='2')}">
 
     <!-- Glyph Background Styles -->
     <link rel="stylesheet" href="/css/glyph-background.css">
     
     <!-- Parallax Styles -->
-    <link rel="stylesheet" th:href="@{/css/parallax-scroll.css(v='25')}">
+    <link rel="stylesheet" th:href="@{/css/parallax-scroll.css(v='27')}">
 </head>
 
 <body class="home-body">
@@ -124,6 +127,10 @@
                                  src="/images/9.jpg"
                                  alt="Arya Adhitya"
                                  class="portrait-img"
+                                 width="400"
+                                 height="500"
+                                 fetchpriority="high"
+                                 decoding="async"
                                  onerror="this.src='/images/9.jpg'">
                         </div>
 
@@ -160,19 +167,19 @@
     </footer>
 
     <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
     
     <!-- Lenis Smooth Scroll -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
     
-    <script th:src="@{/js/portfolio.js}"></script>
+    <script th:src="@{/js/portfolio.js}" defer></script>
 
     <!-- Glyph Background Script -->
     <script src="/js/glyph-background.js" defer></script>
     
     <!-- Parallax Scroll System -->
-    <script th:src="@{/js/parallax-scroll.js(v='25')}"></script>
+    <script th:src="@{/js/parallax-scroll.js(v='27')}" defer></script>
 </body>
 
 </html>

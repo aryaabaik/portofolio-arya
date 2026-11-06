@@ -9,21 +9,27 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" th:href="@{/css/profile.css(v='21')}">
+    <!-- Preload Hero LCP Image -->
+    <link rel="preload" as="image" th:href="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + profile.foto + '?v=2' : '/images/bang-jago.png?v=2'}" fetchpriority="high">
+
+    <link rel="stylesheet" th:href="@{/css/profile.css(v='22')}">
 
     <!-- Glyph Background Styles -->
     <link rel="stylesheet" th:href="@{/css/glyph-background.css(v='20')}">
     
     <!-- Kinetic Grid Styles -->
-    <link rel="stylesheet" th:href="@{/css/kinetic-grid.css(v='18')}">
+    <link rel="stylesheet" th:href="@{/css/kinetic-grid.css(v='19')}">
     
     <!-- Parallax Styles -->
-    <link rel="stylesheet" th:href="@{/css/parallax-scroll.css(v='26')}">
+    <link rel="stylesheet" th:href="@{/css/parallax-scroll.css(v='27')}">
 </head>
 
 <body>
+
+    <!-- Accessible Skip to Content Landmark Link -->
+    <a href="#main-content" class="skip-to-content">Lewati ke konten utama</a>
 
     <!-- Minimalist Editorial Scroll Progress Bar -->
     <div class="scroll-progress-bar" id="scrollProgressBar" aria-hidden="true"></div>
@@ -52,6 +58,8 @@
             <a href="#contact" class="navbar-contact desktop-only">Contact</a>
         </nav>
     </header>
+
+    <main id="main-content">
 
     <section id="profile" class="profile-hero-section" data-parallax-section="profile">
         <!-- Light Kinetic Grid Background -->
@@ -85,6 +93,10 @@
             <img th:src="${profile != null and profile.foto != null and !profile.foto.isEmpty() ? '/images/' + profile.foto + '?v=2' : '/images/bang-jago.png?v=2'}"
                  th:alt="${profile != null && profile.nama != null ? profile.nama : 'Arya Adhitya'}"
                  class="hero-cover-img"
+                 width="600"
+                 height="750"
+                 fetchpriority="high"
+                 decoding="async"
                  onerror="this.onerror=null; this.src='/images/bang-jago.png?v=2'">
         </div>
     </section>
@@ -119,6 +131,10 @@
                     <img th:src="${profile != null and profile.foto2 != null ? '/images/' + profile.foto2 : '/images/arya.png'}"  
                          th:alt="${'Foto ' + (profile != null ? profile.nama : 'Profile')}" 
                          class="about-art-img"
+                         width="380"
+                         height="475"
+                         loading="lazy"
+                         decoding="async"
                          onerror="this.parentElement.style.display='none'">
                 </div>
             </div>
@@ -216,7 +232,10 @@
                                  th:alt="${item.name}" 
                                  class="reveal-item-img"
                                  data-parallax-layer="img"
-                                 loading="lazy">
+                                 width="400"
+                                 height="300"
+                                 loading="lazy"
+                                 decoding="async">
                         </div>
                         <div class="reveal-item-gradient"></div>
                     </div>
@@ -312,6 +331,8 @@
         </div>
     </section>
     
+    </main>
+
     <footer class="footer">
         <div class="footer-container">
             <p th:text="'Copyright ' + ${#dates.format(#dates.createNow(), 'yyyy')} + ' ' + (${profile != null ? profile.nama : 'Arya'}) + '. All rights reserved.'">
@@ -346,7 +367,7 @@
                 </button>
 
                 <div class="karya-lightbox-img-wrap">
-                    <img id="lightboxMainImg" src="" alt="Foto Proyek" class="karya-lightbox-img">
+                    <img id="lightboxMainImg" src="" alt="Foto Proyek" class="karya-lightbox-img" loading="lazy" decoding="async">
                     <div class="karya-lightbox-badge" id="lightboxCounter">1 / 5</div>
                 </div>
 
@@ -375,25 +396,25 @@
     </div>
 
     <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
     
     <!-- Lenis Smooth Scroll -->
-    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
     
-    <script th:src="@{/js/portfolio.js}"></script>
+    <script th:src="@{/js/portfolio.js}" defer></script>
 
     <!-- Glyph Background Script -->
     <script th:src="@{/js/glyph-background.js}" defer></script>
     
     <!-- Kinetic Grid Script -->
-    <script th:src="@{/js/kinetic-grid.js(v='16')}" defer></script>
+    <script th:src="@{/js/kinetic-grid.js(v='19')}" defer></script>
     
     <!-- Expanding Gallery Script -->
-    <script th:src="@{/js/expanding-gallery.js(v='1')}" defer></script>
+    <script th:src="@{/js/expanding-gallery.js(v='2')}" defer></script>
     
     <!-- Parallax Scroll System -->
-    <script th:src="@{/js/parallax-scroll.js(v='26')}"></script>
+    <script th:src="@{/js/parallax-scroll.js(v='27')}" defer></script>
 </body>
 
 </html>

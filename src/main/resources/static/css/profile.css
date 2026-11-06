@@ -74,6 +74,27 @@ html {
     width: 100%;
 }
 
+.skip-to-content {
+    position: absolute;
+    top: -100px;
+    left: 20px;
+    z-index: 10001;
+    padding: 10px 18px;
+    background: #111113;
+    color: #FAF6F0;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transition: top 0.2s ease;
+}
+
+.skip-to-content:focus {
+    top: 20px;
+    outline: 2px solid #C6A66B;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg);
@@ -1025,7 +1046,7 @@ body {
     font-weight: 600;
     letter-spacing: 1.8px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: #484540;
 }
 
 /* ==========================================================================
@@ -1554,7 +1575,7 @@ body {
     font-family: 'DM Serif Display', Georgia, serif;
     font-size: 48px;
     font-weight: 400;
-    color: #C6A66B;
+    color: #835C12;
     line-height: 1;
     margin-bottom: 8px;
 }
@@ -1564,7 +1585,7 @@ body {
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--text-muted);
+    color: #2D2C2A;
 }
 
 /* ==========================================================================
@@ -1711,7 +1732,7 @@ body {
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #C6A66B;
+    color: #835C12;
     display: block;
     margin-bottom: 8px;
 }
@@ -1842,10 +1863,12 @@ body {
     
     .count-number {
         font-size: 36px;
+        color: #835C12;
     }
     
     .count-label {
         font-size: 10px;
+        color: #2D2C2A;
     }
     
     .project-reveal-stage {
@@ -2324,13 +2347,13 @@ body {
 
 .footer p {
     font-size: 13.5px;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.84);
     font-weight: 400;
 }
 
 .footer-tech {
     font-size: 11.5px;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.72);
     margin-top: 8px;
     letter-spacing: 0.8px;
 }

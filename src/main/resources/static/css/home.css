@@ -827,13 +827,13 @@ body.home-body {
 .footer-copyright {
     font-family: 'Inter', sans-serif;
     font-size: 12.5px;
-    color: var(--text-muted);
+    color: #484540;
 }
 
 .footer-note {
     font-family: 'Inter', sans-serif;
     font-size: 11px;
-    color: var(--text-light);
+    color: #484540;
     letter-spacing: 0.3px;
 }
 

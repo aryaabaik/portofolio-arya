@@ -22,6 +22,7 @@
             this.mouse = { x: -9999, y: -9999 };
             this.ripples = [];
             this.animationId = null;
+            this.isVisible = true;
             this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             this.init();
@@ -34,9 +35,31 @@
             this.bindEvents();
 
             if (!this.prefersReducedMotion) {
+                this.setupIntersectionObserver();
                 this.animate();
             } else {
                 this.drawStatic();
+            }
+        }
+
+        setupIntersectionObserver() {
+            if ('IntersectionObserver' in window && this.section) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        this.isVisible = entry.isIntersecting;
+                        if (this.isVisible) {
+                            if (!this.animationId) {
+                                this.animate();
+                            }
+                        } else {
+                            if (this.animationId) {
+                                cancelAnimationFrame(this.animationId);
+                                this.animationId = null;
+                            }
+                        }
+                    });
+                }, { threshold: 0.05 });
+                observer.observe(this.section);
             }
         }
 
@@ -331,6 +354,10 @@
         }
 
         animate() {
+            if (!this.isVisible) {
+                this.animationId = null;
+                return;
+            }
             this.updateNodes();
             this.updateRipples();
             this.draw();
@@ -541,5 +568,4 @@
     } else {
         initHeroFeatures();
     }
-    window.addEventListener('load', initHeroFeatures);
 })();
