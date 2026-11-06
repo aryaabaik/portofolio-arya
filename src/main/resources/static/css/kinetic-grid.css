@@ -43,7 +43,7 @@
     top: 50%;
     transform: translateY(-50%);
     font-family: 'Syne', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: clamp(26px, 4.4vw, 58px);
+    font-size: clamp(38px, 6.2vw, 80px);
     font-weight: 800;
     letter-spacing: 0.08em;
     line-height: 1;
@@ -99,7 +99,7 @@
         transform: translate(-10px, -50%);
     }
     .hero-title-side {
-        font-size: clamp(22px, 4.2vw, 46px);
+        font-size: clamp(30px, 5.5vw, 64px);
         letter-spacing: 0.07em;
     }
     .hero-title-left {
@@ -117,7 +117,7 @@
     }
     
     .hero-title-side {
-        font-size: clamp(17px, 4vw, 32px);
+        font-size: clamp(22px, 5.2vw, 44px);
         letter-spacing: 0.05em;
     }
 
@@ -136,7 +136,7 @@
     }
 
     .hero-title-side {
-        font-size: clamp(13px, 3.6vw, 22px);
+        font-size: clamp(17px, 4.8vw, 30px);
         letter-spacing: 0.04em;
     }
 
