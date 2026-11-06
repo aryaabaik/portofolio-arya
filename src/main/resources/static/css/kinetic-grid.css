@@ -32,7 +32,7 @@
     top: 50%;
     left: 0;
     width: 100%;
-    transform: translate(-15px, -50%);
+    transform: translate(8px, -50%);
     z-index: 2;
     pointer-events: none;
     user-select: none;
@@ -96,7 +96,7 @@
 @media (max-width: 1024px) {
     .hero-kinetic-title {
         top: 51%;
-        transform: translate(-10px, -50%);
+        transform: translate(6px, -50%);
     }
     .hero-title-side {
         font-size: clamp(30px, 5.5vw, 64px);
@@ -113,7 +113,7 @@
 @media (max-width: 768px) {
     .hero-kinetic-title {
         top: 51%;
-        transform: translate(-5px, -50%);
+        transform: translate(4px, -50%);
     }
     
     .hero-title-side {
@@ -132,7 +132,7 @@
 @media (max-width: 480px) {
     .hero-kinetic-title {
         top: 52%;
-        transform: translate(-2px, -50%);
+        transform: translate(2px, -50%);
     }
 
     .hero-title-side {
@@ -235,4 +235,3 @@
         letter-spacing: 0.05em;
     }
 }
-
