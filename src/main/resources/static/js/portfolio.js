@@ -261,19 +261,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     // 5. Hero Optical Depth Parallax (Desktop)
     // =========================================
+    // NOTE: Parallax for profile section is primarily handled by
+    // parallax-scroll.js via GSAP ScrollTrigger for optimal performance.
+    // This handler provides a lightweight depth effect that complements
+    // the ScrollTrigger-based parallax without duplicating work.
     if (!prefersReducedMotion && window.innerWidth > 768) {
         const heroSection = document.querySelector('.profile-hero-section');
         const heroCoverImg = document.querySelector('.hero-cover-img');
         const heroHaloArc = document.querySelector('.hero-halo-arc');
 
         if (heroSection && heroCoverImg) {
+            // Cache hero height to avoid repeated reflow calculations
+            const heroHeight = heroSection.offsetHeight;
             let heroTicking = false;
 
             const updateHeroParallax = () => {
                 const scrollY = window.scrollY;
-                const heroHeight = heroSection.offsetHeight;
 
                 if (scrollY <= heroHeight + 50) {
+                    // Use cached heroHeight instead of reading offsetHeight on every scroll
                     const ratio = scrollY / heroHeight;
                     // Photo subtly sinks down creating realistic 3D depth separation
                     const photoY = scrollY * 0.18;
